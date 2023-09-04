@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:23:00 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/04 20:57:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/04 21:21:31 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		ft_error("Check: num of argc\n");
-	check_argv(argv[1]);
+	//check_argv(argv[1]);
 	return (0);
 }

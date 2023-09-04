@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:29:03 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/04 20:32:12 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/04 20:56:24 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	ft_error(char *str)
 {
 	write(2, "Error\n", 6);
 	write(2, str, ft_strlen(str));
+	exit(1);
 }

@@ -6,7 +6,7 @@
 #    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/04 20:38:26 by hyungjup         ###   ########.fr        #
+#    Updated: 2023/09/04 20:41:01 by hyungjup         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,10 @@ clean :
 	$(RM) $(OBJS)
 	make -C ./mlx clean
 	rm -rf libmlx.dylib
-	echo "$(YELLOW)object files deleted!"
 
 fclean : clean
 	$(RM) $(NAME)
-	echo "$(RED)all deleted"
 
 re : fclean all
 
 .PHONY : all clean fclean re
-
-RED = \033[1;31m
-GREEN = \033[1;32m
-YELLOW = \033[0;33m

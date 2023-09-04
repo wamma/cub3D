@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/04 21:10:45 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/04 21:25:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include "libft/libft.h"
+# include "gnl/get_next_line.h"
 
 typedef struct s_map {
 	int	l;

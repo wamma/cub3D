@@ -6,7 +6,7 @@
 #    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/04 21:21:22 by eoh              ###   ########.fr        #
+#    Updated: 2023/09/04 21:26:46 by eoh              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
+SRCS = ./gnl/get_next_line.c\
 	main.c error.c
 
 

@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
+#    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
 #    Updated: 2023/09/05 17:20:44 by hyungjup         ###   ########.fr        #

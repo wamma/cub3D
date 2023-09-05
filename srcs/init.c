@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:44:28 by eoh               #+#    #+#             */
 /*   Updated: 2023/09/05 16:26:09 by hyungjup         ###   ########.fr       */

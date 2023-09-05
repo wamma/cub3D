@@ -33,3 +33,4 @@ char	*get_starting_line_of_map(int fd)
 	}
 	return (map_line);
 }
+//이부분은 위 구성요소가 완전하다는 가정하에 검사할 수 있다. 

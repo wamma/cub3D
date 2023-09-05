@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 17:19:44 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:36:32 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_map {
 	char	*ea_path;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
-	int		fd;
-	int		width;
-	int		height;
+	int		map_path_fd;
+	size_t	width;
+	size_t	height;
 }	t_map;
 
 /*parsing*/
@@ -54,5 +54,19 @@ int		is_all_white_space(char *str);
 char	*get_starting_line_of_map(int fd);
 char	**init_ppc(int x, int y);
 void	ft_error(char *str);
+
+
+/*map_utils.c*/
+char	*get_starting_line_of_map(int fd);
+
+/*parse_map.c*/
+char	**parse_map(t_map *info_map);
+void	check_map_exist(t_map *info_map);
+void	get_map_size(t_map *map);
+void	check_valid_component(t_map *info_map);
+char	**get_map(t_map *info_map);
+
+/*init.c*/
+char	**init_ppc(int x, int y);
 
 #endif

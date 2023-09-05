@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 14:19:29 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 14:59:53 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ typedef struct s_map {
 }	t_map;
 
 
-//error.c
+/*error.c*/
 void	ft_error(char *str);
 
-//get_map.c
+/*get_map.c*/
 
-//utils.c
-int	is_all_white_space(char *str);
+/*utils.c*/
+int		is_all_white_space(char *str);
 char	*get_starting_line_of_map(int fd);
+
+/*get_path.c*/
+char	*get_path(char *argv);
 
 #endif

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:44:28 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 13:13:52 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 15:06:02 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	**init_ppc(int x, int y)
+char	**init_ppc(int x, int y) // ppc = pointer pointer character
 {
 	int			i;
 	char	**ppc;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
+#    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/05 15:14:48 by hyungjup         ###   ########.fr        #
+#    Updated: 2023/09/05 16:30:12 by eoh              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = main.c srcs/error.c
+SRCS = main.c srcs/error.c srcs/init.c srcs/utils.c parsing/get_path.c parsing/map_utils.c parsing/parse_map.c
 OBJS = $(SRCS:.c=.o)
 
-HEADER = fractol.h
+HEADER = cub3D.h
 
 all : $(NAME)
 

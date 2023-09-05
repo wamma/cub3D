@@ -6,11 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:27:45 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 11:28:33 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 16:52:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 int	is_all_white_space(char *str)
 {
@@ -21,12 +21,12 @@ int	is_all_white_space(char *str)
 	cnt = 0;
 	while (str[i])
 	{
-		if (!(str[i] >= 9 && str[i] <= 13 || str[i] == 32))
+		if (!((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 			cnt++;
 		i++;
 	}
 	if (cnt == 0)
 		return (1);
-	if (cnt == 1)
+	else
 		return (0);
 }

@@ -6,20 +6,20 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 14:20:05 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 16:25:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
-char	**parse_map(char *argv, t_map *info_map)
+char	**parse_map(t_map *info_map)
 {
 	char	**map;
 
-	check_map_exist(map);
-	get_map_size(map);
-	check_map_component(map);
-	map = get_map(map);
+	check_map_exist(info_map);
+	get_map_size(info_map);
+	check_valid_component(info_map);
+	map = get_map(info_map);
 	return (map);
 }
 
@@ -61,7 +61,7 @@ void	get_map_size(t_map *map)
 	close(map->fd);
 }
 
-int	check_valid_component(t_map *info_map)
+void	check_valid_component(t_map *info_map)
 {
 	int		i;
 	char	*map_line;

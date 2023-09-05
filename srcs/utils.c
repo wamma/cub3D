@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:27:45 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 16:52:12 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 18:36:09 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ int	is_all_white_space(char *str)
 		return (1);
 	else
 		return (0);
+}
+
+int	is_white_space(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 17:05:22 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 18:36:32 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_error(char *str);
 
 /*utils.c*/
 int		is_all_white_space(char *str);
-char	*get_starting_line_of_map(int fd);
+int		is_white_space(char c)
 
 /*get_path.c*/
 int		rev_strncmp(char *s1, char *s2, int n);

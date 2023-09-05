@@ -6,7 +6,7 @@
 #    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/05 10:56:48 by eoh              ###   ########.fr        #
+#    Updated: 2023/09/05 11:02:10 by eoh              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
 SRCS = main.c error.c
-
-
 OBJS = $(SRCS:.c=.o)
 
 HEADER = fractol.h
@@ -41,6 +39,7 @@ $(NAME): $(OBJS)
 clean :
 	$(RM) $(OBJS)
 	make -C ./mlx clean
+	make -C ./libft fclean
 	rm -rf libmlx.dylib
 fclean : clean
 	$(RM) $(NAME)

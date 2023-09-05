@@ -6,16 +6,17 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 18:36:32 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 20:23:26 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WALL 1
-# define EMPTY_SPACE 0
-# define UNDEFINED_MAP 2
+# define WALL '1'
+# define EMPTY_SPACE '0'
+# define UNDEFINED_MAP 'z'
+//매크로에 문자넣는 방법 
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -38,23 +39,24 @@ typedef struct s_map {
 	t_rgb	*floor;
 	t_rgb	*ceiling;
 	int		map_path_fd;
-	size_t	width;
-	size_t	height;
+	int		width;
+	int		height;
 }	t_map;
 
 /*parsing*/
-void	save_direction_file(char *map_name, t_map *info_map);
-char	*get_path(char *argv);
 void	check_valid_map(t_map *map_info);
 char	**parse_map(t_map *info_map);
 char	**get_map(t_map *info_map);
+void	check_extension(char *argv);
 
 /*srcs*/
 int		is_all_white_space(char *str);
+char	*ft_after_space(char *str);
 char	*get_starting_line_of_map(int fd);
 char	**init_ppc(int x, int y);
 void	ft_error(char *str);
-
+int		is_white_space(char c);
+void	init_info_map(char *map_name, t_map *info_map);
 
 /*map_utils.c*/
 char	*get_starting_line_of_map(int fd);
@@ -66,7 +68,5 @@ void	get_map_size(t_map *map);
 void	check_valid_component(t_map *info_map);
 char	**get_map(t_map *info_map);
 
-/*init.c*/
-char	**init_ppc(int x, int y);
 
 #endif

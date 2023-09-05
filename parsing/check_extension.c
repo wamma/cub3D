@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:52:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 16:26:01 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:14:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ int	rev_strncmp(char *s1, char *s2, int n)
 	return (1);
 }
 
-char	*get_path(char *argv)
+void	check_extension(char *argv)
 {
 	if (rev_strncmp(argv, "buc.", 4) == -1)
 		ft_error("Check: argv extension");
-	return (argv);
 }

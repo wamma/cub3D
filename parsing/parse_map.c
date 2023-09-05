@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 17:24:02 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:25:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	check_map_exist(t_map *info_map)
 {
 	char	*map_line;
 
-	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
 	map_line = get_next_line(info_map->map_path_fd);
 	while (map_line != NULL)
 	{
@@ -117,7 +116,7 @@ char	**get_map(t_map *info_map)
 			j++;
 		}
 		map[i][j] = '\0';
-		free(map_line);
+		//free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 		printf("%s\n", map[i]);
 		i++;
@@ -127,3 +126,7 @@ char	**get_map(t_map *info_map)
 
 //일단 개행이 같이 나오는 문제->개행전까지 자름, 위가 완벽하다는 가정하에 들어오는 거라 합쳐서 확인해보기
 //마지막에는 개행을 넣고 그 사이는 'z'로 다 채워야 됨.
+1111\nzzzzzz
+zzzz
+111111111
+dfs, bfs

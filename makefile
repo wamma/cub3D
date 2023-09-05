@@ -6,7 +6,7 @@
 #    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/05 17:20:44 by hyungjup         ###   ########.fr        #
+#    Updated: 2023/09/05 20:15:25 by eoh              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = main.c srcs/error.c parsing/check_map.c parsing/get_path.c parsing/parse_map.c srcs/init.c \
-	  srcs/utils.c parsing/map_utils.c parsing/save_direction_file.c
+SRCS = main.c srcs/error.c parsing/check_map.c parsing/check_extension.c parsing/parse_map.c srcs/init.c \
+	  srcs/utils.c parsing/parse_utils.c
 OBJS = $(SRCS:.c=.o)
 
 HEADER = cub3D.h

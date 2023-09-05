@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:23:00 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 16:19:20 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 18:32:18 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error("Check: num of argc\n");
+	save_direction_file(argv[1], &info_map);
+	printf("NO: %s\n", info_map.no_path);
+	check_valid_map(&info_map);
 	info_map.map_path = get_path(argv[1]);
 	info_map.map = parse_map(&info_map);
 	return (0);

@@ -42,19 +42,19 @@ typedef struct s_map {
 	size_t	height;
 }	t_map;
 
+/*parsing*/
+void	save_direction_file(char *map_name, t_map *info_map);
+char	*get_path(char *argv);
+void	check_valid_map(t_map *map_info);
+char	**parse_map(t_map *info_map);
+char	**get_map(t_map *info_map);
 
-/*error.c*/
+/*srcs*/
+int		is_all_white_space(char *str);
+char	*get_starting_line_of_map(int fd);
+char	**init_ppc(int x, int y);
 void	ft_error(char *str);
 
-/*get_map.c*/
-
-/*utils.c*/
-int		is_all_white_space(char *str);
-int		is_white_space(char c)
-
-/*get_path.c*/
-int		rev_strncmp(char *s1, char *s2, int n);
-char	*get_path(char *argv);
 
 /*map_utils.c*/
 char	*get_starting_line_of_map(int fd);

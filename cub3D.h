@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 16:27:41 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 17:05:22 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_map {
 	char	*ea_path;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
-	int		fd;
+	int		map_path_fd;
 	size_t	width;
 	size_t	height;
 }	t_map;

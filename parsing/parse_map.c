@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 16:25:34 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 17:31:48 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ void	check_map_exist(t_map *info_map)
 {
 	char	*map_line;
 
-	map_line = get_next_line(info_map->fd);
-	while (map_line && is_all_white_space(map_line) != 1)
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_next_line(info_map->map_path_fd);
+	while (map_line != NULL)
 	{
+		if (is_all_white_space(map_line) == 0)
+			break ;
 		free(map_line);
-		map_line = get_next_line(info_map->fd);
+		map_line = get_next_line(info_map->map_path_fd);
 	}
 	if (!map_line)
 		ft_error("Check : There's no map!\n");
@@ -42,47 +45,60 @@ void	check_map_exist(t_map *info_map)
 	}
 }
 
-void	get_map_size(t_map *map)
+void	get_map_size(t_map *info_map)
 {
 	int		h;
 	char	*map_line;
 
 	h = 1;
-	map_line = get_next_line(map->fd);
+	map_line = get_next_line(info_map->map_path_fd);
 	while (map_line)
 	{
-		if (ft_strlen(map_line) > map->width)
-			map->width = ft_strlen(map_line);
+		if (ft_strlen(map_line) > info_map->width)
+			info_map->width = ft_strlen(map_line);
 		h++;
 		free(map_line);
-		map_line = get_next_line(map->fd);
+		map_line = get_next_line(info_map->map_path_fd);
 	}
-	map->height = h;
-	close(map->fd);
+	info_map->height = h;
+	close(info_map->map_path_fd);
+}
+
+int	is_white_space(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
 }
 
 void	check_valid_component(t_map *info_map)
 {
 	int		i;
+	int		cnt;
 	char	*map_line;
 
-	info_map->fd = open(info_map->map_path, O_RDONLY);
-	map_line = get_starting_line_of_map(info_map->fd);
+	cnt = 0;
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	while (map_line != NULL)
 	{
 		i = 0;
-		while (map_line[i] != '\0')
+		while (map_line[i])
 		{
-			if (map_line[i] != WALL && map_line[i] != EMPTY_SPACE && \
-			map_line[i] != 'N' && map_line[i] != 'S' \
-			&& map_line[i] != 'E' && map_line[i] != 'W')
+			if (map_line[i] != '1' && map_line[i] != '0' && \
+			map_line[i] != 'N' && map_line[i] != 'S' && map_line[i] != 'E' \
+			&& map_line[i] != 'W' && is_white_space(map_line[i]) == 0)
+			{
+				free(map_line);
 				ft_error("Check: wrong component\n");
+			}
 			i++;
 		}
-		free(map_line);
-		map_line = get_next_line(info_map->fd);
+		//free(map_line);->왜 더블프리?
+		map_line = get_next_line(info_map->map_path_fd);
+		cnt++;
 	}
-	close(info_map->fd);
+	close(info_map->map_path_fd);
 }
 
 char	**get_map(t_map *info_map)
@@ -92,8 +108,8 @@ char	**get_map(t_map *info_map)
 	int		i;
 	int		j;
 
-	info_map->fd = open(info_map->map_path, O_RDONLY);
-	map_line = get_starting_line_of_map(info_map->fd);
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	map = init_ppc(info_map->width, info_map->height);
 	i = 0;
 	while (map[i] != NULL)

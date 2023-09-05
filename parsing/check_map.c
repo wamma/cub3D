@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:54:27 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 19:57:54 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 21:49:44 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,44 @@ void	check_direction(t_map *map_info)
 
 void	check_f_c(t_map *map_info, char *line)
 {
+	char	**rgb;
+	int		i;
+
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
+		rgb = ft_split(line + 2, ',');
+		map_info->floor->r = ft_atoi(rgb[0]);
+		map_info->floor->g = ft_atoi(rgb[1]);
+		map_info->floor->b = ft_atoi(rgb[2]);
 		if (map_info->floor->r < 0 || map_info->floor->r > 255 || \
 		map_info->floor->g < 0 || map_info->floor->g > 255 || \
 		map_info->floor->b < 0 || map_info->floor->b > 255)
-			ft_error("Check: floor rgb range\n");//free하는거 생각해보기
+		{
+			free_direction(map_info);
+			ft_error("Check: floor rgb range\n");
+		}
+		i = -1;
+		while (++i < 3)
+			free(rgb[i]);
+		free(rgb);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
+		rgb = ft_split(line + 2, ',');
+		for (int i = 0; i < 3; i++)
+			printf("rgb[%d]", i);
+		map_info->ceiling->r = ft_atoi(rgb[0]);
+		map_info->ceiling->g = ft_atoi(rgb[1]);
+		map_info->ceiling->b = ft_atoi(rgb[2]);
 			if (map_info->ceiling->r < 0 || map_info->ceiling->r > 255 || \
 		map_info->ceiling->g < 0 || map_info->ceiling->g > 255 || \
 		map_info->ceiling->b < 0 || map_info->ceiling->b > 255)
 			ft_error("Check: ceiling rgb range\n");
+		i = -1;
+		while (++i < 3)
+			free(rgb[i]);
+		free(rgb);
 	}
-	//저장하는 코드
 }
 
 void	check_valid_map(t_map *map_info)
@@ -83,7 +106,8 @@ void	check_valid_map(t_map *map_info)
 		if (count == 6)
 			break ;
 		line = get_next_line(map_info->map_path_fd);
-		count++; //개행+whitespace만 들어왔을때는 카운트 안되게 조건 걸기
+		if (only_space_and_new_line(line) == 0)
+			count++;
 	}
 	return ;
 }

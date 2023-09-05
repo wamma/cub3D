@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
+#    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/05 20:15:25 by eoh              ###   ########.fr        #
+#    Updated: 2023/09/05 21:23:15 by hyungjup         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
 SRCS = main.c srcs/error.c parsing/check_map.c parsing/check_extension.c parsing/parse_map.c srcs/init.c \
-	  srcs/utils.c parsing/parse_utils.c
+	  srcs/utils.c parsing/parse_utils.c srcs/free.c
 OBJS = $(SRCS:.c=.o)
 
 HEADER = cub3D.h

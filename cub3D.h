@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 20:23:26 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 21:48:29 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void	check_valid_map(t_map *map_info);
 char	**parse_map(t_map *info_map);
 char	**get_map(t_map *info_map);
 void	check_extension(char *argv);
+void	check_map_exist(t_map *info_map);
+void	get_map_size(t_map *map);
+void	check_valid_component(t_map *info_map);
 
 /*srcs*/
 int		is_all_white_space(char *str);
@@ -56,17 +59,8 @@ char	*get_starting_line_of_map(int fd);
 char	**init_ppc(int x, int y);
 void	ft_error(char *str);
 int		is_white_space(char c);
+int		only_space_and_new_line(char *line);
 void	init_info_map(char *map_name, t_map *info_map);
-
-/*map_utils.c*/
-char	*get_starting_line_of_map(int fd);
-
-/*parse_map.c*/
-char	**parse_map(t_map *info_map);
-void	check_map_exist(t_map *info_map);
-void	get_map_size(t_map *map);
-void	check_valid_component(t_map *info_map);
-char	**get_map(t_map *info_map);
-
+void	free_direction(t_map *map);
 
 #endif

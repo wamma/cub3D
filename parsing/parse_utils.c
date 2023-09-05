@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:59:15 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 20:05:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 21:30:25 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@ char	*get_starting_line_of_map(int fd)
 
 char	*ft_after_space(char *str)
 {
+	char	*end;
+
 	while (*str && *str != ' ')
 		str++;
 	if (*str == ' ')
 		str++;
+	end = str;
+	while (*end && *end != '\n')
+		end++;
+	*end = '\0';
 	return (ft_strdup(str));
 }//strncpy(ft_strlen(str) -1) 개행을 없애기 위해

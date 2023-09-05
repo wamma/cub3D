@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 17:31:48 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 17:45:16 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,14 @@ int	is_white_space(char c)
 void	check_valid_component(t_map *info_map)
 {
 	int		i;
-	int		cnt;
 	char	*map_line;
 
-	cnt = 0;
 	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
 	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	while (map_line != NULL)
 	{
 		i = 0;
-		while (map_line[i])
+		while (map_line[i] != '\0')
 		{
 			if (map_line[i] != '1' && map_line[i] != '0' && \
 			map_line[i] != 'N' && map_line[i] != 'S' && map_line[i] != 'E' \
@@ -96,7 +94,6 @@ void	check_valid_component(t_map *info_map)
 		}
 		//free(map_line);->왜 더블프리?
 		map_line = get_next_line(info_map->map_path_fd);
-		cnt++;
 	}
 	close(info_map->map_path_fd);
 }
@@ -112,20 +109,27 @@ char	**get_map(t_map *info_map)
 	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	map = init_ppc(info_map->width, info_map->height);
 	i = 0;
+	//printf("width : %zu\n", info_map->width);
 	while (map[i] != NULL)
 	{
 		j = 0;
-		while (map_line[j] != '\0')
+		while (map_line[j] != '\n')
 		{
 			map[i][j] = map_line[j];
 			j++;
 		}
-		while (map[i][j] != '\0')
+		while (j < (int)info_map->width -1)
 		{
-			map[i][j] = UNDEFINED_MAP;
+			map[i][j] = 'z';
 			j++;
 		}
+		map[i][j] = '\0';
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+		printf("%s\n", map[i]);
 		i++;
 	}
 	return (map);
 }
+//일단 개행이 같이 나오는 문제->개행전까지 자름, 위가 완벽하다는 가정하에 들어오는 거라 합쳐서 확인해보기
+//마지막에는 개행을 넣고 그 사이는 'z'로 다 채워야 됨.

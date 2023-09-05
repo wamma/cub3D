@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 20:23:00 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 13:04:11 by eoh              ###   ########.fr       */
+/*   Created: 2023/09/05 11:44:28 by eoh               #+#    #+#             */
+/*   Updated: 2023/09/05 13:13:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+char	**init_ppc(int x, int y)
 {
-	t_map	info_map;
+	int			i;
+	char	**ppc;
 
-	if (argc != 2)
-		ft_error("Check: num of argc\n");
-	info_map.map_path = get_path(argv[1]);
-	info_map.map = parse_map();
-	return (0);
+	i = 0;
+	ppc = (char **)malloc(sizeof(char) * (x + 1));
+	ppc[x] = NULL;
+	while (i < x)
+	{
+		ppc[i] = (char *)malloc(sizeof(char) * (y + 1));
+		ppc[i][y] = '\0';
+		i++;
+	}
+	return (ppc);
 }

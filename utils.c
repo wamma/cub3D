@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_argv.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 20:52:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/04 20:57:17 by eoh              ###   ########.fr       */
+/*   Created: 2023/09/05 11:27:45 by eoh               #+#    #+#             */
+/*   Updated: 2023/09/05 11:28:33 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	rev_strncmp(char *s1, char *s2, int n)
+int	is_all_white_space(char *str)
 {
-	int	l;
 	int	i;
+	int	cnt;
 
-	l = ft_strlen(s1);
 	i = 0;
-	if (n == 0)
-		return (0);
-	if (n > l)
-		return (-1);
-	while ((n > 0))
+	cnt = 0;
+	while (str[i])
 	{
-		if (s1[l - 1] != s2[i])
-		{
-			return (-1);
-		}
+		if (!(str[i] >= 9 && str[i] <= 13 || str[i] == 32))
+			cnt++;
 		i++;
-		l--;
-		n--;
 	}
-	return (1);
-}
-
-void	check_argv(char *argv)
-{
-	if (rev_strncmp(argv, "buc.", 4) == -1)
-		ft_error("Check: argv extension");
+	if (cnt == 0)
+		return (1);
+	if (cnt == 1)
+		return (0);
 }

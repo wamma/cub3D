@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
+#    By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 14:27:51 by hyungjup          #+#    #+#              #
-#    Updated: 2023/01/16 11:58:01 by hyungjup         ###   ########.fr        #
+#    Updated: 2023/09/05 10:46:42 by eoh              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ RM = rm -f
 AR = ar
 ARFLAGS = rcs
 
-SRCS = ft_strlen.c		\
+SRCS = get_next_line.c		\
+		  get_next_line_utils.c \
+		  ft_strlen.c		\
 		  ft_strlcpy.c		\
 		  ft_strlcat.c		\
 		  ft_strchr.c		\

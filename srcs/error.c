@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:29:03 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/04 20:56:24 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 16:26:22 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 void	ft_error(char *str)
 {

@@ -6,7 +6,7 @@
 #    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:35:57 by hyungjup          #+#    #+#              #
-#    Updated: 2023/09/05 15:14:48 by hyungjup         ###   ########.fr        #
+#    Updated: 2023/09/05 17:20:44 by hyungjup         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,11 @@ MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = main.c srcs/error.c
+SRCS = main.c srcs/error.c parsing/check_map.c parsing/get_path.c parsing/parse_map.c srcs/init.c \
+	  srcs/utils.c parsing/map_utils.c parsing/save_direction_file.c
 OBJS = $(SRCS:.c=.o)
 
-HEADER = fractol.h
+HEADER = cub3D.h
 
 all : $(NAME)
 

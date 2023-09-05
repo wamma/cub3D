@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 14:20:05 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 17:24:02 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-char	**parse_map(char *argv, t_map *info_map)
-{
-	char	**map;
-
-	check_map_exist(map);
-	get_map_size(map);
-	check_map_component(map);
-	map = get_map(map);
-	return (map);
-}
+#include "../cub3D.h"
 
 void	check_map_exist(t_map *info_map)
 {
@@ -61,7 +50,7 @@ void	get_map_size(t_map *map)
 	close(map->fd);
 }
 
-int	check_valid_component(t_map *info_map)
+void	check_valid_component(t_map *info_map)
 {
 	int		i;
 	char	*map_line;
@@ -83,6 +72,7 @@ int	check_valid_component(t_map *info_map)
 		map_line = get_next_line(info_map->fd);
 	}
 	close(info_map->fd);
+
 }
 
 char	**get_map(t_map *info_map)
@@ -111,5 +101,16 @@ char	**get_map(t_map *info_map)
 		}
 		i++;
 	}
+	return (map);
+}
+
+char	**parse_map(t_map *info_map)
+{
+	char	**map;
+
+	check_map_exist(info_map);
+	get_map_size(info_map);
+	check_valid_component(info_map);
+	map = get_map(info_map);
 	return (map);
 }

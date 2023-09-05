@@ -6,13 +6,13 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:13:56 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/18 16:33:05 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:41:58 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char	*tmp;
 	int		real_len;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:52:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 12:51:49 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 16:26:01 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 int	rev_strncmp(char *s1, char *s2, int n)
 {

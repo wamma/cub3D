@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:59:15 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 14:02:54 by eoh              ###   ########.fr       */
+/*   Updated: 2023/09/05 16:26:04 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 char	*get_starting_line_of_map(int fd)
 {

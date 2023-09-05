@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:26:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 14:59:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:19:44 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ typedef struct s_map {
 	int		height;
 }	t_map;
 
+/*parsing*/
+void	save_direction_file(char *map_name, t_map *info_map);
+char	*get_path(char *argv);
+void	check_valid_map(t_map *map_info);
+char	**parse_map(t_map *info_map);
+char	**get_map(t_map *info_map);
 
-/*error.c*/
-void	ft_error(char *str);
-
-/*get_map.c*/
-
-/*utils.c*/
+/*srcs*/
 int		is_all_white_space(char *str);
 char	*get_starting_line_of_map(int fd);
-
-/*get_path.c*/
-char	*get_path(char *argv);
+char	**init_ppc(int x, int y);
+void	ft_error(char *str);
 
 #endif

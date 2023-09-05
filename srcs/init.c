@@ -6,11 +6,11 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:44:28 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 15:06:02 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:26:09 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 char	**init_ppc(int x, int y) // ppc = pointer pointer character
 {

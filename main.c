@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 20:23:00 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/09/05 21:31:20 by hyungjup         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3D.h"
 
 int	main(int argc, char **argv)
@@ -18,9 +6,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error("Check: num of argc\n");
+	init_struct(&info_map);
 	init_info_map(argv[1], &info_map);
-	check_valid_map(&info_map);
+	if (check_valid_map(&info_map) != 6)
+		ft_error("A component of the map is missing.\n");
 	info_map.map = parse_map(&info_map);
 	free(info_map.no_path);
 	return (0);
 }
+ 

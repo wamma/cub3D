@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 11:27:45 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 21:48:19 by hyungjup         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../cub3D.h"
 
 int	is_all_white_space(char *str)
@@ -35,19 +23,5 @@ int	is_white_space(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
-	return (0);
-}
-
-int	only_space_and_new_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if ((line[i] >= 9 && line[i] <= 13) || line[i] == 32 || line[i] == '\n')
-			return (1);
-		i++;
-	}
 	return (0);
 }

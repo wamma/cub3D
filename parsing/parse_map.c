@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 11:21:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 21:48:50 by hyungjup         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../cub3D.h"
 
 char	**parse_map(t_map *info_map)
@@ -84,7 +72,7 @@ void	check_valid_component(t_map *info_map)
 			}
 			i++;
 		}
-		//free(map_line);->왜 더블프리?
+		// free(map_line); //->왜 더블프리?
 		map_line = get_next_line(info_map->map_path_fd);
 	}
 	close(info_map->map_path_fd);
@@ -101,7 +89,8 @@ char	**get_map(t_map *info_map)
 	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	map = init_ppc(info_map->width, info_map->height);
 	i = 0;
-	//printf("width : %zu\n", info_map->width);
+	printf("width : %d\n", info_map->width);
+	printf("height : %d\n", info_map->height);
 	while (map[i] != NULL)
 	{
 		j = 0;
@@ -116,7 +105,7 @@ char	**get_map(t_map *info_map)
 			j++;
 		}
 		map[i][j] = '\0';
-		//free(map_line);
+		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 		printf("%s\n", map[i]);
 		i++;

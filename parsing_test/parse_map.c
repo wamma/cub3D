@@ -3,11 +3,15 @@
 char	**parse_map(t_map *info_map)
 {
 	char	**map;
+	char	*map_line;
 
 	check_map_exist(info_map);
 	get_map_size(info_map);
 	check_valid_component(info_map);
-	map = get_map(info_map);
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
+	map = init_ppc(info_map->width, info_map->height);
+	map = get_map(info_map, map_line, map);
 	return (map);
 }
 
@@ -78,20 +82,13 @@ void	check_valid_component(t_map *info_map)
 	close(info_map->map_path_fd);
 }
 
-char	**get_map(t_map *info_map)
+char	**get_map(t_map *info_map, char *map_line, char **map)
 {
-	char	*map_line;
-	char	**map;
 	int		i;
 	int		j;
 
-	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
-	map_line = get_starting_line_of_map(info_map->map_path_fd);
-	map = init_ppc(info_map->width, info_map->height);
-	i = 0;
-	printf("width : %d\n", info_map->width);
-	printf("height : %d\n", info_map->height);
-	while (i < info_map->height)
+	i = -1;
+	while (++i < info_map->height)
 	{
 		j = 0;
 		while (map_line[j] != '\0' && map_line[j] != '\n')
@@ -110,11 +107,6 @@ char	**get_map(t_map *info_map)
 		map[i][j] = '\0';
 		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
-		printf("%s\n", map[i]);
-		i++;
 	}
 	return (map);
 }
-//줄 수 줄이기
-//일단 개행이 같이 나오는 문제->개행전까지 자름, 위가 완벽하다는 가정하에 들어오는 거라 합쳐서 확인해보기
-//마지막에는 개행을 넣고 그 사이는 'z'로 다 채워야 됨.

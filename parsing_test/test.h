@@ -35,7 +35,7 @@ typedef struct s_map
 /*parsing*/
 int		check_valid_map(t_map *map_info);
 char	**parse_map(t_map *info_map);
-char	**get_map(t_map *info_map);
+char	**get_map(t_map *info_map, char *map_line, char **map);
 void	check_extension(char *argv);
 void	check_map_exist(t_map *info_map);
 void	get_map_size(t_map *map);

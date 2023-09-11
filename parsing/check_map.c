@@ -97,11 +97,12 @@ int	check_valid_map(t_map *map_info)
 			ft_error("Check : invalidate file form\n");
 		check_direction(map_info);
 		check_f_c(map_info, line);
+		if (is_all_white_space(line) == 0)
+			count++;
 		free(line);
 		if (count == 6)
 			break ;
-		if (is_all_white_space(line) == 0)
-			count++;
+
 		line = get_next_line(map_info->map_path_fd);
 	}
 	return (count);

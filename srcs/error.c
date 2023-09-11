@@ -16,5 +16,5 @@ void	f_c_free_and_error(t_map *map_info, char **rgb)
 		free(rgb[i]);
 	free(rgb);
 	free_direction(map_info);
-	ft_error("Check: floor rgb range\n");
+	ft_error("Check: rgb range\n");
 }

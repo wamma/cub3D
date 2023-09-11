@@ -1,17 +1,17 @@
 #include "../cub3D.h"
 
-char	**init_ppc(int x, int y)
+char	**init_ppc(int width, int height)
 {
 	int			i;
 	char		**ppc;
 
 	i = 0;
-	ppc = (char **)malloc(sizeof(char) * (x + 1));
-	ppc[x] = NULL;
-	while (i < x)
+	ppc = (char **)malloc(sizeof(char *) * (height + 1));
+	ppc[height] = NULL;
+	while (i < height)
 	{
-		ppc[i] = (char *)malloc(sizeof(char) * (y + 1));
-		ppc[i][y] = '\0';
+		ppc[i] = (char *)malloc(sizeof(char) * (width + 1));
+		ppc[i][width] = '\0';
 		i++;
 	}
 	return (ppc);

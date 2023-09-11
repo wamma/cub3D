@@ -3,11 +3,17 @@
 char	**parse_map(t_map *info_map)
 {
 	char	**map;
+	char	*map_line;
 
 	check_map_exist(info_map);
+	check_map_seperate(info_map);
 	get_map_size(info_map);
 	check_valid_component(info_map);
-	map = get_map(info_map);
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
+	map = init_ppc(info_map->width, info_map->height);
+	info_map->map = get_map(info_map, map_line, map);
+	check_and_get_starting_position(info_map, info_map->map);
 	return (map);
 }
 
@@ -32,14 +38,38 @@ void	check_map_exist(t_map *info_map)
 	}
 }
 
+void	check_map_seperate(t_map *info_map)
+{
+	char	*map_line;
+
+	map_line = get_next_line(info_map->map_path_fd);
+	while (map_line != NULL && is_all_white_space(map_line) == 0)
+	{
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	while (map_line != NULL)
+	{
+		if (is_all_white_space(map_line) == 0)
+		{
+			free(map_line);
+			ft_error("Check : map is seperated\n");
+		}
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	close(info_map->map_path_fd);
+}
+
 void	get_map_size(t_map *info_map)
 {
 	int		h;
 	char	*map_line;
 
-	h = 1;
-	map_line = get_next_line(info_map->map_path_fd);
-	while (map_line)
+	h = 0;
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
+	while (map_line != NULL && is_all_white_space(map_line) == 0)
 	{
 		if (ft_strlen(map_line) > info_map->width)
 			info_map->width = ft_strlen(map_line);
@@ -72,46 +102,65 @@ void	check_valid_component(t_map *info_map)
 			}
 			i++;
 		}
-		// free(map_line); //->왜 더블프리?
+		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 	}
-	close(info_map->map_path_fd);
 }
 
-char	**get_map(t_map *info_map)
+char	**get_map(t_map *info_map, char *map_line, char **map)
 {
-	char	*map_line;
-	char	**map;
 	int		i;
 	int		j;
 
-	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
-	map_line = get_starting_line_of_map(info_map->map_path_fd);
-	map = init_ppc(info_map->width, info_map->height);
-	i = 0;
-	printf("width : %d\n", info_map->width);
-	printf("height : %d\n", info_map->height);
-	while (map[i] != NULL)
+	i = -1;
+	printf("%d\n", info_map->height);
+	while (++i < info_map->height)
 	{
 		j = 0;
-		while (map_line[j] != '\n')
+		while (map_line[j] != '\0' && map_line[j] != '\n')
 		{
-			map[i][j] = map_line[j];
+			if (map_line[j] == ' ')
+				map[i][j] = UNDEFINED_MAP;
+			else
+				map[i][j] = map_line[j];
 			j++;
 		}
 		while (j < (int)info_map->width -1)
 		{
-			map[i][j] = 'z';
+			map[i][j] = UNDEFINED_MAP;
 			j++;
 		}
 		map[i][j] = '\0';
 		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
-		printf("%s\n", map[i]);
-		i++;
 	}
 	return (map);
 }
 
-//일단 개행이 같이 나오는 문제->개행전까지 자름, 위가 완벽하다는 가정하에 들어오는 거라 합쳐서 확인해보기
-//마지막에는 개행을 넣고 그 사이는 'z'로 다 채워야 됨.
+void	check_and_get_starting_position(t_map *info_map, char **map)
+{
+	int		i;
+	int		j;
+	int		cnt;
+
+	i = 0;
+	cnt = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while(map[i][j] != '\0')
+		{
+			if (is_player(map[i][j]) == 1)
+			{
+				if (cnt > 0)
+					ft_error("Check : too many players\n");
+				cnt++;
+				get_player_starting_position(info_map, i, j, map[i][j]);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (cnt == 0)
+		ft_error("Check : there's no player\n");
+}

@@ -7,7 +7,7 @@ char	*get_starting_line_of_map(int fd)
 
 	cnt = 0;
 	map_line = get_next_line(fd);
-	while (map_line)
+;	while (map_line)
 	{
 		if (is_all_white_space(map_line) == 0)
 		{

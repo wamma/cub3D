@@ -1,11 +1,35 @@
 #include "test.h"
 
+void	check_map_seperate(t_map *info_map)
+{
+	char	*map_line;
+
+	map_line = get_next_line(info_map->map_path_fd);
+	while (map_line != NULL && is_all_white_space(map_line) == 0)
+	{
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	while (map_line != NULL)
+	{
+		if (is_all_white_space(map_line) == 0)
+		{
+			free(map_line);
+			ft_error("Check : map is seperated\n");
+		}
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	close(info_map->map_path_fd);
+}
+
 char	**parse_map(t_map *info_map)
 {
 	char	**map;
 	char	*map_line;
 
 	check_map_exist(info_map);
+	check_map_seperate(info_map);
 	get_map_size(info_map);
 	check_valid_component(info_map);
 	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
@@ -41,9 +65,10 @@ void	get_map_size(t_map *info_map)
 	int		h;
 	char	*map_line;
 
-	h = 1;
-	map_line = get_next_line(info_map->map_path_fd);
-	while (map_line)
+	h = 0;
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_starting_line_of_map(info_map->map_path_fd);
+	while (map_line != NULL && is_all_white_space(map_line) == 0)
 	{
 		if (ft_strlen(map_line) > info_map->width)
 			info_map->width = ft_strlen(map_line);
@@ -76,10 +101,9 @@ void	check_valid_component(t_map *info_map)
 			}
 			i++;
 		}
-		// free(map_line); //->왜 더블프리?
+		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 	}
-	close(info_map->map_path_fd);
 }
 
 char	**get_map(t_map *info_map, char *map_line, char **map)
@@ -88,6 +112,7 @@ char	**get_map(t_map *info_map, char *map_line, char **map)
 	int		j;
 
 	i = -1;
+	printf("%d\n", info_map->height);
 	while (++i < info_map->height)
 	{
 		j = 0;

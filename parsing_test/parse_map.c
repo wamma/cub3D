@@ -14,6 +14,7 @@ char	**parse_map(t_map *info_map)
 	map = init_ppc(info_map->width, info_map->height);
 	info_map->map = get_map(info_map, map_line, map);
 	check_and_get_starting_position(info_map, info_map->map);
+	check_surrounded_by_wall(info_map->map);
 	return (map);
 }
 

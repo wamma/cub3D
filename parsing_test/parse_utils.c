@@ -37,3 +37,17 @@ char	*ft_after_space(char *str)
 	*end = '\0';
 	return (ft_strdup(str));
 }//strncpy(ft_strlen(str) -1) 개행을 없애기 위해
+
+int	is_player(char c)
+{
+	if (c == 'E' || c == 'W' || c == 'S' || c == 'N')
+		return (1);
+	return (0);
+}
+
+void	get_player_starting_position(t_map *info_map, int x, int y, char direc)
+{
+	info_map->starting_x = x;
+	info_map->starting_y = y;
+	info_map->starting_direction = direc;
+}

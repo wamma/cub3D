@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 	{
 		printf("%s\n", info_map.map[i]);
 	}
+	printf("%d %d %c\n", info_map.starting_x, info_map.starting_y, info_map.starting_direction);
 	free(info_map.no_path);
 	return (0);
 }

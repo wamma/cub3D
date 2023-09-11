@@ -1,28 +1,5 @@
 #include "test.h"
 
-void	check_map_seperate(t_map *info_map)
-{
-	char	*map_line;
-
-	map_line = get_next_line(info_map->map_path_fd);
-	while (map_line != NULL && is_all_white_space(map_line) == 0)
-	{
-		free(map_line);
-		map_line = get_next_line(info_map->map_path_fd);
-	}
-	while (map_line != NULL)
-	{
-		if (is_all_white_space(map_line) == 0)
-		{
-			free(map_line);
-			ft_error("Check : map is seperated\n");
-		}
-		free(map_line);
-		map_line = get_next_line(info_map->map_path_fd);
-	}
-	close(info_map->map_path_fd);
-}
-
 char	**parse_map(t_map *info_map)
 {
 	char	**map;
@@ -35,7 +12,8 @@ char	**parse_map(t_map *info_map)
 	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
 	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	map = init_ppc(info_map->width, info_map->height);
-	map = get_map(info_map, map_line, map);
+	info_map->map = get_map(info_map, map_line, map);
+	check_and_get_starting_position(info_map, info_map->map);
 	return (map);
 }
 
@@ -58,6 +36,29 @@ void	check_map_exist(t_map *info_map)
 		info_map->width = ft_strlen(map_line);
 		free(map_line);
 	}
+}
+
+void	check_map_seperate(t_map *info_map)
+{
+	char	*map_line;
+
+	map_line = get_next_line(info_map->map_path_fd);
+	while (map_line != NULL && is_all_white_space(map_line) == 0)
+	{
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	while (map_line != NULL)
+	{
+		if (is_all_white_space(map_line) == 0)
+		{
+			free(map_line);
+			ft_error("Check : map is seperated\n");
+		}
+		free(map_line);
+		map_line = get_next_line(info_map->map_path_fd);
+	}
+	close(info_map->map_path_fd);
 }
 
 void	get_map_size(t_map *info_map)
@@ -134,4 +135,32 @@ char	**get_map(t_map *info_map, char *map_line, char **map)
 		map_line = get_next_line(info_map->map_path_fd);
 	}
 	return (map);
+}
+
+void	check_and_get_starting_position(t_map *info_map, char **map)
+{
+	int		i;
+	int		j;
+	int		cnt;
+
+	i = 0;
+	cnt = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while(map[i][j] != '\0')
+		{
+			if (is_player(map[i][j]) == 1)
+			{
+				if (cnt > 0)
+					ft_error("Check : too many players\n");
+				cnt++;
+				get_player_starting_position(info_map, i, j, map[i][j]);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (cnt == 0)
+		ft_error("Check : there's no player\n");
 }

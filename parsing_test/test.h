@@ -30,6 +30,9 @@ typedef struct s_map
 	int		map_path_fd;
 	int		width;
 	int		height;
+	int		starting_x;
+	int		starting_y;
+	int		starting_direction;
 }	t_map;
 
 /*parsing*/
@@ -38,8 +41,12 @@ char	**parse_map(t_map *info_map);
 char	**get_map(t_map *info_map, char *map_line, char **map);
 void	check_extension(char *argv);
 void	check_map_exist(t_map *info_map);
+void	check_map_seperate(t_map *info_map);
 void	get_map_size(t_map *map);
 void	check_valid_component(t_map *info_map);
+void	check_and_get_starting_position(t_map *info_map, char **map);
+int		is_player(char c);
+void	get_player_starting_position(t_map *info_map, int x, int y, char direc);
 
 /*srcs*/
 int		is_all_white_space(char *str);

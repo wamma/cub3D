@@ -47,6 +47,7 @@ void	check_valid_component(t_map *info_map);
 void	check_and_get_starting_position(t_map *info_map, char **map);
 int		is_player(char c);
 void	get_player_starting_position(t_map *info_map, int x, int y, char direc);
+void	check_surrounded_by_wall(t_map *info_map);
 
 /*srcs*/
 int		is_all_white_space(char *str);

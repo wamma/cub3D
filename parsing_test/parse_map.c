@@ -13,8 +13,18 @@ char	**parse_map(t_map *info_map)
 	map_line = get_starting_line_of_map(info_map->map_path_fd);
 	map = init_ppc(info_map->width, info_map->height);
 	info_map->map = get_map(info_map, map_line, map);
+	printf("map\n");
+	for(int i = 0; i < info_map->height; i++)
+	{
+		for(int j = 0; j < info_map->width; j++)
+		{
+			printf("%c", info_map->map[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
 	check_and_get_starting_position(info_map, info_map->map);
-	check_surrounded_by_wall(info_map->map);
+	check_surrounded_by_wall(info_map);
 	return (map);
 }
 
@@ -114,7 +124,6 @@ char	**get_map(t_map *info_map, char *map_line, char **map)
 	int		j;
 
 	i = -1;
-	printf("%d\n", info_map->height);
 	while (++i < info_map->height)
 	{
 		j = 0;
@@ -132,7 +141,7 @@ char	**get_map(t_map *info_map, char *map_line, char **map)
 			j++;
 		}
 		map[i][j] = '\0';
-		free(map_line);
+		//free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 	}
 	return (map);

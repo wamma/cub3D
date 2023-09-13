@@ -7,5 +7,5 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("Check: num of argv\n");
 	check_valid_path(argv[1]);
-	//init_t_map(argv[1], &info_map);
+	init_s_map(argv[1], &info_map);
 }

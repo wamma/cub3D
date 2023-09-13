@@ -6,8 +6,8 @@ RM = rm -f
 LIB_DIR = ../libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = main.c error.c check_map.c check_extension.c parse_map.c init.c \
-	  utils.c parse_utils.c free.c check_surrounded_by_wall.c
+SRCS = main.c ft_error.c check_valid_path.c get_texture_info.c init.c \
+		  parsing_utils.c split_white_space.c
 OBJS = $(SRCS:.c=.o)
 
 HEADER = test.h

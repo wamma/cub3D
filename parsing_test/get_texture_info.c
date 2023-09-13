@@ -47,6 +47,7 @@ void	get_path_n_color(t_map *info_map, int type, char **info, int *cnt)
 		get_texture_path(info_map, type, info, cnt);
 	else if (type >= FLOOR && type <= CEILING)
 		get_f_n_c_info(info_map, type, info, cnt);
+	cnt[SUM]++;
 }
 
 void	get_texture_info(t_map *info_map)
@@ -59,17 +60,16 @@ void	get_texture_info(t_map *info_map)
 	element_cnt = init_array_zero(7);
 	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
 	line = get_next_line(info_map->map_path_fd);
-	while (line != NULL || element_cnt[SUM] == 6)
+	while (line != NULL)
 	{
 		splited = split_white_space(line);
 		element_type = get_element_type(splited);
 		if (element_type >= EA_PATH && element_type <= CEILING)
-		{
 			get_path_n_color(info_map, element_type, splited, element_cnt);
-			element_cnt[SUM]++;
-		}
 		//free_ppc(splited);
 		free(line);
+		if (element_cnt[SUM] == 6)
+			break;
 		line = get_next_line(info_map->map_path_fd);
 	}
 	if (element_cnt[SUM] != 6)

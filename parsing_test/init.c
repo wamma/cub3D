@@ -28,10 +28,20 @@ void	init_floor_and_ceiling_structure(t_map *info_map)
 	ft_memset(info_map->ceiling, 0, sizeof(t_rgb));
 }
 
-void	init_s_map(char *map_path, t_map *info_map)
+void	init_s_map(t_map *info_map)
 {
 	ft_memset(info_map, 0, sizeof(t_map));
 	init_floor_and_ceiling_structure(info_map);
-	info_map->map_path = map_path;
-	get_texture_info(info_map);
+	info_map->map = NULL;
+	info_map->map_path = NULL;
+	info_map->no_path = NULL;
+	info_map->so_path = NULL;
+	info_map->we_path = NULL;
+	info_map->ea_path = NULL;
+	info_map->map_path_fd = 0;
+	info_map->width = 0;
+	info_map->height = 0;
+	info_map->starting_x = 0;
+	info_map->starting_y = 0;
+	info_map->starting_direction = 0;
 }

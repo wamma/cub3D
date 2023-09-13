@@ -48,6 +48,9 @@ typedef struct s_map
 //ft_error.c
 void	ft_error(char *str);
 
+//ft_free.c
+void	free_ppc(char **ppc);
+
 //check_valid_path.c
 int		rev_strncmp(char *s1, char *s2, int n);
 void	check_valid_path(char *argv);
@@ -61,11 +64,11 @@ void	get_texture_info(t_map *info_map);
 //init.c
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
-void	init_s_map(char *map_path, t_map *info_map);
+void	init_s_map(t_map *info_map);
 
 //parsing_utils.c
-void	check_valid_rgb(char **rgb);
-void	check_valid_texture_info(int type, char **info);
+void	check_valid_rgb_form(char **rgb);
+void	check_valid_texture_form(int type, char **info);
 int		get_element_type(char **info);
 
 //split_white_space.c

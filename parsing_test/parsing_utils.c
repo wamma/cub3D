@@ -1,6 +1,6 @@
 #include "test.h"
 
-void	check_valid_rgb(char **rgb)
+void	check_valid_rgb_form(char **rgb)
 {
 	int	i;
 
@@ -13,7 +13,7 @@ void	check_valid_rgb(char **rgb)
 		ft_error("Check : invalidate file form\n");
 }
 
-void	check_valid_texture_info(int type, char **info)
+void	check_valid_texture_form(int type, char **info)
 {
 	int	i;
 
@@ -68,6 +68,6 @@ int	get_element_type(char **info)
 		type = FLOOR;
 	else if (is_same(info[0], "C") == 1)
 		type = CEILING;
-	check_valid_texture_info(type, info);
+	check_valid_texture_form(type, info);
 	return (type);
 }

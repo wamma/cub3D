@@ -7,7 +7,7 @@ void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 	if (cnt[type] > 0)
 		ft_error("Check: duplicated element\n");
 	rgb = ft_split(info[1], ',');
-	check_valid_rgb(rgb);
+	check_valid_rgb_form(rgb);
 	if (type == FLOOR)
 	{
 		info_map->floor->r = ft_atoi(rgb[0]);
@@ -21,7 +21,7 @@ void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 		info_map->ceiling->b = ft_atoi(rgb[2]);
 	}
 	cnt[type]++;
-	//free_ppc(rgb);
+	free_ppc(rgb);
 }
 
 void	get_texture_path(t_map *info_map, int type, char **info, int *cnt)
@@ -66,7 +66,7 @@ void	get_texture_info(t_map *info_map)
 		element_type = get_element_type(splited);
 		if (element_type >= EA_PATH && element_type <= CEILING)
 			get_path_n_color(info_map, element_type, splited, element_cnt);
-		//free_ppc(splited);
+		free_ppc(splited);
 		free(line);
 		if (element_cnt[SUM] == 6)
 			break;

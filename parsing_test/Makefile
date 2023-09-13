@@ -7,7 +7,7 @@ LIB_DIR = ../libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
 SRCS = main.c ft_error.c check_valid_path.c get_texture_info.c init.c \
-		  parsing_utils.c split_white_space.c
+		  parsing_utils.c split_white_space.c ft_free.c
 OBJS = $(SRCS:.c=.o)
 
 HEADER = test.h

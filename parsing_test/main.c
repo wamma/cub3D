@@ -25,13 +25,25 @@ void	check_valid_texture_path(t_map *info_map)
 	close(fd);
 }
 
+void	check_valid_rgb_value(t_map *info_map)
+{
+	if (info_map->floor->r < 0 || info_map->floor->r > 255 \
+	|| info_map->floor->g < 0 || info_map->floor->g > 225 \
+	|| info_map->floor->b < 0 || info_map->floor->b > 225)
+		ft_error("Check: invalid color range");
+	if (info_map->ceiling->r < 0 || info_map->ceiling->r > 255 \
+	|| info_map->ceiling->g < 0 || info_map->ceiling->g > 225 \
+	|| info_map->ceiling->b < 0 || info_map->ceiling->b > 225)
+		ft_error("Check: invalid color range");
+}
+
 void	fill_info_map(t_map *info_map, char *map_path)
 {
 	check_valid_path(map_path);
 	info_map->map_path = map_path;
 	get_texture_info(info_map);
 	check_valid_texture_path(info_map);
-	//check_valid_rgb_value(info_map);
+	check_valid_rgb_value(info_map);
 }
 
 int main(int argc, char **argv)

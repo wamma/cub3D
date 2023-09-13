@@ -24,8 +24,14 @@ int	rev_strncmp(char *s1, char *s2, int n)
 	return (1);
 }
 
-void	check_extension(char *argv)
+void	check_valid_path(char *argv)
 {
+	int	fd;
+
 	if (rev_strncmp(argv, "buc.", 4) == -1)
-		ft_error("Check: map extension");
+		ft_error("Check: invalid map extension\n");
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		ft_error("Check: invalid map path\n");
+	close(fd);
 }

@@ -10,6 +10,16 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
+typedef struct s_element_cnt
+{
+	int	no_texture;
+	int	so_texture;
+	int	we_texture;
+	int	ea_texture;
+	int	floor;
+	int	ceiling;
+} t_element_cnt;
+
 typedef struct s_rgb
 {
 	int	r;
@@ -19,14 +29,14 @@ typedef struct s_rgb
 
 typedef struct s_map
 {
+	t_rgb	*floor;
+	t_rgb	*ceiling;
 	char	**map;
 	char	*map_path;
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	t_rgb	*floor;
-	t_rgb	*ceiling;
 	int		map_path_fd;
 	int		width;
 	int		height;

@@ -99,3 +99,10 @@ char	*get_starting_line_of_map(t_map *info_map)
 	}
 	return (map_line);
 }
+
+int	is_player(char c)
+{
+	if (c == 'E' || c == 'W' || c == 'S' || c == 'N')
+		return (1);
+	return (0);
+}

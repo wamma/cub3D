@@ -43,8 +43,7 @@ int	check_is_valid_wall_row(char *map_row)
 	i = 0;
 	while (map_row[i] != '\0')
 	{
-		if (map_row[i] == '0' || map_row[i] == 'E' || map_row[i] == 'W' \
-		|| map_row[i] == 'S' || map_row[i] == 'N')
+		if (map_row[i] == '0' || is_player(map_row[i]) == 1)
 		{
 			if (i != 0 && map_row[i - 1] == UNDEFINED_MAP)
 				return (0);

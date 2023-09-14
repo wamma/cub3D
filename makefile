@@ -12,7 +12,7 @@ SRCS = main.c \
 	  parse/ft_split_white_space.c \
 	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c parse/parse_utils.c \
 	  parse/parse_check_map.c parse/parse_map.c parse/parse_get_map.c \
-	  parse/check_map_surround.c
+	  parse/check_wall_column.c parse/check_wall_row.c
 
 OBJS = $(SRCS:.c=.o)
 

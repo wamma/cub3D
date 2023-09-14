@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "../cub3D.h"
 
+/*
 static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
@@ -21,7 +21,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[i] = '\0';
 	return (l);
 }
-
+*/
 static int	is_white_space(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
@@ -60,7 +60,7 @@ static char	**free_result(char **s)
 	return (0);
 }
 
-char	**split_white_space(char const *s)
+char	**ft_split_white_space(char const *s)
 {
 	size_t		i;
 	char		**result;

@@ -32,21 +32,7 @@ void	check_valid_texture_form(int type, char **info)
 
 }
 
-int	is_same(char *s1, char *s2)
-{
-	int i;
 
-	i = 0;
-	if (ft_strlen(s1) != ft_strlen(s2))
-		return (0);
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 
 int	get_element_type(char **info)

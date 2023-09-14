@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../cub3D.h"
 
 void	get_texture_info(t_map *info_map)
 {

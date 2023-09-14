@@ -3,12 +3,21 @@
 
 # define WALL '1'
 # define EMPTY_SPACE '0'
-# define UNDEFINED_MAP 'x'
-//매크로에 문자넣는 방법 
+# define UNDEFINED_MAP 'x' 
 
 # include <stdio.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+
+enum texture_path {
+	SUM = 0,
+	EA_PATH,
+	WE_PATH,
+	SO_PATH,
+	NO_PATH,
+	FLOOR,
+	CEILING
+};
 
 typedef struct s_rgb
 {
@@ -35,29 +44,27 @@ typedef struct s_map
 	int		starting_direction;
 }	t_map;
 
-/*parsing*/
-int		check_valid_map(t_map *map_info);
-char	**parse_map(t_map *info_map);
-char	**get_map(t_map *info_map, char *map_line, char **map);
-void	check_extension(char *argv);
-void	check_map_exist(t_map *info_map);
-void	check_map_seperate(t_map *info_map);
-void	get_map_size(t_map *map);
-void	check_valid_component(t_map *info_map);
-void	check_and_get_starting_position(t_map *info_map, char **map);
-int		is_player(char c);
-void	get_player_starting_position(t_map *info_map, int x, int y, char direc);
-
 /*srcs*/
-int		is_all_white_space(char *str);
-char	*ft_after_space(char *str);
-char	*get_starting_line_of_map(int fd);
-char	**init_ppc(int x, int y);
 void	ft_error(char *str);
-int		is_white_space(char c);
-void	init_info_map(char *map_name, t_map *info_map);
-void	free_direction(t_map *map);
-void	f_c_free_and_error(t_map *map_info, char **rgb);
-void	init_struct(t_map *info_map);
+void	free_ppc(char **ppc);
+int		*init_array_zero(int size);
+void	init_floor_and_ceiling_structure(t_map *info_map);
+void	init_s_map(t_map *info_map);
+
+/*parse*/
+char	**ft_split_white_space(char const *s);
+void	check_valid_map_path(char *argv);
+void	check_valid_texture_form(int type, char **info);
+void	check_valid_rgb_form(char **rgb);
+void	check_valid_texture_path(t_map *info_map);
+void	check_valid_rgb_value(t_map *info_map);
+void	get_texture_info(t_map *info_map);
+int		get_element_type(char **info);
+void	get_path_n_color(t_map *info_map, int type, char **info, int *cnt);
+void	get_texture_path(t_map *info_map, int type, char **info, int *cnt);
+void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt);
+void	parse_info_map(t_map *info_map, char *map_path);
+int		rev_strncmp(char *s1, char *s2, int n);
+int		is_same(char *s1, char *s2);
 
 #endif

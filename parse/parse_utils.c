@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../cub3D.h"
 
 int	rev_strncmp(char *s1, char *s2, int n)
 {

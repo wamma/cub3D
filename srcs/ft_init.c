@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../cub3D.h"
 
 int	*init_array_zero(int size)
 {

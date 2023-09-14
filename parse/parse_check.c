@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../cub3D.h"
 
 void	check_valid_map_path(char *argv)
 {

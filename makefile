@@ -7,8 +7,11 @@ MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
-SRCS = main.c srcs/error.c parsing/check_map.c parsing/check_extension.c parsing/parse_map.c srcs/init.c \
-	  srcs/utils.c parsing/parse_utils.c srcs/free.c
+SRCS = main.c \
+	  srcs/ft_error.c srcs/ft_free.c srcs/ft_init.c \
+	  parse/ft_split_white_space.c \
+	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c parse/parse_utils.c
+
 OBJS = $(SRCS:.c=.o)
 
 HEADER = cub3D.h

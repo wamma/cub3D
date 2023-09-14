@@ -32,9 +32,8 @@ void	check_valid_map_component(char *line, t_map *info_map)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (line[i] != '1' && line[i] != '0' && \
-		line[i] != 'E' && line[i] != 'W' && line[i] != 'S' && line[i] != 'N' \
-		&& is_white_space(line[i]) != 1)
+		if (line[i] != '1' && line[i] != '0' \
+		&& is_player(line[i]) != 1 && is_white_space(line[i]) != 1)
 		{
 			free(line);
 			free_s_map(info_map);

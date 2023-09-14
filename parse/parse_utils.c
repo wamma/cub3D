@@ -76,13 +76,15 @@ void	read_remain_of_map(int fd, char *line)
 	close(fd);
 }
 
-char	*get_starting_line_of_map(int fd)
+char	*get_starting_line_of_map(t_map *info_map)
 {
 	int		cnt;
 	char	*map_line;
 
 	cnt = 0;
-	map_line = get_next_line(fd);
+
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	map_line = get_next_line(info_map->map_path_fd);
 	while (map_line != NULL)
 	{
 		if (is_all_white_space(map_line) == 0)
@@ -93,7 +95,7 @@ char	*get_starting_line_of_map(int fd)
 				cnt++;
 		}
 		free(map_line);
-		map_line = get_next_line(fd);
+		map_line = get_next_line(info_map->map_path_fd);
 	}
 	return (map_line);
 }

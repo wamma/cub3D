@@ -76,6 +76,6 @@ int		is_same(char *s1, char *s2);
 int		is_all_white_space(char *str);
 int		is_white_space(char c);
 void	read_remain_of_map(int fd, char *line);
-char	*get_starting_line_of_map(int fd);
+char	*get_starting_line_of_map(t_map *info_map);
 
 #endif

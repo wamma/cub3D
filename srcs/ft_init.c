@@ -1,5 +1,26 @@
 #include "../cub3D.h"
 
+char	**init_ppc(int column, int row)
+{
+	char	**ppc;
+	int		i;
+
+	i = 0;
+	ppc = (char **)malloc(sizeof(char *) * (column + 1));
+	if (ppc == NULL)
+		ft_error("malloc error\n");
+	ppc[column] = NULL;
+	while (i < column)
+	{
+		ppc[i] = (char *)malloc(sizeof(char) * (row + 1));
+		if (ppc[i] == NULL)
+			ft_error("malloc error\n");
+		ppc[i][row] = '\0';
+		i++;
+	}
+	return (ppc);
+}
+
 int	*init_array_zero(int size)
 {
 	int i;

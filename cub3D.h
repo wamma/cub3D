@@ -47,6 +47,7 @@ typedef struct s_map
 /*srcs*/
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
+void	free_s_map(t_map *map);
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
@@ -64,7 +65,13 @@ void	get_path_n_color(t_map *info_map, int type, char **info, int *cnt);
 void	get_texture_path(t_map *info_map, int type, char **info, int *cnt);
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt);
 void	parse_info_map(t_map *info_map, char *map_path);
+void	check_map_component(t_map *info_map);
+void	check_valid_map_component(char *line, t_map *info_map);
+void	check_map_seperated(t_map *info_map, char *map_line);
+char	**parse_map(t_map *info_map);
 int		rev_strncmp(char *s1, char *s2, int n);
 int		is_same(char *s1, char *s2);
+int		is_all_white_space(char *str);
+int		is_white_space(char c);
 
 #endif

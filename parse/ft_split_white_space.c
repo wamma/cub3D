@@ -22,13 +22,14 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (l);
 }
 */
+/*
 static int	is_white_space(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
-
+*/
 static size_t	count_word(char const *s)
 {
 	size_t	i;

@@ -10,7 +10,8 @@ LIBFLAG = -lft -L$(LIB_DIR)
 SRCS = main.c \
 	  srcs/ft_error.c srcs/ft_free.c srcs/ft_init.c \
 	  parse/ft_split_white_space.c \
-	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c parse/parse_utils.c
+	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c parse/parse_utils.c \
+	  parse/parse_map_check.c parse/parse_map.c
 
 OBJS = $(SRCS:.c=.o)
 

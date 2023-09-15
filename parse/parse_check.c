@@ -73,11 +73,11 @@ void	check_valid_texture_path(t_map *info_map)
 void	check_valid_rgb_value(t_map *info_map)
 {
 	if (info_map->floor->r < 0 || info_map->floor->r > 255 \
-	|| info_map->floor->g < 0 || info_map->floor->g > 225 \
-	|| info_map->floor->b < 0 || info_map->floor->b > 225)
+	|| info_map->floor->g < 0 || info_map->floor->g > 255 \
+	|| info_map->floor->b < 0 || info_map->floor->b > 255)
 		ft_error("Check: invalid color range");
 	if (info_map->ceiling->r < 0 || info_map->ceiling->r > 255 \
-	|| info_map->ceiling->g < 0 || info_map->ceiling->g > 225 \
-	|| info_map->ceiling->b < 0 || info_map->ceiling->b > 225)
+	|| info_map->ceiling->g < 0 || info_map->ceiling->g > 255 \
+	|| info_map->ceiling->b < 0 || info_map->ceiling->b > 255)
 		ft_error("Check: invalid color range");
 }

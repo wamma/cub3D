@@ -42,6 +42,7 @@ typedef struct s_map
 	int		starting_x;
 	int		starting_y;
 	int		starting_direction;
+	int		player_cnt;
 }	t_map;
 
 /*srcs*/

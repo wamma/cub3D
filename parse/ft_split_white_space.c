@@ -1,35 +1,5 @@
 #include "../cub3D.h"
 
-/*
-static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	l;
-
-	i = 0;
-	l = 0;
-	while (src[l])
-	{
-		l++;
-	}
-	while (i + 1 < size && i < l)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	if (size > 0)
-		dst[i] = '\0';
-	return (l);
-}
-*/
-/*
-static int	is_white_space(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-*/
 static size_t	count_word(char const *s)
 {
 	size_t	i;

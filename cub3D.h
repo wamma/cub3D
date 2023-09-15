@@ -8,6 +8,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include "mlx/mlx.h"
 
 enum texture_path {
 	SUM = 0,
@@ -45,6 +46,22 @@ typedef struct s_map
 	int		player_cnt;
 }	t_map;
 
+typedef struct s_image
+{
+	void	*img_ptr;
+	char	*data_ptr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
+
+typedef struct s_cub
+{
+	void		*mlx;
+	void		*win;
+	t_image		*img;
+}	t_cub;
+
 /*srcs*/
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
@@ -53,6 +70,7 @@ char	**init_ppc(int column, int row);
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
+void	init_s_cub(t_cub *cub);
 
 /*parse*/
 int		check_wall_row(char **map, int height);

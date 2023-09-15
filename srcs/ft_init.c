@@ -66,3 +66,14 @@ void	init_s_map(t_map *info_map)
 	// info_map->starting_y = 0;
 	// info_map->starting_direction = 0;
 } // ft_memset으로 이미 다 초기화를 해놓아서 따로 초기화를 할 필요가 없을거 같음
+
+void	init_s_cub(t_cub *cub)
+{
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub->mlx, 800, 800, "cub3D");
+	cub->img = malloc(sizeof(t_image));
+	if (!cub->img)
+		ft_error("Failed malloc\n");
+	cub->img->img_ptr = mlx_new_image(cub->mlx, 800, 800);
+	cub->img->data_ptr = mlx_get_data_addr(cub->img->img_ptr, &cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
+}

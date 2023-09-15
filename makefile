@@ -30,7 +30,6 @@ $(NAME): $(OBJS)
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@ -I $(HEADER)
 
-
 clean :
 	$(RM) $(OBJS)
 	make -C ./mlx clean

@@ -40,10 +40,9 @@ typedef struct s_map
 	int		map_path_fd;
 	int		width;
 	int		height;
-	int		starting_x;
-	int		starting_y;
+	double	starting_x;
+	double	starting_y;
 	int		starting_direction;
-	int		player_cnt;
 }	t_map;
 
 typedef struct s_image
@@ -110,5 +109,6 @@ int		is_white_space(char c);
 void	read_remain_of_map(int fd, char *line);
 char	*get_starting_line_of_map(t_map *info_map);
 int		is_player(char c);
+void	check_and_get_starting_position(t_map *info_map, char **map);
 
 #endif

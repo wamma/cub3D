@@ -22,11 +22,6 @@ void	check_map_component(t_map *info_map)
 	}
 	if (map_line != NULL)
 		check_map_seperated(info_map, map_line);
-	if (info_map->player_cnt != 1)
-	{
-		free_s_map(info_map);
-		ft_error("Check: player count\n");
-	}
 	close(info_map->map_path_fd);
 }
 
@@ -44,8 +39,6 @@ void	check_valid_map_component(char *line, t_map *info_map)
 			free_s_map(info_map);
 			ft_error("Check: invalid map component\n");
 		}
-		else if (is_player(line[i]) == 1)
-			info_map->player_cnt++;
 		i++;
 	}
 }

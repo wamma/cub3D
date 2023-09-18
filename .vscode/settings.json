@@ -5,6 +5,7 @@
 		"fcntl.h": "c",
 		"libft.h": "c",
 		"test.h": "c",
-		"memory": "c"
+		"memory": "c",
+		"locale": "c"
 	}
 }

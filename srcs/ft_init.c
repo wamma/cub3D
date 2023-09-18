@@ -23,7 +23,7 @@ char	**init_ppc(int column, int row)
 
 int	*init_array_zero(int size)
 {
-	int i;
+	int	i;
 	int	*arr;
 
 	i = 0;
@@ -38,7 +38,6 @@ int	*init_array_zero(int size)
 
 void	init_floor_and_ceiling_structure(t_map *info_map)
 {
-
 	info_map->floor = malloc(sizeof(t_rgb));
 	if (!info_map->floor)
 		ft_error("Failed malloc\n");
@@ -69,10 +68,13 @@ void	init_s_map(t_map *info_map)
 void	init_s_cub(t_cub *cub)
 {
 	cub->mlx = mlx_init();
-	cub->win = mlx_new_window(cub->mlx, 800, 800, "cub3D");
+	cub->win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	cub->img = malloc(sizeof(t_image));
 	if (!cub->img)
 		ft_error("Failed malloc\n");
-	cub->img->img_ptr = mlx_new_image(cub->mlx, 800, 800);
-	cub->img->data_ptr = mlx_get_data_addr(cub->img->img_ptr, &cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
+	cub->img->img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	cub->img->data_ptr = mlx_get_data_addr(cub->img->img_ptr, \
+		&cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
+	if (!cub->img->img_ptr || !cub->img->data_ptr)
+		ft_error("Mlx init error\n");
 }

@@ -4,13 +4,16 @@
 # define WALL '1'
 # define EMPTY_SPACE '0'
 # define UNDEFINED_MAP 'x' 
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 800
 
 # include <stdio.h>
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
-enum texture_path {
+enum texture_path
+{
 	SUM = 0,
 	EA_PATH,
 	WE_PATH,
@@ -19,6 +22,21 @@ enum texture_path {
 	FLOOR,
 	CEILING
 };
+
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+}	t_vec;
+
+typedef struct s_camera
+{
+	t_vec	dir;
+	t_vec	plane;
+	t_vec	pos;
+	double	fov;
+	double	rotation;
+}	t_camera;
 
 typedef struct s_rgb
 {
@@ -70,6 +88,8 @@ int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_s_cub(t_cub *cub);
+void	init_s_camera(t_camera *camera, t_map *info_map);
+void	draw(t_cub *cub, t_map *info_map);
 
 /*parse*/
 int		check_wall_row(char **map, int height);

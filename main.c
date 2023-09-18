@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	print_struct(t_map *map)
+void	print_struct_map(t_map *map)
 {
 	for (int i = 0; map->map[i] != NULL; i++)
 		printf("%s\n", map->map[i]);
@@ -18,16 +18,30 @@ void	print_struct(t_map *map)
 	printf("starting_direction: %d\n", map->starting_direction);
 }
 
+void	print_struct_camera(t_camera *camera)
+{
+	printf("dir: %f, %f\n", camera->dir.x, camera->dir.y);
+	printf("plane: %f, %f\n", camera->plane.x, camera->plane.y);
+	printf("pos: %f, %f\n", camera->pos.x, camera->pos.y);
+	printf("fov: %f\n", camera->fov);
+	printf("rotation: %f\n", camera->rotation);
+}
+
 int	main(int argc, char **argv)
 {
-	t_map	info_map;
-	t_cub	cub;
+	t_map		info_map;
+	t_cub		cub;
+	t_camera	camera;
 
 	if (argc != 2)
 		ft_error("Check: num of argv\n");
 	init_s_map(&info_map);
 	parse_info_map(&info_map, argv[1]);
 	init_s_cub(&cub);
-	print_struct(&info_map);
+	init_s_camera(&camera, &info_map);
+	// print_struct_map(&info_map);
+	// print_struct_camera(&camera);
+	draw(&cub, &info_map);
+	mlx_loop(cub.mlx);
 	return (0);
 }

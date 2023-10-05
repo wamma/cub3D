@@ -9,6 +9,7 @@
 
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
@@ -34,8 +35,10 @@ typedef struct s_camera
 	t_vec	dir;
 	t_vec	plane;
 	t_vec	pos;
-	double	fov;
-	double	rotation;
+	double	move_speed;
+	double	rot_speed;
+	// double	fov;
+	// double	rotation;
 }	t_camera;
 
 typedef struct s_rgb
@@ -77,6 +80,14 @@ typedef struct s_cub
 	void		*mlx;
 	void		*win;
 	t_image		*img;
+	t_vec		dir;
+	t_vec		plane;
+	t_vec		pos;
+	double		move_speed;
+	double		rot_speed;
+	char		**map;
+	// int			buf[WIN_HEIGHT][WIN_WIDTH];
+	// int			**texture;
 }	t_cub;
 
 /*srcs*/
@@ -88,8 +99,9 @@ int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_s_cub(t_cub *cub);
-void	init_s_camera(t_camera *camera, t_map *info_map);
-void	draw(t_cub *cub, t_map *info_map);
+void	init_s_camera(t_cub *cub, t_map *info_map);
+int		main_loop(t_cub *cub);
+char	**copy_char_map(t_map *info_map);
 
 /*parse*/
 int		check_wall_row(char **map, int height);

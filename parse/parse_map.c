@@ -52,3 +52,13 @@ void	check_and_get_starting_position(t_map *info_map, char **map)
 	if (cnt == 0)
 		ft_error("Check : there's no player\n");
 }
+
+char	**copy_char_map(t_map *info_map)
+{
+	char	*map_line;
+	char	**map;
+
+	map_line = get_starting_line_of_map(info_map);
+	map = get_map(info_map, map_line);
+	return (map);
+}

@@ -1,46 +1,49 @@
 #include "../cub3D.h"
 
-void	init_camera_dir_S_n_N(t_camera *camera, char c)
+void	init_camera_dir_S_n_N(t_cub *cub, char c)
 {
 	if (c == 'S')
 	{
-		camera->dir.x = 0;
-		camera->dir.y = -1;
-		camera->plane.x = camera->pos.x - 0.66;
-		camera->plane.y = camera->pos.y;
+		cub->dir.x = 0;
+		cub->dir.y = -1;
+		cub->plane.x = cub->pos.x - 0.66;
+		cub->plane.y = cub->pos.y;
 	}
 	else if (c == 'N')
 	{
-		camera->dir.x = 0;
-		camera->dir.y = 1;
-		camera->plane.x = camera->pos.x + 0.66;
-		camera->plane.y = camera->pos.y;
+		cub->dir.x = 0;
+		cub->dir.y = 1;
+		cub->plane.x = cub->pos.x + 0.66;
+		cub->plane.y = cub->pos.y;
 	}
 }
 
-void	init_camera_dir(t_camera *camera, char c)
+void	init_camera_dir(t_cub *cub, char c)
 {
 	if (c == 'E')
 	{
-		camera->dir.x = 1;
-		camera->dir.y = 0;
-		camera->plane.x = camera->pos.x;
-		camera->plane.y = camera->pos.y - 0.66;
+		cub->dir.x = 1;
+		cub->dir.y = 0;
+		cub->plane.x = cub->pos.x;
+		cub->plane.y = cub->pos.y - 0.66;
 	}
 	else if (c == 'W')
 	{
-		camera->dir.x = -1;
-		camera->dir.y = 0;
-		camera->plane.x = camera->pos.x;
-		camera->plane.y = camera->pos.y + 0.66;
+		cub->dir.x = -1;
+		cub->dir.y = 0;
+		cub->plane.x = cub->pos.x;
+		cub->plane.y = cub->pos.y + 0.66;
 	}
 	else
-		init_camera_dir_S_n_N(camera, c);
+		init_camera_dir_S_n_N(cub, c);
 }
 
-void	init_s_camera(t_camera *camera, t_map *info_map)
+void	init_s_camera(t_cub *cub, t_map *info_map)
 {
-	camera->pos.x = info_map->starting_x;
-	camera->pos.y = info_map->starting_y;
-	init_camera_dir(camera, info_map->starting_direction);
+	cub->pos.x = info_map->starting_x;
+	cub->pos.y = info_map->starting_y;
+	init_camera_dir(cub, info_map->starting_direction);
+	cub->move_speed = 0.05;
+	cub->rot_speed = 0.05;
+	cub->map = copy_char_map(info_map);
 }

@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 	if (check_valid_map(&info_map) != 6)
 		ft_error("A component of the map is missing.\n");
 	info_map.map = parse_map(&info_map);
-	free(info_map.no_path);
+	//free(info_map.no_path);
 	return (0);
 }
  

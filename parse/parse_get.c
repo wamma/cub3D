@@ -16,8 +16,8 @@ void	get_texture_info(t_map *info_map)
 		element_type = get_element_type(splited);
 		if (element_type >= EA_PATH && element_type <= CEILING)
 			get_path_n_color(info_map, element_type, splited, element_cnt);
-		free_ppc(splited);
-		free(line);
+		//free_ppc(splited);
+		//free(line);
 		if (element_cnt[SUM] == 6)
 			break;
 		line = get_next_line(info_map->map_path_fd);

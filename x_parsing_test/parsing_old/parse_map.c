@@ -113,7 +113,6 @@ char	**get_map(t_map *info_map, char *map_line, char **map)
 	int		j;
 
 	i = -1;
-	printf("%d\n", info_map->height);
 	while (++i < info_map->height)
 	{
 		j = 0;

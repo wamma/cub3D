@@ -7,6 +7,9 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800
 
+# define FALSE 0
+# define TRUE 1
+
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
@@ -104,10 +107,12 @@ int		main_loop(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
 
 /*parse*/
-int		check_wall_row(char **map, int height);
-int		is_all_wall_first_n_last_row(char *map_row);
-int		check_is_valid_wall_row(char *map_row);
-int		check_wall_column(char **map, int height, int width);
+//int		check_wall_row(char **map, int height);
+//int		is_all_wall_first_n_last_row(char *map_row);
+//int		check_is_valid_wall_row(char *map_row);
+//int		check_wall_column(char **map, int height, int width);
+
+int		check_map_surrounded(char **map, t_map *map_info);
 
 char	**ft_split_white_space(char const *s);
 

@@ -2,6 +2,7 @@
 
 void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color)
 {
+	(void)draw_start;
 	int y;
 
 	y = draw_start;
@@ -110,8 +111,14 @@ void	calc(t_cub *cub)
 		camera_x = 2 * x / (double)WIN_WIDTH - 1;
 		ray_dir_x = cub->dir.x + cub->plane.x * camera_x;
 		ray_dir_y = cub->dir.y + cub->plane.y * camera_x;
-
-		map_x = (int)cub->pos.x;
+		if (x == 0)
+		{
+			printf("camera_x: %f\n", camera_x);
+			printf("dir.x : %f, dir.y : %f\n", cub->dir.x, cub->dir.y);
+			printf("plane.x : %f, plane.y : %f\n", cub->plane.x, cub->plane.y);
+			printf("ray_dir_x: %f, ray_dir_y: %f\n", ray_dir_x, ray_dir_y);
+		}
+		map_x = (int)cub->pos.x ;
 		map_y = (int)cub->pos.y;
 
 		delta_dist_x = fabs(1 / ray_dir_x);
@@ -161,7 +168,7 @@ void	calc(t_cub *cub)
 		else
 			perp_wall_dist = (map_y - cub->pos.y + (1 - step_y) / 2) / ray_dir_y;
 		
-		line_length = (int)(WIN_HEIGHT / perp_wall_dist);
+		line_length = (int)(WIN_HEIGHT / (perp_wall_dist * 2));
 
 		draw_start = -line_length / 2 + WIN_HEIGHT / 2;
 		if (draw_start < 0)

@@ -13,8 +13,8 @@ void	init_camera_dir_S_n_N(t_cub *cub, char c)
 	{
 		cub->dir.x = 0;
 		cub->dir.y = 1;
-		cub->plane.x = cub->pos.x + 0.66;
-		cub->plane.y = cub->pos.y;
+		cub->plane.x = 0.66;
+		cub->plane.y = 0;
 	}
 }
 
@@ -40,8 +40,8 @@ void	init_camera_dir(t_cub *cub, char c)
 
 void	init_s_camera(t_cub *cub, t_map *info_map)
 {
-	cub->pos.x = info_map->starting_x;
-	cub->pos.y = info_map->starting_y;
+	cub->pos.x = info_map->starting_x + 0.5;
+	cub->pos.y = info_map->starting_y + 0.5;
 	init_camera_dir(cub, info_map->starting_direction);
 	cub->move_speed = 0.05;
 	cub->rot_speed = 0.05;

@@ -47,3 +47,14 @@ void	init_s_camera(t_cub *cub, t_map *info_map)
 	cub->rot_speed = 0.05;
 	cub->map = copy_char_map(info_map);
 }
+
+t_calc	*init_s_calc(void)
+{
+	t_calc	*calc;
+
+	calc = (t_calc *)malloc(sizeof(t_calc));
+	if (calc == NULL)
+		ft_error("malloc error");
+	ft_memset(calc, 0, sizeof(t_calc));
+	return (calc);
+}

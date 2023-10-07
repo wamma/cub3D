@@ -93,7 +93,38 @@ typedef struct s_cub
 	// int			**texture;
 }	t_cub;
 
+typedef struct s_calc
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		hit;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		color;
+	int		line_length;
+	int		draw_start;
+	int		draw_end;
+}	t_calc;
+
 /*srcs*/
+void	get_calc_info(t_calc *calc, t_cub *cub, int x);
+void	get_side_dist(t_calc *calc, t_cub *cub);
+void	get_side(t_calc *calc, t_cub *cub);
+void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
+void	get_draw_start_and_end(t_calc *calc);
+void	calc(t_cub *cub);
+
+void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
+void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
@@ -103,6 +134,7 @@ void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_s_cub(t_cub *cub);
 void	init_s_camera(t_cub *cub, t_map *info_map);
+t_calc	*init_s_calc(void);
 int		main_loop(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
 

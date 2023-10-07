@@ -3,7 +3,6 @@
 void	check_map_component(t_map *info_map)
 {
 	char	*map_line;
-	int		i;
 
 	map_line = get_next_line(info_map->map_path_fd);
 	while (is_all_white_space(map_line) == 1)
@@ -13,7 +12,6 @@ void	check_map_component(t_map *info_map)
 	}
 	while (map_line != NULL)
 	{
-		i = 0;
 		if (is_all_white_space(map_line) == 1)
 			break;
 		check_valid_map_component(map_line, info_map);

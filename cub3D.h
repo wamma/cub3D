@@ -6,6 +6,7 @@
 # define UNDEFINED_MAP 'x' 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800
+# define TEXTURE_NUMBER 4
 
 # define FALSE 0
 # define TRUE 1
@@ -78,11 +79,20 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
+typedef struct s_texture
+{
+	char	*texture_path;
+	int		*texture;
+	double	width;
+	double	height;
+}	t_texture;
+
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
+	t_texture	*texture[TEXTURE_NUMBER];
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;

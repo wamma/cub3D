@@ -77,6 +77,8 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_image;
 
 typedef struct s_texture
@@ -92,7 +94,7 @@ typedef struct s_cub
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	t_texture	*texture[TEXTURE_NUMBER];
+	t_texture	texture[TEXTURE_NUMBER];
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;

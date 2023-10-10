@@ -38,7 +38,7 @@ void	init_camera_dir(t_cub *cub, char c)
 		init_camera_dir_S_n_N(cub, c);
 }
 
-void	init_s_camera(t_cub *cub, t_map *info_map)
+void	init_s_cub(t_cub *cub, t_map *info_map)
 {
 	cub->pos.x = info_map->starting_x + 0.5;
 	cub->pos.y = info_map->starting_y + 0.5;
@@ -46,6 +46,8 @@ void	init_s_camera(t_cub *cub, t_map *info_map)
 	cub->move_speed = 0.05;
 	cub->rot_speed = 0.05;
 	cub->map = copy_char_map(info_map);
+	init_buf(cub);
+	cub->re_buf = 0;
 }
 
 t_calc	*init_s_calc(void)

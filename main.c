@@ -18,34 +18,30 @@ void	print_struct_map(t_map *map)
 	printf("starting_direction: %d\n", map->starting_direction);
 }
 
-void	print_struct_camera(t_camera *camera)
+void	print_struct_camera(t_cub *cub)
 {
-	printf("dir: %f, %f\n", camera->dir.x, camera->dir.y);
-	printf("plane: %f, %f\n", camera->plane.x, camera->plane.y);
-	printf("pos: %f, %f\n", camera->pos.x, camera->pos.y);
-	printf("move_speed: %f\n", camera->move_speed);
-	printf("rot_speed: %f\n", camera->rot_speed);
-	// printf("fov: %f\n", camera->fov);
-	// printf("rotation: %f\n", camera->rotation);
+	printf("dir: %f, %f\n", cub->dir.x, cub->dir.y);
+	printf("plane: %f, %f\n", cub->plane.x, cub->plane.y);
+	printf("pos: %f, %f\n", cub->pos.x, cub->pos.y);
+	printf("move_speed: %f\n", cub->move_speed);
+	printf("rot_speed: %f\n", cub->rot_speed);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map		info_map;
 	t_cub		cub;
-	// t_camera	camera;
 
 	if (argc != 2)
 		ft_error("Check: num of argv\n");
 	init_s_map(&info_map);
 	parse_info_map(&info_map, argv[1]);
-	init_s_cub(&cub);
-	init_s_camera(&cub, &info_map);
-	mlx_loop_hook(cub.mlx, &main_loop, &cub); // info_map 도 인자로 넘겨줘야 한다.
+	init_mlx(&cub);
+	init_s_cub(&cub, &info_map);
+	mlx_loop_hook(cub.mlx, &main_loop, &cub);
+	mlx_hook(cub.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_loop(cub.mlx);
 	// print_struct_map(&info_map);
 	// print_struct_camera(&camera);
-	// draw(&cub, &info_map);
-	// mlx_loop(cub.mlx);
 	return (0);
 }

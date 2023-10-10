@@ -65,7 +65,7 @@ void	init_s_map(t_map *info_map)
 	info_map->starting_direction = 0;
 }
 
-void	init_s_cub(t_cub *cub)
+void	init_mlx(t_cub *cub)
 {
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");

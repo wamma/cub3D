@@ -1,15 +1,26 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WALL '1'
-# define EMPTY_SPACE '0'
-# define UNDEFINED_MAP 'x' 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 800
-# define TEXTURE_NUMBER 4
+# define WALL			'1'
+# define EMPTY_SPACE	'0'
+# define UNDEFINED_MAP	'x' 
+# define WIN_WIDTH		800
+# define WIN_HEIGHT		800
+# define TEX_WIDTH		64
+# define TEX_HEIGHT		64
+# define TEXTURE_NUMBER	4
 
-# define FALSE 0
-# define TRUE 1
+# define FALSE			0
+# define TRUE			1
+
+# define KEY_W				13
+# define KEY_A				0
+# define KEY_S				1
+# define KEY_D				2
+# define KEY_ESC			53
+
+# define X_EVENT_KEY_PRESS	2
+# define X_EVENT_KEY_EXIT	17
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -33,17 +44,6 @@ typedef struct s_vec
 	double	x;
 	double	y;
 }	t_vec;
-
-typedef struct s_camera
-{
-	t_vec	dir;
-	t_vec	plane;
-	t_vec	pos;
-	double	move_speed;
-	double	rot_speed;
-	// double	fov;
-	// double	rotation;
-}	t_camera;
 
 typedef struct s_rgb
 {
@@ -101,8 +101,8 @@ typedef struct s_cub
 	double		move_speed;
 	double		rot_speed;
 	char		**map;
-	// int			buf[WIN_HEIGHT][WIN_WIDTH];
-	// int			**texture;
+	int			**buf;
+	int			re_buf;
 }	t_cub;
 
 typedef struct s_calc
@@ -144,18 +144,15 @@ char	**init_ppc(int column, int row);
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
-void	init_s_cub(t_cub *cub);
-void	init_s_camera(t_cub *cub, t_map *info_map);
+void	init_mlx(t_cub *cub);
+void	init_s_cub(t_cub *cub, t_map *info_map);
 t_calc	*init_s_calc(void);
 int		main_loop(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
+int		key_press(int key_code, t_cub *cub);
+void	init_buf(t_cub *cub);
 
 /*parse*/
-//int		check_wall_row(char **map, int height);
-//int		is_all_wall_first_n_last_row(char *map_row);
-//int		check_is_valid_wall_row(char *map_row);
-//int		check_wall_column(char **map, int height, int width);
-
 int		check_map_surrounded(char **map, t_map *map_info);
 
 char	**ft_split_white_space(char const *s);

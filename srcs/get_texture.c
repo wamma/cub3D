@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-int		*get_texture_img(t_cub *cub, char *path, int i)
+int		*get_texture_image(t_cub *cub, char *path, int i)
 {
 	t_image	*img;
 	char	*result;

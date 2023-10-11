@@ -23,25 +23,37 @@ char	**get_map(t_map *info_map, char *map_line)
 	int		i;
 	int		j;
 
-	map = init_ppc(info_map->width, info_map->height - 1);
-	i = info_map->height;
-	while (--i >= 0)
+	printf("width: %d, height: %d\n", info_map->width, info_map->height);
+	map = init_ppc(info_map->height, info_map->width - 1);
+	i = 0;
+	while (i < info_map->height)
 	{
 		j = 0;
 		while (map_line[j] != '\0' && map_line[j] != '\n')
 		{
 			if (is_white_space(map_line[j]) == 1)
-				map[j][i] = 'x';
+				map[i][j] = 'x';
 			else
-				map[j][i] = map_line[j];
+				map[i][j] = map_line[j];
 			j++;
 		}
 		while (j < info_map->width - 1)
 		{
-			map[j][i] = 'x';
+			map[i][j] = 'x';
 			j++;
 		}
 		map_line = get_next_line(info_map->map_path_fd);
+		i++;
 	}
+	//printf("map\n");
+	//for(int i = 0; map[i] != NULL; i++)
+	//{
+	//	//printf("i = %d\n", i);
+	//	for(int j = 0; map[i][j] != '\0'; j++)
+	//	{
+	//		printf("%c", map[i][j]);
+	//	}
+	//	printf(".\n");
+	//}
 	return (map);
 }

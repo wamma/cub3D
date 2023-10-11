@@ -6,6 +6,8 @@ char	**init_ppc(int column, int row)
 	int		i;
 
 	i = 0;
+	printf("column %d\n", column);
+	printf("row : %d\n", row);
 	ppc = (char **)malloc(sizeof(char *) * (column + 1));
 	if (ppc == NULL)
 		ft_error("malloc error\n");

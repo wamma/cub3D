@@ -154,6 +154,10 @@ void	init_buf(t_cub *cub);
 
 /*parse*/
 int		check_map_surrounded(char **map, t_map *map_info);
+int		check_wall_row(char **map, int height);
+int		is_all_wall_first_n_last_row(char *map_row);
+int		check_is_valid_wall_row(char *map_row);
+int		check_wall_column(char **map, int height, int width);
 
 char	**ft_split_white_space(char const *s);
 

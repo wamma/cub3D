@@ -10,15 +10,15 @@ char	**parse_map(t_map *info_map)
 	map_line = get_starting_line_of_map(info_map); 
 	map = get_map(info_map, map_line);
 	close(info_map->map_path_fd);
-	for(int i = 0; map[i] != NULL; i++)
-	{
-		//printf("i = %d\n", i);
-		for(int j = 0; map[i][j] != '\0'; j++)
-		{
-			printf("%c", map[i][j]);
-		}
-		printf(".\n");
-	}
+	// for(int i = 0; map[i] != NULL; i++)
+	// {
+	// 	//printf("i = %d\n", i);
+	// 	for(int j = 0; map[i][j] != '\0'; j++)
+	// 	{
+	// 		printf("%c", map[i][j]);
+	// 	}
+	// 	printf(".\n");
+	// }
 	//for(int i = info_map->height; i >= 0; i--)
 	//{
 	//	for (int x = 0; x < info_map->width; x++)

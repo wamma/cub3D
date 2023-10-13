@@ -141,7 +141,7 @@ void	calc(t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
-char	**init_ppc(int column, int row);
+char	**allocate_two_dimension_array_array(int column, int row);
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
@@ -194,4 +194,6 @@ char	*get_starting_line_of_map(t_map *info_map);
 int		is_player(char c);
 void	check_and_get_starting_position(t_map *info_map, char **map);
 
+char	**allocate_two_dimension_array(int column, int row);
+int		check_surrounded_by_wall(char **map, t_map *info_map);
 #endif

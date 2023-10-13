@@ -1,26 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 20:45:09 by eoh               #+#    #+#             */
+/*   Updated: 2023/10/13 20:46:10 by eoh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
-char	**init_ppc(int column, int row)
+char	**allocate_two_dimension_array(int column, int row)
 {
-	char	**ppc;
+	char	**two_dimension_array;
 	int		i;
 
 	i = 0;
-	// printf("column %d\n", column);
-	// printf("row : %d\n", row);
-	ppc = (char **)malloc(sizeof(char *) * (column + 1));
-	if (ppc == NULL)
+	two_dimension_array = (char **)malloc(sizeof(char *) * (column + 1));
+	if (two_dimension_array == NULL)
 		ft_error("malloc error\n");
-	ppc[column] = NULL;
+	two_dimension_array[column] = NULL;
 	while (i < column)
 	{
-		ppc[i] = (char *)malloc(sizeof(char) * (row + 1));
-		if (ppc[i] == NULL)
+		two_dimension_array[i] = (char *)malloc(sizeof(char) * (row + 1));
+		if (two_dimension_array[i] == NULL)
 			ft_error("malloc error\n");
-		ppc[i][row] = '\0';
+		two_dimension_array[i][row] = '\0';
 		i++;
 	}
-	return (ppc);
+	return (two_dimension_array);
 }
 
 int	*init_array_zero(int size)

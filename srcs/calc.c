@@ -78,9 +78,28 @@ void	get_draw_start_and_end(t_calc *calc)
 		calc->draw_end = WIN_HEIGHT - 1;
 }
 
+
+//int	determine_wall_direction(t_calc *calc)
+//{
+//	if (calc->side == 0)
+//	{
+//		if (calc->ray_dir_x > 0)
+
+//		else
+//	}// east, west
+//	else if (calc->side == 1)
+//	{
+//		if (calc->ray_dir_y )
+//	}// south, north
+//}
+
 void	get_tex_num_wall_x_tex_x(t_calc *calc, t_cub *cub)
 {
-	calc->tex_num = cub->info_map->map[calc->map_x][calc->map_y] - 1;
+
+	//calc->tex_num = cub->info_map->map[calc->map_x][calc->map_y] - 1;//어떤 텍스쳐를 입힐지
+	
+
+	//어떤 텍스쳐를 입힐지
 	if (calc->side == 0)
 		calc->wall_x = cub->pos.y + calc->perp_wall_dist * calc->ray_dir_y;
 	else

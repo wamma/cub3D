@@ -1,7 +1,52 @@
 #include "../cub3D.h"
 
-#include "../cub3D.h"
+int	check_all_direction(char **map, int y, int x)
+{
+	if (map[y + 1][x] == 'x')
+		return (FALSE);
+	if (map[y - 1][x] == 'x')
+		return (FALSE);
+	if (x - 1 < 0)
+		return (FALSE);
+	if (map[y][x - 1] == 'x')
+		return (FALSE);
+	if (map[y][x + 1] == 'x' || map[y][x + 1] == '\0')
+		return (FALSE);
+	return (TRUE);
+}
 
+int	check_surrounded_by_wall(char **map, t_map *info_map)
+{
+	int	y;
+	int	x;
+
+	y = info_map->height - 1;
+	while (y >= 0)
+	{
+		x = 0;
+		while (x < info_map->width - 1)
+		{
+			if (y == info_map->height - 1 || y == 0)
+			{
+				if (map[y][x] != '1' && map[y][x] != 'x')
+					return (FALSE);
+			}
+			else
+			{
+				if (map[y][x] == '0' || is_player(map[y][x] == 1))
+				{
+					if (check_all_direction(map, y, x) == FALSE)
+						return (FALSE);
+				}
+			}
+			x++;
+		}
+		y--;
+	}
+	return (TRUE);
+}
+
+/*
 int	check_wall_row(char **map, int height)
 {
 	int	i;
@@ -84,3 +129,4 @@ int	check_wall_column(char **map, int height, int width)
 	}
 	return (1);
 }
+*/

@@ -12,6 +12,8 @@ void	draw(t_cub *cub)
 		while (y < WIN_WIDTH)
 		{
 			cub->img->data_ptr[y * WIN_HEIGHT + x] = cub->buf[x][y];
+			//mlx_pixel_put(cub->mlx, cub->win, x, y, cub->);
+			mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img_ptr, x, y);
 			y++;
 		}
 		x++;
@@ -53,23 +55,6 @@ void	load_texture(t_cub *cub, int i, char *path)
 	img->data_ptr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	cub->texture[i] = (int *)malloc(sizeof(int) * (img->width * img->height));
 	x = 0;
-	while (x < img->height)
-	{
-		y = 0;
-		while (y < img->height)
-		{
-			cub->texture[i][img->width * y + x] = img->data_ptr[img->width * y + x];
-			y++;
-		}
-		x++;
-	}
-	if (i == 3)
-	{
-		for (int k = 0; k < img->height * img->width; k++)
-		{
-			printf("%d, ", cub->texture[i][k]);
-		}
-	}
 	mlx_destroy_image(cub->mlx, img->img_ptr);
 	free(img); // leak 체크 해야됨(img_ptr, data_ptr 해제를 해야하는가)
 }
@@ -88,3 +73,24 @@ int	main_loop(t_cub *cub)
 	draw(cub);
 	return (0);
 }
+
+/*
+	//test_load_texture
+	while (x < img->height)
+	{
+		y = 0;
+		while (y < img->height)
+		{
+			cub->texture[i][img->width * y + x] = img->data_ptr[img->width * y + x];
+			y++;
+		}
+		x++;
+	}
+	if (i == 3)
+	{
+		for (int k = 0; k < img->height * img->width; k++)
+		{
+			printf("%d, ", cub->texture[i][k]);
+		}
+	}
+*/

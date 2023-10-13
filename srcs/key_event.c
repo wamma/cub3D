@@ -1,15 +1,5 @@
 #include "../cub3D.h"
 
-// int	is_movable_place(t_cub *cub, int x, int y)
-// {
-// 	if(cub->map[x][y] == '0' || cub->map[x][y] == 'N' || \
-// 		cub->map[x][y] == 'S' || cub->map[x][y] == 'E' \
-// 			|| cub->map[x][y] == 'W')
-// 		return (TRUE);
-// 	else
-// 		return (FALSE);
-// }
-
 void	key_code_W_S(t_cub *cub, int key_code)
 {
 	if (key_code == KEY_W)
@@ -34,10 +24,15 @@ void	key_code_A_D(t_cub *cub, int key_code)
 	{
 		if (cub->map[(int)(cub->pos.x - cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
 			cub->pos.x -= cub->plane.x * cub->move_speed;
-		if ()
+		if (cub->map[(int)(cub->pos.x)][(int)(cub->pos.y - cub->plane.y * cub->move_speed)] != '1')
+			cub->pos.y -= cub->plane.y * cub->move_speed;
 	}
 	if (key_code == KEY_D)
 	{
+		if (cub->map[(int)(cub->pos.x + cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
+			cub->pos.x += cub->plane.x * cub->move_speed;
+		if (cub->map[(int)(cub->pos.x)][(int)(cub->pos.y + cub->plane.y * cub->move_speed)] != '1')
+			cub->pos.y += cub->plane.y * cub->move_speed;
 	}
 }
 
@@ -68,7 +63,6 @@ void	key_code_arrow(t_cub *cub, int key_code)
 
 int	key_press(int key_code, t_cub *cub)
 {
-	printf("key_code: %d\n", key_code);
 	key_code_W_S(cub, key_code);
 	key_code_A_D(cub, key_code);
 	if (key_code == KEY_ESC)

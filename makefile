@@ -15,7 +15,7 @@ SRCS = main.c \
 	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c \
 	  parse/parse_utils.c parse/parse_utils2.c\
 	  parse/parse_check_map.c parse/parse_map.c parse/parse_get_map.c \
-	  parse/check_surround_by_wall.c 
+	  parse/check_surround_by_wall.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -136,8 +136,8 @@ void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
 void	get_draw_start_and_end(t_calc *calc);
 void	calc(t_cub *cub);
 
-void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
-void	render_color(t_calc *calc, t_cub *cub);
+// void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
+// void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
@@ -152,6 +152,7 @@ int		main_loop(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);
+void	load_image(t_cub *cub);
 
 /*parse*/
 int		check_wall_row(char **map, int height);

@@ -129,8 +129,8 @@ void	calc(t_cub *cub)
 		get_draw_start_and_end(calc);
 		get_tex_num_wall_x_tex_x(calc, cub);
 		get_textured_color(calc, cub, x);
-		render_color(calc, cub);
-		ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
+		// render_color(calc, cub);
+		// ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
 		x++;
 	}
 }

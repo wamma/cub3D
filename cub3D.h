@@ -1,23 +1,25 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WALL			'1'
-# define EMPTY_SPACE	'0'
-# define UNDEFINED_MAP	'x' 
-# define WIN_WIDTH		800
-# define WIN_HEIGHT		800
-# define TEX_WIDTH		64
-# define TEX_HEIGHT		64
-# define TEXTURE_NUMBER	4
+# define WALL				'1'
+# define EMPTY_SPACE		'0'
+# define UNDEFINED_MAP		'x' 
+# define WIN_WIDTH			800
+# define WIN_HEIGHT			800
+# define TEX_WIDTH			64
+# define TEX_HEIGHT			64
+# define TEXTURE_NUMBER		4
 
-# define FALSE			0
-# define TRUE			1
+# define FALSE				0
+# define TRUE				1
 
 # define KEY_W				13
 # define KEY_A				0
 # define KEY_S				1
 # define KEY_D				2
 # define KEY_ESC			53
+# define KEY_LEFT			123
+# define KEY_RIGHT			124
 
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17

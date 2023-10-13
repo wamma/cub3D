@@ -65,7 +65,7 @@ char	**get_map(t_map *info_map, char *map_line)
 	int		i;
 	int		j;
 
-	printf("width: %d, height: %d\n", info_map->width, info_map->height);
+	// printf("width: %d, height: %d\n", info_map->width, info_map->height);
 	map = init_ppc(info_map->height, info_map->width - 1);
 	i = 0;
 	while (i < info_map->height)

@@ -17,9 +17,9 @@ void	render_color(t_calc *calc, t_cub *cub)
 	if (cub->map[calc->map_x][calc->map_y] == 1)
 		calc->color = 0xFF0000;
 	else
-		calc->color = 0xFFFF00;
+		calc->color = 0xFFFF00; // yellow
 	if (calc->side == 1)
-		calc->color = calc->color / 2;
+		calc->color = calc->color / 2; // green
 }
 
 int	main_loop(t_cub *cub)

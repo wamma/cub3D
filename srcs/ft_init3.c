@@ -12,7 +12,7 @@ void	init_buf(t_cub *cub)
 	while (i < WIN_HEIGHT)
 	{
 		cub->buf[i] = (int *)malloc(sizeof(int *) * WIN_WIDTH);
-		++i;
+		i++;
 	}
 	i = 0;
 	while (i < WIN_HEIGHT)
@@ -21,8 +21,8 @@ void	init_buf(t_cub *cub)
 		while (j < WIN_WIDTH)
 		{
 			cub->buf[i][j] = 0;
-			++j;
+			j++;
 		}
-		++i;
+		i++;
 	}
 }

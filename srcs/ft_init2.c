@@ -45,9 +45,9 @@ void	init_s_cub(t_cub *cub, t_map *info_map)
 	init_camera_dir(cub, info_map->starting_direction);
 	cub->move_speed = 0.05;
 	cub->rot_speed = 0.05;
-	cub->map = copy_char_map(info_map);
 	init_buf(cub);
 	cub->re_buf = 0;
+	cub->info_map = info_map;
 }
 
 t_calc	*init_s_calc(void)
@@ -59,15 +59,4 @@ t_calc	*init_s_calc(void)
 		ft_error("malloc error");
 	ft_memset(calc, 0, sizeof(t_calc));
 	return (calc);
-}
-
-t_texture	*init_s_texture(void)
-{
-	t_texture	*texture;
-
-	texture = (t_texture *)malloc(sizeof(t_texture));
-	if (texture == NULL)
-		ft_error("malloc error");
-	ft_memset(texture, 0, sizeof(t_texture));
-	return (texture);
 }

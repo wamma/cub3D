@@ -4,16 +4,16 @@ void	key_code_W_S(t_cub *cub, int key_code)
 {
 	if (key_code == KEY_W)
 	{
-		if (cub->map[(int)(cub->pos.x + cub->dir.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x + cub->dir.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
 			cub->pos.x += cub->dir.x * cub->move_speed;
-		if (cub->map[(int)(cub->pos.x)][(int)(cub->pos.y + cub->dir.y * cub->move_speed)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x)][(int)(cub->pos.y + cub->dir.y * cub->move_speed)] != '1')
 			cub->pos.y += cub->dir.y * cub->move_speed;
 	}
 	if (key_code == KEY_S)
 	{
-		if (cub->map[(int)(cub->pos.x - cub->dir.x * cub->move_speed)][(int)cub->pos.y] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x - cub->dir.x * cub->move_speed)][(int)cub->pos.y] != '1')
 			cub->pos.x -= cub->dir.x * cub->move_speed;
-		if (cub->map[(int)cub->pos.x][(int)(cub->pos.y - cub->dir.y * cub->move_speed)] != '1')
+		if (cub->info_map->map[(int)cub->pos.x][(int)(cub->pos.y - cub->dir.y * cub->move_speed)] != '1')
 			cub->pos.y -= cub->dir.y * cub->move_speed;
 	}
 }
@@ -22,16 +22,16 @@ void	key_code_A_D(t_cub *cub, int key_code)
 {
 	if (key_code == KEY_A)
 	{
-		if (cub->map[(int)(cub->pos.x - cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x - cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
 			cub->pos.x -= cub->plane.x * cub->move_speed;
-		if (cub->map[(int)(cub->pos.x)][(int)(cub->pos.y - cub->plane.y * cub->move_speed)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x)][(int)(cub->pos.y - cub->plane.y * cub->move_speed)] != '1')
 			cub->pos.y -= cub->plane.y * cub->move_speed;
 	}
 	if (key_code == KEY_D)
 	{
-		if (cub->map[(int)(cub->pos.x + cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x + cub->plane.x * cub->move_speed)][(int)(cub->pos.y)] != '1')
 			cub->pos.x += cub->plane.x * cub->move_speed;
-		if (cub->map[(int)(cub->pos.x)][(int)(cub->pos.y + cub->plane.y * cub->move_speed)] != '1')
+		if (cub->info_map->map[(int)(cub->pos.x)][(int)(cub->pos.y + cub->plane.y * cub->move_speed)] != '1')
 			cub->pos.y += cub->plane.y * cub->move_speed;
 	}
 }

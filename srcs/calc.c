@@ -52,7 +52,7 @@ void	get_side(t_calc *calc, t_cub *cub)
 			calc->map_y += calc->step_y;
 			calc->side = 1;
 		}
-		if (cub->map[calc->map_x][calc->map_y]  == '1')
+		if (cub->info_map->map[calc->map_x][calc->map_y]  == '1')
 			calc->hit = 1;
 	}
 }
@@ -78,6 +78,39 @@ void	get_draw_start_and_end(t_calc *calc)
 		calc->draw_end = WIN_HEIGHT - 1;
 }
 
+void	get_tex_num_wall_x_tex_x(t_calc *calc, t_cub *cub)
+{
+	calc->tex_num = cub->info_map->map[calc->map_x][calc->map_y] - 1;
+	if (calc->side == 0)
+		calc->wall_x = cub->pos.y + calc->perp_wall_dist * calc->ray_dir_y;
+	else
+		calc->wall_x = cub->pos.x + calc->perp_wall_dist * calc->ray_dir_x;
+	calc->wall_x -= floor(calc->wall_x);
+	calc->tex_x = (int)(calc->wall_x * (double)TEX_WIDTH);
+	if (calc->side == 0 && calc->ray_dir_x > 0)
+		calc->tex_x = TEX_WIDTH - calc->tex_x - 1;
+	if (calc->side == 1 && calc->ray_dir_y < 0)
+		calc->tex_x = TEX_WIDTH - calc->tex_x - 1;
+}
+
+void	get_textured_color(t_calc *calc, t_cub *cub, int x)
+{
+	int y;
+
+	y = calc->draw_start;
+	calc->step = 1.0 * TEX_HEIGHT / calc->line_length;
+	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_length / 2) * calc->step;
+	while (y < calc->draw_end)
+	{
+		calc->tex_y = (int)calc->tex_pos & (TEX_HEIGHT - 1);
+		calc->tex_pos += calc->step;
+		calc->color = cub->texture[calc->tex_num][TEX_HEIGHT * calc->tex_y + calc->tex_x];
+		cub->buf[x][y] = calc->color;
+		cub->re_buf = 1;
+		y++;
+	}
+}
+
 void	calc(t_cub *cub)
 {
 	int		x;
@@ -85,6 +118,8 @@ void	calc(t_cub *cub)
 
 	calc = init_s_calc();
 	x = 0;
+	// if (cub->re_buf == 1)
+	// 	clear_buf(cub);
 	while (x < WIN_WIDTH)
 	{
 		get_calc_info(calc, cub, x);
@@ -92,6 +127,8 @@ void	calc(t_cub *cub)
 		get_side(calc, cub);
 		get_perp_wall_dist(calc, cub);
 		get_draw_start_and_end(calc);
+		get_tex_num_wall_x_tex_x(calc, cub);
+		get_textured_color(calc, cub, x);
 		render_color(calc, cub);
 		ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
 		x++;

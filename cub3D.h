@@ -83,20 +83,12 @@ typedef struct s_image
 	int		height;
 }	t_image;
 
-typedef struct s_texture
-{
-	char	*texture_path;
-	int		*texture;
-	double	width;
-	double	height;
-}	t_texture;
-
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	t_texture	texture[TEXTURE_NUMBER];
+	int			**texture; //texture[TEXTURE_NUMBER][TEX_WIDTH * TEX_HEIGHT]
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;
@@ -105,6 +97,7 @@ typedef struct s_cub
 	char		**map;
 	int			**buf;
 	int			re_buf;
+	t_map		*info_map;
 }	t_cub;
 
 typedef struct s_calc
@@ -127,6 +120,12 @@ typedef struct s_calc
 	int		line_length;
 	int		draw_start;
 	int		draw_end;
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
 }	t_calc;
 
 /*srcs*/
@@ -155,7 +154,6 @@ int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);
 
 /*parse*/
-int		check_map_surrounded(char **map, t_map *map_info);
 int		check_wall_row(char **map, int height);
 int		is_all_wall_first_n_last_row(char *map_row);
 int		check_is_valid_wall_row(char *map_row);

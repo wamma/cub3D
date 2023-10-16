@@ -139,7 +139,7 @@ void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_mlx(t_cub *cub);
 void	init_s_cub(t_cub *cub, t_map *info_map);
-t_calc	*init_s_calc(void);
+t_calc	*init_s_calc(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);

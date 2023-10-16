@@ -50,7 +50,7 @@ void	init_s_cub(t_cub *cub, t_map *info_map)
 	cub->info_map = info_map;
 }
 
-t_calc	*init_s_calc(void)
+t_calc	*init_s_calc(t_cub *cub)
 {
 	t_calc	*calc;
 
@@ -58,5 +58,6 @@ t_calc	*init_s_calc(void)
 	if (calc == NULL)
 		ft_error("malloc error");
 	ft_memset(calc, 0, sizeof(t_calc));
+	get_starting_direction_and_plane(cub);
 	return (calc);
 }

@@ -8,14 +8,14 @@ LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
 SRCS = main.c \
-	  srcs/calc.c srcs/draw.c srcs/key_event.c \
-	  srcs/ft_error.c srcs/ft_free.c srcs/ft_init.c srcs/ft_init2.c \
-	  srcs/ft_init3.c \
-	  parse/ft_split_white_space.c \
-	  parse/parse_check.c parse/parse_get.c parse/parse_info_map.c \
-	  parse/parse_utils.c parse/parse_utils2.c\
-	  parse/parse_check_map.c parse/parse_map.c parse/parse_get_map.c \
-	  parse/check_surround_by_wall.c
+	   srcs/key_event.c srcs/load_image.c\
+	   srcs/ft_error.c srcs/ft_free.c srcs/ft_init.c srcs/ft_init2.c \
+	   srcs/ft_init3.c \
+	   parse/ft_split_white_space.c \
+	   parse/parse_check.c parse/parse_get.c parse/parse_info_map.c \
+	   parse/parse_utils.c parse/parse_utils2.c\
+	   parse/parse_check_map.c parse/parse_map.c parse/parse_get_map.c \
+	   parse/check_surround_by_wall.c
 
 OBJS = $(SRCS:.c=.o)
 

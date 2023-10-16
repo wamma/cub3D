@@ -57,7 +57,7 @@ char	**get_map(t_map *info_map, char *map_line)
 	int		j;
 
 	printf("width: %d, height: %d\n", info_map->width, info_map->height);
-	map = allocate_two_dimension_array_array(info_map->height, info_map->width - 1);
+	map = allocate_two_dimension_array(info_map->height, info_map->width - 1);
 	i = info_map->height;
 	while (i >= 0)
 	{
@@ -99,7 +99,7 @@ char	**get_map(t_map *info_map, char *map_line)
 	int		j;
 
 	// printf("width: %d, height: %d\n", info_map->width, info_map->height);
-	map = allocate_two_dimension_array_array(info_map->height, info_map->width - 1);
+	map = allocate_two_dimension_array(info_map->height, info_map->width - 1);
 	i = 0;
 	while (i < info_map->height)
 	{

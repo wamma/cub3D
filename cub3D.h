@@ -129,37 +129,23 @@ typedef struct s_calc
 }	t_calc;
 
 /*srcs*/
-void	get_calc_info(t_calc *calc, t_cub *cub, int x);
-void	get_side_dist(t_calc *calc, t_cub *cub);
-void	get_side(t_calc *calc, t_cub *cub);
-void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
-void	get_draw_start_and_end(t_calc *calc);
-void	calc(t_cub *cub);
-
 // void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
 // void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
-char	**allocate_two_dimension_array_array(int column, int row);
 int		*init_array_zero(int size);
 void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_mlx(t_cub *cub);
 void	init_s_cub(t_cub *cub, t_map *info_map);
 t_calc	*init_s_calc(void);
-int		main_loop(t_cub *cub);
 char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);
 void	load_image(t_cub *cub);
 
 /*parse*/
-int		check_wall_row(char **map, int height);
-int		is_all_wall_first_n_last_row(char *map_row);
-int		check_is_valid_wall_row(char *map_row);
-int		check_wall_column(char **map, int height, int width);
-
 char	**ft_split_white_space(char const *s);
 
 void	check_map_component(t_map *info_map);

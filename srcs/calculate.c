@@ -47,7 +47,7 @@ void	get_starting_dir_and_plane(t_cub *cub)
 		put_s_or_n_dir_plane(cub, starting_dir);
 }
 
-void	get_calc_info(t_calc *calc, t_cub *cub, int x)
+static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 {
 	calc->camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	calc->ray_dir_x = cub->dir.x + (cub->plane.x * calc->camera_x);
@@ -57,7 +57,7 @@ void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 	calc->hit = 0;
 }
 
-void	get_side_dist(t_calc *calc, t_cub *cub)
+static void	get_side_dist(t_calc *calc, t_cub *cub)
 {
 	if (calc->ray_dir_x < 0)
 	{
@@ -81,6 +81,51 @@ void	get_side_dist(t_calc *calc, t_cub *cub)
 	}
 }
 
+static void	get_side(t_calc *calc, t_cub *cub)
+{
+	while (calc->hit == 0)
+	{
+		if (calc->side_dist_x < calc->side_dist_y)
+		{
+			calc->side_dist_x += calc->delta_dist_x;
+			calc->map_x += calc->step_x;
+			calc->side = 0;
+		}
+		else
+		{
+			calc->side_dist_y += calc->delta_dist_y;
+			calc->map_x += calc->step_x;
+			calc->side = 1;
+		}
+		if (cub->info_map->map[calc->map_y][calc->map_x] == '1')
+			calc->hit = 1;
+	}
+}
+
+static void	determine_wall_direction(t_calc *calc, t_cub *cub)
+{
+	if (calc->side == 0)
+	{
+		if (cub->dir.x > 0)
+			calc->wall_direction = EAST; // texture[0] -> east
+		else
+			calc->wall_direction = WEST; // texture[0] -> west
+	}
+	else if (calc->side == 1)
+	{
+		if (cub->dir.y < 0)
+			calc->wall_direction = SOUTH; // texture[0] -> south
+		else
+			calc->wall_direction = NORTH; // texture[0] -> north
+	}
+}
+
+static void	get_perp_wall_dist(t_calc *calc, t_cub *cub)
+{
+	if (calc->side == 0)
+		calc->perp_wall_dist = 
+}
+
 void	calculate(t_cub *cub)
 {
 	int		x;
@@ -93,6 +138,9 @@ void	calculate(t_cub *cub)
 	{
 		get_calc_info(calc, cub, x);
 		get_side_dist(calc, cub);
+		get_side(calc, cub);
+		determine_wall_direction(calc, cub);
+		get_perp_wall_dist(calc, cub);
 		x++;
 	}
 }

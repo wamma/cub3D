@@ -4,17 +4,17 @@ void	init_camera_dir_S_n_N(t_cub *cub, char c)
 {
 	if (c == 'S')
 	{
-		cub->dir.y = 0;
-		cub->dir.x = 1;
-		cub->plane.y = -0.66;
-		cub->plane.x = 0;
+		cub->dir.x = 0;
+		cub->dir.y = -1;
+		cub->plane.x = -0.66;
+		cub->plane.y = 0;
 	}
 	else if (c == 'N')
 	{
-		cub->dir.y = 0;
-		cub->dir.x = -1;
-		cub->plane.y = 0.66;
-		cub->plane.x = 0;
+		cub->dir.x = 0;
+		cub->dir.y = 1;
+		cub->plane.x = 0.66;
+		cub->plane.y = 0;
 	}
 }
 
@@ -22,17 +22,17 @@ void	init_camera_dir(t_cub *cub, char c)
 {
 	if (c == 'E')
 	{
-		cub->dir.x = 0;
-		cub->dir.y = 1;
-		cub->plane.x = 0.66;
-		cub->plane.y = 0;
+		cub->dir.x = 1;
+		cub->dir.y = 0;
+		cub->plane.x = 0;
+		cub->plane.y = -0.66;
 	}
 	else if (c == 'W')
 	{
-		cub->dir.x = 0;
-		cub->dir.y = -1;
-		cub->plane.x = -0.66;
-		cub->plane.y = 0;
+		cub->dir.x = -1;
+		cub->dir.y = 0;
+		cub->plane.x = 0;
+		cub->plane.y = 0.66;
 	}
 	else
 		init_camera_dir_S_n_N(cub, c);
@@ -58,6 +58,6 @@ t_calc	*init_s_calc(t_cub *cub)
 	if (calc == NULL)
 		ft_error("malloc error");
 	ft_memset(calc, 0, sizeof(t_calc));
-	get_starting_direction_and_plane(cub);
+	// get_starting_direction_and_plane(cub);
 	return (calc);
 }

@@ -132,8 +132,8 @@ typedef struct s_calc
 }	t_calc;
 
 /*srcs*/
-// void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
-// void	render_color(t_calc *calc, t_cub *cub);
+void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
+void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
@@ -147,6 +147,9 @@ char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);
 void	load_image(t_cub *cub);
+int		main_loop(t_cub *cub);
+void	calculate(t_cub *cub);
+void	get_starting_direction_and_plane(t_cub *cub);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);

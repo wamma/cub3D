@@ -29,7 +29,7 @@ char	**parse_map(t_map *info_map)
 	return (map);
 }
 
-void	get_player_starting_position(t_map *info_map, int x, int y, char direc)
+void	get_player_starting_position(t_map *info_map, int y, int x, char direc)
 {
 	info_map->starting_x = x;
 	info_map->starting_y = y;
@@ -38,27 +38,27 @@ void	get_player_starting_position(t_map *info_map, int x, int y, char direc)
 
 void	check_and_get_starting_position(t_map *info_map, char **map)
 {
-	int		i;
-	int		j;
+	int		y;
+	int		x;
 	int		cnt;
 
-	i = 0;
+	y = 0;
 	cnt = 0;
-	while (map[i] != NULL)
+	while (map[y] != NULL)
 	{
-		j = 0;
-		while(map[i][j] != '\0')
+		x = 0;
+		while(map[y][x] != '\0')
 		{
-			if (is_player(map[i][j]) == 1)
+			if (is_player(map[y][x]) == 1)
 			{
 				if (cnt > 0)
 					ft_error("Check : too many players\n");
 				cnt++;
-				get_player_starting_position(info_map, i, j, map[i][j]);
+				get_player_starting_position(info_map, y, x, map[y][x]);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	if (cnt == 0)
 		ft_error("Check : there's no player\n");

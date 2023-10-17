@@ -62,7 +62,22 @@ void	get_side_dist(t_calc *calc, t_cub *cub)
 	if (calc->ray_dir_x < 0)
 	{
 		calc->step_x = -1;
+		calc->side_dist_x = (cub->pos.x - calc->map_x) * calc->delta_dist_x;
+	}
+	else
+	{
+		calc->step_x = 1;
 		calc->side_dist_x = (calc->map_x + 1.0 - cub->pos.x) * calc->delta_dist_x;
+	}
+	if (calc->ray_dir_y < 0)
+	{
+		calc->step_y = -1;
+		calc->side_dist_y = (cub->pos.y - calc->map_y) * calc->delta_dist_y;
+	}
+	else
+	{
+		calc->step_y = 1;
+		calc->side_dist_y = (calc->map_y + 1.0 - cub->pos.y) * calc->delta_dist_y;
 	}
 }
 

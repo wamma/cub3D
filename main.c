@@ -44,11 +44,11 @@ int	main(int argc, char **argv)
 	parse_info_map(&info_map, argv[1]);
 	init_mlx(&cub);
 	init_s_cub(&cub, &info_map);
-	load_image(&cub);
+	// print_struct_camera(&cub);
+	// load_image(&cub);
 	mlx_loop_hook(cub.mlx, &main_loop, &cub);
-	//mlx_hook(cub.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
-	//mlx_loop(cub.mlx);
+	mlx_hook(cub.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
+	mlx_loop(cub.mlx);
 	// print_struct_map(&info_map);
-	// print_struct_camera(&camera);
 	return (0);
 }

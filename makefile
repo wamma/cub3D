@@ -8,7 +8,7 @@ LIB_DIR = ./libft
 LIBFLAG = -lft -L$(LIB_DIR)
 
 SRCS = main.c \
-	   srcs/key_event.c srcs/load_image.c\
+	   srcs/key_event.c srcs/load_image.c srcs/main_loop.c srcs/calculate.c\
 	   srcs/ft_error.c srcs/ft_free.c srcs/ft_init.c srcs/ft_init2.c \
 	   srcs/ft_init3.c \
 	   parse/ft_split_white_space.c \

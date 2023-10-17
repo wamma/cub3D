@@ -24,22 +24,24 @@
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
 
+# define SUM				0
+# define EA_PATH			1
+# define WE_PATH			2
+# define SO_PATH			3
+# define NO_PATH			4
+# define FLOOR				5
+# define CEILING			6
+
+#define EAST				10
+#define WEST				11
+#define SOUTH				12
+#define NORTH				13
+
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-
-enum texture_path
-{
-	SUM = 0,
-	EA_PATH,
-	WE_PATH,
-	SO_PATH,
-	NO_PATH,
-	FLOOR,
-	CEILING
-};
 
 typedef struct s_vec
 {
@@ -102,6 +104,7 @@ typedef struct s_cub
 
 typedef struct s_calc
 {
+	int		wall_direction;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -182,4 +185,5 @@ void	check_and_get_starting_position(t_map *info_map, char **map);
 
 char	**allocate_two_dimension_array(int column, int row);
 int		check_surrounded_by_wall(char **map, t_map *info_map);
+
 #endif

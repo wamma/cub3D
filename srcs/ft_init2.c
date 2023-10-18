@@ -58,6 +58,5 @@ t_calc	*init_s_calc(t_cub *cub)
 	if (calc == NULL)
 		ft_error("malloc error");
 	ft_memset(calc, 0, sizeof(t_calc));
-	// get_starting_direction_and_plane(cub);
 	return (calc);
 }

@@ -21,20 +21,3 @@ void	init_buf(t_cub *cub)
 		y++;
 	}
 }
-
-void	init_texture_array(t_cub *cub)
-{
-	int	i;
-
-	i = 0;
-	cub->texture = (int **)malloc(sizeof(int *) * TEXTURE_NUMBER);
-	if (!cub->texture)
-		ft_error("Check: malloc");
-	while (i < TEXTURE_NUMBER)
-	{
-		cub->texture[i] = (int *)malloc(sizeof(int) * (1000 * 1000));
-		if (!cub->texture[i])
-			ft_error("Check: malloc");
-		i++;
-	}
-}

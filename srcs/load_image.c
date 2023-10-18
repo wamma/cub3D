@@ -1,37 +1,50 @@
 #include "../cub3D.h"
 
-void	load_texture(t_cub *cub, int index, char *path)
+int	*load_texture(t_cub *cub, char *path, t_image *img, int i)
 {
-	int		x;
-	int		y;
-	t_image	*img;
+	int	x;
+	int	y;
+	int	*result;
 
-	img = (t_image *)malloc(sizeof(t_image));
-	if (!img)
-		ft_error("Error: malloc\n");
 	img->img_ptr = mlx_xpm_file_to_image(cub->mlx, path, &img->width, &img->height);
+	cub->texture[i].width = img->width;
+	cub->texture[i].height = img->height;
 	img->data_ptr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
-	cub->texture[index] = (int *)malloc(sizeof(int) * (img->width * img->height));
-	printf("%d %d\n", img->width, img->height);
+	result = (int *)malloc(sizeof(int) * (img->width * img->height));
 	y = 0;
 	while (y < img->height)
 	{
 		x = 0;
 		while (x < img->width)
 		{
-			cub->texture[index][img->width * y + x] = img->data_ptr[img->width * y + x];
+			result[img->width * y + x] = img->data_ptr[img->width * y + x];
 			x++;
 		}
 		y++;
 	}
 	mlx_destroy_image(cub->mlx, img->img_ptr);
-	free(img);
+	return (result);
 }
 
 void	load_image(t_cub *cub)
 {
-	load_texture(cub, 0, cub->info_map->ea_path);
-	load_texture(cub, 1, cub->info_map->we_path);
-	load_texture(cub, 2, cub->info_map->so_path);
-	load_texture(cub, 3, cub->info_map->no_path);
+	int	i;
+
+	i = 0;
+	while (i < TEXTURE_NUMBER)
+	{
+		if (i == 0)
+			cub->texture[i].texture = load_texture(cub, cub->info_map->ea_path, cub->img, i);
+		else if (i == 1)
+			cub->texture[i].texture = load_texture(cub, cub->info_map->we_path, cub->img, i);
+		else if (i == 2)
+			cub->texture[i].texture = load_texture(cub, cub->info_map->so_path, cub->img, i);
+		else
+			cub->texture[i].texture = load_texture(cub, cub->info_map->no_path, cub->img, i);
+		i++;
+	}
+	printf("texture[0].width: %d height: %d\n", cub->texture[0].width, cub->texture[0].height);
+	printf("texture[1].width: %d height: %d\n", cub->texture[1].width, cub->texture[1].height);
+	printf("texture[2].width: %d height: %d\n", cub->texture[2].width, cub->texture[2].height);
+	printf("texture[3].width: %d height: %d\n", cub->texture[3].width, cub->texture[3].height);
 }

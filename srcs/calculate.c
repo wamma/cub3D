@@ -126,7 +126,7 @@ static void	get_wall_x_tex_x(t_calc *calc, t_cub *cub)
 		calc->tex_x = TEX_HEIGHT - calc->tex_x - 1;
 }
 
-static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
+static void	get_step_and_tex_pos(t_calc *calc)
 {
 	calc->step = 1.0 * TEX_HEIGHT / calc->line_length;
 	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_length / 2) * calc->step;
@@ -141,10 +141,10 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 	{
 		calc->tex_y = (int)calc->tex_pos & (TEX_HEIGHT - 1);
 		calc->tex_pos += calc->step;
-		calc->color = cub->texture[calc->tex_num][TEX_HEIGHT * calc->tex_y + calc->tex_x];
-		printf("tex_x: %d tex_y: %d\n", calc->tex_x, calc->tex_y);
-		printf("%d\n", calc->tex_num);
-		printf("%d\n", calc->color);
+		calc->color = cub->texture[calc->tex_num].texture[TEX_HEIGHT * calc->tex_y + calc->tex_x];
+		// printf("tex_x: %d tex_y: %d\n", calc->tex_x, calc->tex_y);
+		// printf("%d\n", calc->tex_num);
+		// printf("%d\n", calc->color);
 		if (calc->side == 1)
 			calc->color = (calc->color >> 1) & 8355711;
 		cub->buf[y][x] = calc->color;
@@ -194,11 +194,10 @@ void	calculate(t_cub *cub)
 		get_draw_start_and_end(calc);
 		get_wall_tex_num(calc, cub);
 		get_wall_x_tex_x(calc, cub);
-		get_step_and_tex_pos(calc, cub);
+		get_step_and_tex_pos(calc);
 		draw_wall(calc, cub, x);
 		// render_color(calc, cub);
 		// ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
-		printf("%d\n", x);
 		x++;
 	}
 }

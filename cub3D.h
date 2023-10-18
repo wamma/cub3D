@@ -85,12 +85,19 @@ typedef struct s_image
 	int		height;
 }	t_image;
 
+typedef struct s_texture
+{
+	int	*texture;
+	int	width;
+	int	height;
+}	t_texture;
+
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	int			**texture; //texture[TEXTURE_NUMBER][TEX_WIDTH * TEX_HEIGHT]
+	t_texture	texture[TEXTURE_NUMBER];
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;

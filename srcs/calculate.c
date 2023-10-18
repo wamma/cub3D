@@ -1,51 +1,21 @@
 #include "../cub3D.h"
 
-// void	put_e_or_w_dir_plane(t_cub *cub, int dir)
-// {
-// 	if (dir == 'E')
-// 	{
-// 		cub->dir.x = 1;
-// 		cub->dir.y = 0;
-// 		cub->plane.x = 0;
-// 		cub->plane.y = -0.66;
-// 	}
-// 	else if (dir == 'W')
-// 	{
-// 		cub->dir.x = -1;
-// 		cub->dir.y = 0;
-// 		cub->plane.x = 0;
-// 		cub->plane.y = 0.66;
-// 	}
-// }
+static void	clear_buf(t_cub *cub)
+{
+	int	y;
+	int	x;
 
-// void	put_s_or_n_dir_plane(t_cub *cub, int dir)
-// {
-// 	if (dir == 'S')
-// 	{
-// 		cub->dir.x = 0;
-// 		cub->dir.y = -1;
-// 		cub->plane.x = -0.66;
-// 		cub->plane.y = 0;
-// 	}
-// 	else if (dir == 'N')
-// 	{
-// 		cub->dir.x = 0;
-// 		cub->dir.y = 1;
-// 		cub->plane.x = 0.66;
-// 		cub->plane.y = 0;
-// 	}
-// }
- 
-// void	get_starting_direction_and_plane(t_cub *cub)
-// {
-// 	int	starting_dir;
-
-// 	starting_dir = cub->info_map->starting_direction;
-// 	if (starting_dir == 'E' || starting_dir == 'W')
-// 		put_e_or_w_dir_plane(cub, starting_dir);
-// 	else if (starting_dir == 'S' || starting_dir == 'N')
-// 		put_s_or_n_dir_plane(cub, starting_dir);
-// }
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			cub->buf[y][x] = 0;
+			x++;
+		}
+	}
+}
 
 static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 {
@@ -104,21 +74,21 @@ static void	get_side(t_calc *calc, t_cub *cub)
 	}
 }
 
-static void	determine_wall_direction(t_calc *calc, t_cub *cub)
+static void	get_wall_tex_num(t_calc *calc, t_cub *cub)
 {
 	if (calc->side == 0)
 	{
 		if (cub->dir.x > 0)
-			calc->wall_direction = EAST; // texture[0] -> east
+			calc->tex_num = EAST;
 		else
-			calc->wall_direction = WEST; // texture[0] -> west
+			calc->tex_num = WEST;
 	}
 	else if (calc->side == 1)
 	{
-		if (cub->dir.y < 0)
-			calc->wall_direction = SOUTH; // texture[0] -> south
+		if (cub->dir.y > 0)
+			calc->tex_num = NORTH;
 		else
-			calc->wall_direction = NORTH; // texture[0] -> north
+			calc->tex_num = SOUTH;
 	}
 }
 
@@ -142,27 +112,68 @@ static void	get_draw_start_and_end(t_calc *calc)
 
 }
 
-void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color)
+static void	get_wall_x_tex_x(t_calc *calc, t_cub *cub)
 {
-	int y;
+	if (calc->side == 0)
+		calc->wall_x = cub->pos.y + calc->perp_wall_dist * calc->ray_dir_y;
+	else
+		calc->wall_x = cub->pos.x + calc->perp_wall_dist * calc->ray_dir_x;
+	calc->wall_x -= floor((calc->wall_x));
+	calc->tex_x = (int)(calc->wall_x * (double)TEX_HEIGHT);
+	if (calc->side == 0 && calc->ray_dir_x > 0)
+		calc->tex_x = TEX_HEIGHT - calc->tex_x - 1;
+	if (calc->side == 1 && calc->ray_dir_y < 0)
+		calc->tex_x = TEX_HEIGHT - calc->tex_x - 1;
+}
 
-	y = draw_start;
-	while (y <= draw_end)
+static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
+{
+	calc->step = 1.0 * TEX_HEIGHT / calc->line_length;
+	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_length / 2) * calc->step;
+}
+
+static void	draw_wall(t_calc *calc, t_cub *cub, int x)
+{
+	int	y;
+
+	y = calc->draw_start;
+	while (y < calc->draw_end)
 	{
-		mlx_pixel_put(cub->mlx, cub->win, x, y, color);
+		calc->tex_y = (int)calc->tex_pos & (TEX_HEIGHT - 1);
+		calc->tex_pos += calc->step;
+		calc->color = cub->texture[calc->tex_num][TEX_HEIGHT * calc->tex_y + calc->tex_x];
+		printf("tex_x: %d tex_y: %d\n", calc->tex_x, calc->tex_y);
+		printf("%d\n", calc->tex_num);
+		printf("%d\n", calc->color);
+		if (calc->side == 1)
+			calc->color = (calc->color >> 1) & 8355711;
+		cub->buf[y][x] = calc->color;
+		cub->re_buf = 1;
 		y++;
 	}
 }
 
-void	render_color(t_calc *calc, t_cub *cub)
-{
-	if (cub->info_map->map[calc->map_y][calc->map_x] == '1')
-		calc->color = 0xFF0000;
-	else
-		calc->color = 0xFFFF00; // yellow
-	if (calc->side == 1)
-		calc->color = calc->color / 2; // green
-}
+// void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color)
+// {
+// 	int y;
+
+// 	y = draw_start;
+// 	while (y <= draw_end)
+// 	{
+// 		mlx_pixel_put(cub->mlx, cub->win, x, y, color);
+// 		y++;
+// 	}
+// }
+
+// void	render_color(t_calc *calc, t_cub *cub)
+// {
+// 	if (cub->info_map->map[calc->map_y][calc->map_x] == '1')
+// 		calc->color = 0xFF0000;
+// 	else
+// 		calc->color = 0xFFFF00;
+// 	if (calc->side == 1)
+// 		calc->color = calc->color / 2;
+// }
 
 void	calculate(t_cub *cub)
 {
@@ -172,17 +183,22 @@ void	calculate(t_cub *cub)
 
 	calc = init_s_calc(cub);
 	x = 0;
+	if (cub->re_buf == 1)
+		clear_buf(cub);
 	while (x < WIN_WIDTH)
 	{
-		// printf("%d\n", calc->draw_start);
 		get_calc_info(calc, cub, x);
 		get_side_dist(calc, cub);
 		get_side(calc, cub);
-		// determine_wall_direction(calc, cub);
 		get_perp_wall_dist(calc, cub);
 		get_draw_start_and_end(calc);
-		render_color(calc, cub);
-		ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
+		get_wall_tex_num(calc, cub);
+		get_wall_x_tex_x(calc, cub);
+		get_step_and_tex_pos(calc, cub);
+		draw_wall(calc, cub, x);
+		// render_color(calc, cub);
+		// ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
+		printf("%d\n", x);
 		x++;
 	}
 }

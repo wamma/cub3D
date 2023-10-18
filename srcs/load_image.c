@@ -12,6 +12,7 @@ void	load_texture(t_cub *cub, int index, char *path)
 	img->img_ptr = mlx_xpm_file_to_image(cub->mlx, path, &img->width, &img->height);
 	img->data_ptr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	cub->texture[index] = (int *)malloc(sizeof(int) * (img->width * img->height));
+	printf("%d %d\n", img->width, img->height);
 	y = 0;
 	while (y < img->height)
 	{

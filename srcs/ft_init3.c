@@ -2,28 +2,23 @@
 
 void	init_buf(t_cub *cub)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
+	y = 0;
 	cub->buf = (int **)malloc(sizeof(int *) * WIN_HEIGHT);
 	if (!cub->buf)
 		ft_error("Check: malloc");
-	while (i < WIN_HEIGHT)
+	while (y < WIN_HEIGHT)
 	{
-		cub->buf[i] = (int *)malloc(sizeof(int *) * WIN_WIDTH);
-		i++;
-	}
-	i = 0;
-	while (i < WIN_HEIGHT)
-	{
-		j = 0;
-		while (j < WIN_WIDTH)
+		cub->buf[y] = (int *)malloc(sizeof(int *) * WIN_WIDTH);
+		x = 0;
+		while (x < WIN_WIDTH)
 		{
-			cub->buf[i][j] = 0;
-			j++;
+			cub->buf[y][x] = 0;
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 

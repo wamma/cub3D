@@ -32,10 +32,10 @@
 # define FLOOR				5
 # define CEILING			6
 
-#define EAST				10
-#define WEST				11
-#define SOUTH				12
-#define NORTH				13
+#define EAST				0
+#define WEST				1
+#define SOUTH				2
+#define NORTH				3
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -104,7 +104,6 @@ typedef struct s_cub
 
 typedef struct s_calc
 {
-	int		wall_direction;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;

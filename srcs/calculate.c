@@ -141,7 +141,7 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 	{
 		calc->tex_y = (int)calc->tex_pos & (TEX_HEIGHT - 1);
 		calc->tex_pos += calc->step;
-		calc->color = cub->texture[calc->tex_num].texture[TEX_HEIGHT * calc->tex_y + calc->tex_x];
+		calc->color = cub->img_texture[calc->tex_num].texture[TEX_HEIGHT * calc->tex_y + calc->tex_x];
 		// printf("tex_x: %d tex_y: %d\n", calc->tex_x, calc->tex_y);
 		// printf("%d\n", calc->tex_num);
 		// printf("%d\n", calc->color);
@@ -181,7 +181,7 @@ void	calculate(t_cub *cub)
 	
 	t_calc	*calc;
 
-	calc = init_s_calc(cub);
+	calc = init_s_calc();
 	x = 0;
 	if (cub->re_buf == 1)
 		clear_buf(cub);

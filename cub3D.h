@@ -78,6 +78,7 @@ typedef struct s_image
 {
 	void	*img_ptr;
 	char	*data_ptr;
+	int		*texture;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -85,19 +86,20 @@ typedef struct s_image
 	int		height;
 }	t_image;
 
-typedef struct s_texture
-{
-	int	*texture;
-	int	width;
-	int	height;
-}	t_texture;
+//typedef struct s_texture
+//{
+//	int	*texture;
+//	int	width;
+//	int	height;
+//}	t_texture;
 
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	t_texture	texture[TEXTURE_NUMBER];
+	t_image		*img_texture;
+	//t_texture	texture[TEXTURE_NUMBER];
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;
@@ -148,7 +150,7 @@ void	init_floor_and_ceiling_structure(t_map *info_map);
 void	init_s_map(t_map *info_map);
 void	init_mlx(t_cub *cub);
 void	init_s_cub(t_cub *cub, t_map *info_map);
-t_calc	*init_s_calc(t_cub *cub);
+t_calc	*init_s_calc(void);
 char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);

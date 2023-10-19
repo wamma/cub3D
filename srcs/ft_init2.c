@@ -40,6 +40,7 @@ void	init_camera_dir(t_cub *cub, char c)
 
 void	init_s_cub(t_cub *cub, t_map *info_map)
 {
+	cub->img_texture = (t_image *)malloc(sizeof(t_image) * TEXTURE_NUMBER);
 	cub->pos.x = info_map->starting_x + 0.5;
 	cub->pos.y = info_map->starting_y + 0.5;
 	init_camera_dir(cub, info_map->starting_direction);
@@ -50,7 +51,7 @@ void	init_s_cub(t_cub *cub, t_map *info_map)
 	cub->info_map = info_map;
 }
 
-t_calc	*init_s_calc(t_cub *cub)
+t_calc	*init_s_calc(void)
 {
 	t_calc	*calc;
 

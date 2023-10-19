@@ -1,7 +1,7 @@
 NAME = cub3D
 
 CC = cc
-CFLAG = -g
+CFLAG = -Wall -Wextra -Werror -g
 RM = rm -f
 MLX = -L. -lmlx -framework OpenGL -framework AppKit
 LIB_DIR = ./libft

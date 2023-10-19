@@ -141,7 +141,7 @@ typedef struct s_calc
 
 /*srcs*/
 void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
-void	render_color(t_calc *calc, t_cub *cub);
+void	render_color(t_calc *calc, t_cub *cub, int x);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);

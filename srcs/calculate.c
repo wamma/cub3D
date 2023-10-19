@@ -1,5 +1,6 @@
 #include "../cub3D.h"
 
+
 static void	clear_buf(t_cub *cub)
 {
 	int	y;
@@ -17,6 +18,7 @@ static void	clear_buf(t_cub *cub)
 		y++;
 	}
 }
+
 
 static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 {
@@ -140,20 +142,26 @@ static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
 	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_length / 2) * calc->step;
 }
 
+
 static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 {
 	int	tex_height;
 	int	tex_width;
+	int	line_length;
+	int	bpp;
 	int	y;
 
 	tex_height = cub->img_texture[calc->tex_num].height;
 	tex_width = cub->img_texture[calc->tex_num].width;
+	line_length = cub->img_texture[calc->tex_num].line_length;
+	bpp = cub->img_texture[calc->tex_num].bits_per_pixel;
 	y = calc->draw_start;
 	while (y < calc->draw_end)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
-		calc->color = cub->img_texture[calc->tex_num].texture[tex_width * calc->tex_y + calc->tex_x];
+		calc->color = cub->img_texture[calc->tex_num].texture[line_length * calc->tex_y + calc->tex_x * (bpp / 8)];
+		//calc->color = cub->img_texture[calc->tex_num].texture[tex_width * calc->tex_y + calc->tex_x];
 		//if (calc->side == 1)
 		//	calc->color = (calc->color >> 1) & 8355711;
 		cub->buf[y][x] = calc->color;
@@ -167,23 +175,34 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 		// printf("%d\n", calc->tex_num);
 		// printf("%d\n", calc->color);
 
- void	render_color(t_calc *calc, t_cub *cub)
+
+//void	render_color(t_calc *calc, t_cub *cub, int x)
+//{
+//	int	y;
+
+//	y = calc->draw_start;
+//	while (y < calc->draw_end)
+//	{
+//		mlx_put_image_to_window(cub->mlx, cub->win, cub->buf[x], x, y);
+//		y++;
+//	}
+//}
+
+
+ void	render_color(t_calc *calc, t_cub *cub, int x)
  {
-	int	x;
 	int y;
-
-
-	x = calc->wall_x;
  	y = calc->draw_start;
  	while (y <= calc->draw_end)
  	{
 		printf("wall_x: %d, draw_start : %d", (int)calc->wall_x, calc->draw_end);
- 		//mlx_put_image_to_window(cub->mlx, cub->win, &cub->buf[y][x], y, x);
-		mlx_pixel_put(cub->mlx, cub->win, x, y, 0x00FF0000);
+ 		//mlx_put_image_to_window(cub->mlx, cub->win, cub->buf[x], x, y);
+		mlx_pixel_put(cub->mlx, cub->win, x, y, cub->buf[y][x]);
 		printf("pixel y: %d x: %d [%d]\n", y, x, cub->buf[y][x]);
  		y++;
  	}
  }
+
 
 t_calc *calculate(t_cub *cub)
 {
@@ -206,7 +225,7 @@ t_calc *calculate(t_cub *cub)
 		get_wall_x_tex_x(calc, cub);
 		get_step_and_tex_pos(calc, cub);
 		draw_wall(calc, cub, x);
-		render_color(calc, cub);
+		render_color(calc, cub, x);
 		//ver_line(cub, x, calc->draw_start, calc->draw_end, calc->color);
 		x++;
 	}

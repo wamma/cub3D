@@ -6,11 +6,14 @@ void	load_texture(t_cub *cub, char *path, int i)
 	int		y;
 	t_image	*img;
 
-	img = (t_image *)malloc(sizeof(t_image) * 1);
+	img = (t_image *)malloc(sizeof(t_image));
 	img->img_ptr = mlx_xpm_file_to_image(cub->mlx, path, &img->width, &img->height);
 	img->data_ptr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	cub->img_texture[i].width = img->width;
 	cub->img_texture[i].height = img->height;
+	cub->img_texture[i].bits_per_pixel = img->bits_per_pixel;
+	cub->img_texture[i].line_length = img->line_length;
+	cub->img_texture[i].endian = img->endian;
 	cub->img_texture[i].texture = (int *)malloc(sizeof(int) * (img->width * img->height));
 	y = 0;
 	while (y < img->height)

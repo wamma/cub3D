@@ -27,7 +27,7 @@ int	main_loop(t_cub *cub)
 	t_calc	*calc;
 
 	calc = calculate(cub);
-	render_color(calc, cub);
+	//render_color(calc, cub);
 	//draw(cub);
 	return (0);
 }

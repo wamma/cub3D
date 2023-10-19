@@ -156,7 +156,7 @@ int		key_press(int key_code, t_cub *cub);
 void	init_buf(t_cub *cub);
 void	load_image(t_cub *cub);
 int		main_loop(t_cub *cub);
-void	calculate(t_cub *cub);
+t_calc	*calculate(t_cub *cub);
 void	get_starting_direction_and_plane(t_cub *cub);
 
 /*parse*/

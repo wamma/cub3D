@@ -11,7 +11,7 @@ void	draw(t_cub *cub)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			cub->img->data_ptr[y * WIN_HEIGHT + x] = cub->buf[y][x];
+			//cub->img->data_ptr[y * WIN_HEIGHT + x] = cub->buf[y][x];
 			//mlx_pixel_put(cub->mlx, cub->win, x, y, cub->);
 			mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img_ptr, x, y);
 			x++;
@@ -23,6 +23,6 @@ void	draw(t_cub *cub)
 int	main_loop(t_cub *cub)
 {
 	calculate(cub);
-	draw(cub);
+	//draw(cub);
 	return (0);
 }

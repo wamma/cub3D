@@ -14,6 +14,7 @@ static void	clear_buf(t_cub *cub)
 			cub->buf[y][x] = 0;
 			x++;
 		}
+		y++;
 	}
 }
 
@@ -174,6 +175,7 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
  	while (y <= calc->draw_end)
  	{
  		mlx_pixel_put(cub->mlx, cub->win, (int)x, y, cub->buf[y][x]);
+		printf("%d %d\n", y, x);
  		y++;
  	}
  }

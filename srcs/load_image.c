@@ -32,22 +32,6 @@ void	load_image(t_cub *cub)
 	load_texture(cub, cub->info_map->we_path, 1);
 	load_texture(cub, cub->info_map->so_path, 2);
 	load_texture(cub, cub->info_map->no_path, 3);
-
-	//int	i;
-
-	//i = 0;
-	//while (i < TEXTURE_NUMBER)
-	//{
-	//	if (i == 0)
-	//		cub->texture[i].texture = load_texture(cub, cub->info_map->ea_path, i);
-	//	else if (i == 1)
-	//		cub->texture[i].texture = load_texture(cub, cub->info_map->we_path, cub->img, i);
-	//	else if (i == 2)
-	//		cub->texture[i].texture = load_texture(cub, cub->info_map->so_path, cub->img, i);
-	//	else
-	//		cub->texture[i].texture = load_texture(cub, cub->info_map->no_path, cub->img, i);
-	//	i++;
-	//}
 	printf("texture[0].width: %d height: %d\n", cub->img_texture[0].width, cub->img_texture[0].height);
 	printf("texture[1].width: %d height: %d\n", cub->img_texture[1].width, cub->img_texture[1].height);
 	printf("texture[2].width: %d height: %d\n", cub->img_texture[2].width, cub->img_texture[2].height);

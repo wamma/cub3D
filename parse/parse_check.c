@@ -42,7 +42,7 @@ void	check_valid_rgb_element(char *rgb)
 	printf("%s\n", rgb);
 	while (rgb[i] != '\0')
 	{
-		if (ft_isdigit(rgb[i]) == 0 && is_white_space(rgb[i]) == 0 && rgb[i] != ',')
+		if (ft_isdigit(rgb[i]) == 0 && rgb[i] != ',')
 			ft_error("Check: invalid rgb element\n");
 		if (rgb[i] == ',')
 		{
@@ -58,7 +58,7 @@ void	check_valid_rgb_element(char *rgb)
 			ft_error("Check: invalid rgb form\n");
 }
 
-void	check_valid_rgb_form(char **rgb)
+void	check_numbers_of_rgb(char **rgb)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ void	check_valid_rgb_form(char **rgb)
 		i++;
 	}
 	if (i != 3)
-		ft_error("Check : enter 3 rgb values in right form\n");
+		ft_error("Check : numbers of rgb\n");
 }
 
 void	check_valid_texture_path(t_map *info_map)

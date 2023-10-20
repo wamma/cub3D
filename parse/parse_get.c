@@ -101,7 +101,7 @@ void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 		ft_error("Check: duplicated element\n");
 	check_valid_rgb_element(info[1]);
 	rgb = ft_split(info[1], ',');
-	check_valid_rgb_form(rgb);
+	check_numbers_of_rgb(rgb);
 	if (type == FLOOR)
 	{
 		info_map->floor->r = rgb_atoi(rgb[0]);

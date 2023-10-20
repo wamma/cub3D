@@ -10,14 +10,14 @@ char	**parse_map(t_map *info_map)
 	map_line = get_starting_line_of_map(info_map);
 	map = get_map(info_map, map_line);
 	close(info_map->map_path_fd);
-	for(int i = info_map->height - 1; i >= 0; i--)
-	{
-		for (int j = 0; j < info_map->width; j++)
-		{
-			printf("%c", map[i][j]);
-		}
-		printf("\n");
-	}
+	// for(int i = info_map->height - 1; i >= 0; i--)
+	// {
+	// 	for (int j = 0; j < info_map->width; j++)
+	// 	{
+	// 		printf("%c", map[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
 	if (check_surrounded_by_wall(map, info_map) == FALSE)
 		ft_error("Check: map isn't surrounded by wall\n");
 

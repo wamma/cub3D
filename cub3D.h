@@ -152,10 +152,11 @@ char	**ft_split_white_space(char const *s);
 void	check_map_component(t_map *info_map);
 void	check_valid_map_component(char *line, t_map *info_map);
 void	check_map_seperated(t_map *info_map, char *map_line);
-
+void	check_duplicated_map_path(t_map *info_map);
 void	check_valid_map_path(char *argv);
 void	check_valid_texture_form(int type, char **info);
-void	check_valid_rgb_form(char **rgb);
+void	check_valid_rgb_element(char *rgb);
+void	check_numbers_of_rgb(char **rgb);
 void	check_valid_texture_path(t_map *info_map);
 void	check_valid_rgb_value(t_map *info_map);
 

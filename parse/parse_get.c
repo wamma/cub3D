@@ -23,7 +23,7 @@ void	get_texture_info(t_map *info_map)
 		line = get_next_line(info_map->map_path_fd);
 	}
 	if (element_cnt[SUM] != 6)
-		ft_error("Check : invalidate file form\n");//fd도 close
+		ft_error("Check : numbers of element\n");//fd도 close
 	//close(info_map->map_path_fd);
 }
 
@@ -76,26 +76,45 @@ void	get_texture_path(t_map *info_map, int type, char **info, int *cnt)
 	cnt[type]++;
 }
 
+int	rgb_atoi(char *str)
+{
+	long	num;
+
+	num = 0;
+	while ((9 <= *str && *str <= 13) || *str == 32)
+		str++;
+	while (ft_isdigit(*str))
+	{
+		num = num * 10 + (*str - '0');
+		str++;
+	}
+	if (num > 2147483647)
+		ft_error("Check: wrong rgb range\n");
+	return ((int)num);
+}
+
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 {
 	char	**rgb;
 
 	if (cnt[type] > 0)
 		ft_error("Check: duplicated element\n");
+	check_valid_rgb_element(info[1]);
 	rgb = ft_split(info[1], ',');
-	check_valid_rgb_form(rgb);
+	check_numbers_of_rgb(rgb);
 	if (type == FLOOR)
 	{
-		info_map->floor->r = ft_atoi(rgb[0]);
-		info_map->floor->g = ft_atoi(rgb[1]);
-		info_map->floor->b = ft_atoi(rgb[2]);
+		info_map->floor->r = rgb_atoi(rgb[0]);
+		info_map->floor->g = rgb_atoi(rgb[1]);
+		info_map->floor->b = rgb_atoi(rgb[2]);
 	}
 	else if (type == CEILING)
 	{
-		info_map->ceiling->r = ft_atoi(rgb[0]);
-		info_map->ceiling->g = ft_atoi(rgb[1]);
-		info_map->ceiling->b = ft_atoi(rgb[2]);
+		info_map->ceiling->r = rgb_atoi(rgb[0]);
+		info_map->ceiling->g = rgb_atoi(rgb[1]);
+		info_map->ceiling->b = rgb_atoi(rgb[2]);
 	}
+	check_valid_rgb_value(info_map);
 	cnt[type]++;
 	free_ppc(rgb);
 }

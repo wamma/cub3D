@@ -127,23 +127,24 @@ static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
 
 static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 {
-	t_image	*img;
+	t_image	img;
 	int	tex_height;
 	int	tex_width;
 	int	y;
 
 	tex_height = cub->img_texture[calc->tex_num].height;
 	tex_width = cub->img_texture[calc->tex_num].width;
-	img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	img.img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	img.data_ptr = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel, &img.line_length, &img.endian);
 	y = calc->draw_start;
 	while (y < calc->draw_end)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
-		img->data_ptr[tex_width * calc->tex_y + calc->tex_x] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
+		img.data_ptr[tex_width * calc->tex_y + calc->tex_x] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
 		y++;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, img->img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win, img.img_ptr, 0, 0);
 	//while(y < calc->draw_end)
 	//{
 	//	calc->tex_y = (int)calc->tex_pos & (tex_height - 1);

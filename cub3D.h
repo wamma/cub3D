@@ -100,6 +100,7 @@ typedef struct s_cub
 	void		*win;
 	t_image		*img;
 	t_image		*img_texture;
+	t_image		*img_buf;
 	//t_texture	texture[TEXTURE_NUMBER];
 	t_vec		dir;
 	t_vec		plane;

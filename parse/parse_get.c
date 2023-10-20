@@ -76,12 +76,60 @@ void	get_texture_path(t_map *info_map, int type, char **info, int *cnt)
 	cnt[type]++;
 }
 
+int	check_valid_rgb_element(char *rgb)
+{
+	int	i;
+	int	flag_comma;
+
+	i = 0;
+	flag_comma = 0;
+	printf("%s\n", rgb);
+	while (rgb[i] != '\0')
+	{
+		if (ft_isdigit(rgb[i]) == 0 && is_white_space(rgb[i]) == 0 && rgb[i] != ',')
+			ft_error("Check: invalid rgb element\n");
+		if (rgb[i] == ',')
+		{
+			if (flag_comma == 1)
+				ft_error("Check: invalid rgb form\n");
+			flag_comma = 1;
+		}
+		if (flag_comma == 1 && ft_isdigit(rgb[i]) == 1)
+			flag_comma = 0;
+		i++;
+	}
+	if (flag_comma == 1)
+			ft_error("Check: invalid rgb form\n");
+	return (1);
+}
+
+int	check_valid_rgb_number(char *rgb)
+{
+	int	i;
+	int	flag;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	while (rgb[i] != '\0')
+	{
+		if (rgb[i] == ',')
+			cnt++;
+		i++;
+	}
+	if (cnt != 2)
+		ft_error("Check: invalid rgb number");
+}
+
+//123,,,
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 {
 	char	**rgb;
 
 	if (cnt[type] > 0)
 		ft_error("Check: duplicated element\n");
+	check_valid_rgb_element(info[1]);
+	//check_valid_rgb_number(info[1]);
 	rgb = ft_split(info[1], ',');
 	check_valid_rgb_form(rgb);
 	if (type == FLOOR)

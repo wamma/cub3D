@@ -32,6 +32,32 @@ void	check_valid_texture_form(int type, char **info)
 
 }
 
+void	check_valid_rgb_element(char *rgb)
+{
+	int	i;
+	int	flag_comma;
+
+	i = 0;
+	flag_comma = 0;
+	printf("%s\n", rgb);
+	while (rgb[i] != '\0')
+	{
+		if (ft_isdigit(rgb[i]) == 0 && is_white_space(rgb[i]) == 0 && rgb[i] != ',')
+			ft_error("Check: invalid rgb element\n");
+		if (rgb[i] == ',')
+		{
+			if (flag_comma == 1)
+				ft_error("Check: invalid rgb form\n");
+			flag_comma = 1;
+		}
+		if (flag_comma == 1 && ft_isdigit(rgb[i]) == 1)
+			flag_comma = 0;
+		i++;
+	}
+	if (flag_comma == 1)
+			ft_error("Check: invalid rgb form\n");
+}
+
 void	check_valid_rgb_form(char **rgb)
 {
 	int	i;

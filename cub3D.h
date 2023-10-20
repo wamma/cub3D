@@ -77,13 +77,14 @@ typedef struct s_map
 typedef struct s_image
 {
 	void	*img_ptr;
-	char	*data_ptr;
+	int		*data_ptr;
 	int		*texture;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	int		width;
 	int		height;
+	int		color;
 }	t_image;
 
 //typedef struct s_texture
@@ -140,7 +141,6 @@ typedef struct s_calc
 }	t_calc;
 
 /*srcs*/
-void	ver_line(t_cub *cub, int x, int draw_start, int draw_end, int color);
 void	render_color(t_calc *calc, t_cub *cub, int x);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
@@ -157,7 +157,6 @@ void	init_buf(t_cub *cub);
 void	load_image(t_cub *cub);
 int		main_loop(t_cub *cub);
 t_calc	*calculate(t_cub *cub);
-void	get_starting_direction_and_plane(t_cub *cub);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);

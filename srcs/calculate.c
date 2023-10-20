@@ -141,7 +141,7 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
-		img.data_ptr[tex_width * calc->tex_y + calc->tex_x] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
+		img.data_ptr[WIN_HEIGHT * calc->tex_y + calc->tex_x] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
 		y++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, img.img_ptr, 0, 0);
@@ -153,6 +153,7 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 	//	y++;
 	//}
 }
+
 /*
 //origin
 static void	draw_wall(t_calc *calc, t_cub *cub, int x)

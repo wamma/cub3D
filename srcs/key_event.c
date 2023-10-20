@@ -63,12 +63,12 @@ void	key_code_arrow(t_cub *cub, int key_code)
 
 int	key_press(int key_code, t_cub *cub)
 {
-	key_code_W_S(cub, key_code);
-	key_code_A_D(cub, key_code);
 	if (key_code == KEY_ESC)
 		exit(0);
+	key_code_W_S(cub, key_code);
+	key_code_A_D(cub, key_code);
 	key_code_arrow(cub, key_code);
 	mlx_clear_window(cub->mlx, cub->win);
-	// main_loop(cub);
+	main_loop(cub);
 	return (0);
 }

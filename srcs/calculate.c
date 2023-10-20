@@ -85,11 +85,11 @@ static void	get_perp_wall_dist(t_calc *calc, t_cub *cub)
 
 static void	get_draw_start_and_end(t_calc *calc)
 {
-	calc->line_length = (int)(WIN_HEIGHT / (calc->perp_wall_dist));
-	calc->draw_start = -(calc->line_length) / 2 + WIN_HEIGHT / 2;
+	calc->line_height = (int)(WIN_HEIGHT / (calc->perp_wall_dist));
+	calc->draw_start = -(calc->line_height) / 2 + WIN_HEIGHT / 2;
 	if (calc->draw_start < 0)
 		calc->draw_start = 0;
-	calc->draw_end = calc->line_length / 2 + WIN_HEIGHT / 2;
+	calc->draw_end = calc->line_height / 2 + WIN_HEIGHT / 2;
 	if (calc->draw_end >= WIN_HEIGHT)
 		calc->draw_end = WIN_HEIGHT - 1;
 
@@ -119,21 +119,21 @@ static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
 	int	tex_height;
 
 	tex_height = cub->img_texture[calc->tex_num].height;
-	calc->step = 1.0 * tex_height / calc->line_length; // texture_hie
-	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_length / 2) * calc->step;
+	calc->step = 1.0 * tex_height / calc->line_height;
+	calc->tex_pos = (calc->draw_start - WIN_HEIGHT / 2 + calc->line_height / 2) * calc->step;
 }
 
-void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
+void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color)
 {
 	char *dst;
 
-	dst = (char *)(img->data_ptr);
-	dst += (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = (char *)(win_img->data_ptr);
+	dst += (y * win_img->line_length + x * (win_img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 	return ;
 }
 
-static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *img)
+static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img)
 {
 	int	tex_height;
 	int	tex_width;
@@ -148,59 +148,22 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *img)
 		calc->tex_pos += calc->step;
 		calc->color = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
 		// printf("color : %d\n", calc->color);
-		my_mlx_pixel_put(img, x, y, calc->color);
+		my_mlx_pixel_put(win_img, x, y, calc->color);
 		y++;
 	}
-	// mlx_put_image_to_window(cub->mlx, cub->win, img.img_ptr, 0, 0);
 }
-
-/*
-//origin
-static void	draw_wall(t_calc *calc, t_cub *cub, int x)
-{
-	int	tex_height;
-	int	tex_width;
-	int	y;
-
-	tex_height = cub->img_texture[calc->tex_num].height;
-	tex_width = cub->img_texture[calc->tex_num].width;
-	y = calc->draw_start;
-	while (y < calc->draw_end)
-	{
-		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
-		calc->tex_pos += calc->step;
-		cub->buf[y] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
-		y++;
-	}
-	mlx_put_image_to_window(cub->mlx, cub->win, (void *)cub->buf, 0, 0);
-	//while(y < calc->draw_end)
-	//{
-	//	calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
-	//	calc->tex_pos += calc->step;
-	//	cub->img_texture[calc->tex_num].texture[y] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
-	//	y++;
-	//}
-
-}
-*/
-
-//  void	render_color(t_calc *calc, t_cub *cub)
-//  {
-//  	mlx_put_image_to_window(cub->mlx, cub->win, (void *)cub->img_texture[calc->tex_num].img_ptr, 0, 0);
-//  }
-
 
 t_calc *calculate(t_cub *cub)
 {
 	int		x;
 	
 	t_calc	*calc;
-	t_image	img;
+	t_image	win_img;
 
 	calc = init_s_calc();
 	x = 0;
-	img.img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	img.data_ptr = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel, &img.line_length, &img.endian);
+	win_img.img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	win_img.data_ptr = (int *)mlx_get_data_addr(win_img.img_ptr, &win_img.bits_per_pixel, &win_img.line_length, &win_img.endian);
 	while (x < WIN_WIDTH)
 	{
 		get_calc_info(calc, cub, x);
@@ -211,9 +174,10 @@ t_calc *calculate(t_cub *cub)
 		get_wall_tex_num(calc, cub);
 		get_wall_x_tex_x(calc, cub);
 		get_step_and_tex_pos(calc, cub);
-		draw_wall(calc, cub, x, &img);
+		draw_celing_floor(calc, cub, x, &win_img);
+		draw_wall(calc, cub, x, &win_img);
 		x++;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, img.img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win, win_img.img_ptr, 0, 0);
 	return (calc);
 }

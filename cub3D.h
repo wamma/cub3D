@@ -90,9 +90,8 @@ typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
-	t_image		*img;
+	t_image		*win_img;
 	t_image		*img_texture;
-	t_image		*buf;
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;
@@ -119,7 +118,7 @@ typedef struct s_calc
 	int		step_y;
 	int		side;
 	int		color;
-	int		line_length;
+	int		line_height;
 	int		draw_start;
 	int		draw_end;
 	int		tex_num;
@@ -131,7 +130,6 @@ typedef struct s_calc
 }	t_calc;
 
 /*srcs*/
-void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);
@@ -143,10 +141,10 @@ void	init_s_cub(t_cub *cub, t_map *info_map);
 t_calc	*init_s_calc(void);
 char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
-void	init_buf(t_cub *cub);
 void	load_image(t_cub *cub);
 int		main_loop(t_cub *cub);
 t_calc	*calculate(t_cub *cub);
+int		key_esc(int key_code, t_cub *cub);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);

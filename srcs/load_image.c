@@ -11,9 +11,6 @@ void	load_texture(t_cub *cub, char *path, int i)
 	img->data_ptr = (int *)mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	cub->img_texture[i].width = img->width;
 	cub->img_texture[i].height = img->height;
-	cub->img_texture[i].bits_per_pixel = img->bits_per_pixel / 8;
-	cub->img_texture[i].line_length = img->line_length;
-	cub->img_texture[i].endian = img->endian;
 	cub->img_texture[i].data_ptr = img->data_ptr;
 	mlx_destroy_image(cub->mlx, img->img_ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:45:09 by eoh               #+#    #+#             */
-/*   Updated: 2023/10/20 18:14:55 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/20 22:43:29 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ void	init_mlx(t_cub *cub)
 {
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	cub->img = malloc(sizeof(t_image));
-	if (!cub->img)
+	cub->win_img = malloc(sizeof(t_image));
+	if (!cub->win_img)
 		ft_error("Failed malloc\n");
-	cub->img->img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	cub->img->data_ptr = (int *)mlx_get_data_addr(cub->img->img_ptr, \
-		&cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
-	if (!cub->img->img_ptr || !cub->img->data_ptr)
+	cub->win_img->img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	cub->win_img->data_ptr = (int *)mlx_get_data_addr(cub->win_img->img_ptr, \
+		&cub->win_img->bits_per_pixel, &cub->win_img->line_length, &cub->win_img->endian);
+	if (!cub->win_img->img_ptr || !cub->win_img->data_ptr)
 		ft_error("Mlx init error\n");
 }

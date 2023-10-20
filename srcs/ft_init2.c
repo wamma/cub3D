@@ -46,7 +46,6 @@ void	init_s_cub(t_cub *cub, t_map *info_map)
 	init_camera_dir(cub, info_map->starting_direction);
 	cub->move_speed = 0.05;
 	cub->rot_speed = 0.05;
-	// init_buf(cub);
 	cub->info_map = info_map;
 }
 

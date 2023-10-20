@@ -23,7 +23,7 @@ void	get_texture_info(t_map *info_map)
 		line = get_next_line(info_map->map_path_fd);
 	}
 	if (element_cnt[SUM] != 6)
-		ft_error("Check : invalidate file form\n");//fd도 close
+		ft_error("Check : numbers of element\n");//fd도 close
 	//close(info_map->map_path_fd);
 }
 

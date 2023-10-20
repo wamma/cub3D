@@ -71,6 +71,67 @@ void	check_numbers_of_rgb(char **rgb)
 		ft_error("Check : numbers of rgb\n");
 }
 
+void	free_two_dimension_array(char **arr)
+{
+	int	i;
+
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+char	**get_map_path_2d_array(t_map *info_map)
+{
+	char	**map_path;
+	int		i;
+
+	map_path = (char **)malloc(sizeof(char *) * 5);
+	if (map_path == NULL)
+		ft_error("malloc error");
+	map_path[4] = NULL;
+	i = 0;
+	while (i < 4)
+	{
+		if (i == EA_PATH)
+			map_path[i] = ft_strdup(info_map->ea_path);
+		else if (i == WE_PATH)
+			map_path[i] = ft_strdup(info_map->we_path);
+		else if (i == SO_PATH)
+			map_path[i] = ft_strdup(info_map->we_path);
+		else if (i == WE_PATH)
+			map_path[i] = ft_strdup(info_map->we_path);
+		i++;
+	}
+	return (map_path);
+}
+
+void	check_duplicated_map_path(t_map *info_map)
+{
+	char	**map_path;
+	int		i;
+	int		j;
+
+	map_path = get_map_path_2d_array(info_map);
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (i == j)
+				j++;
+			//if (ft_strncmp(map_path[i], map_path[j], ft_strlen(map_path[i])) == 0)
+			//	ft_error("Check : use different texture path\n");
+			j++;
+		}
+		i++;
+	}
+	free_two_dimension_array(map_path);
+}
+
 void	check_valid_texture_path(t_map *info_map)
 {
 	int	fd;

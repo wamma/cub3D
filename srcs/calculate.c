@@ -1,25 +1,5 @@
 #include "../cub3D.h"
 
-
-static void	clear_buf(t_cub *cub)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			cub->buf[y][x] = 0;
-			x++;
-		}
-		y++;
-	}
-}
-
-
 static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 {
 	calc->camera_x = 2 * x / (double)WIN_WIDTH - 1;
@@ -147,6 +127,35 @@ static void	get_step_and_tex_pos(t_calc *calc, t_cub *cub)
 
 static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 {
+	t_image	*img;
+	int	tex_height;
+	int	tex_width;
+	int	y;
+
+	tex_height = cub->img_texture[calc->tex_num].height;
+	tex_width = cub->img_texture[calc->tex_num].width;
+	img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	y = calc->draw_start;
+	while (y < calc->draw_end)
+	{
+		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
+		calc->tex_pos += calc->step;
+		img->data_ptr[tex_width * calc->tex_y + calc->tex_x] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
+		y++;
+	}
+	mlx_put_image_to_window(cub->mlx, cub->win, img->img_ptr, 0, 0);
+	//while(y < calc->draw_end)
+	//{
+	//	calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
+	//	calc->tex_pos += calc->step;
+	//	cub->img_texture[calc->tex_num].texture[y] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
+	//	y++;
+	//}
+}
+/*
+//origin
+static void	draw_wall(t_calc *calc, t_cub *cub, int x)
+{
 	int	tex_height;
 	int	tex_width;
 	int	y;
@@ -158,25 +167,25 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
-		calc->color = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
-		cub->buf[y][x] = calc->color;
-		cub->re_buf = 1;
+		cub->buf[y] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
 		y++;
 	}
-}
+	mlx_put_image_to_window(cub->mlx, cub->win, (void *)cub->buf, 0, 0);
+	//while(y < calc->draw_end)
+	//{
+	//	calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
+	//	calc->tex_pos += calc->step;
+	//	cub->img_texture[calc->tex_num].texture[y] = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
+	//	y++;
+	//}
 
-void	render_color(t_calc *calc, t_cub *cub, int x)
-{
-	int y;
-	y = calc->draw_start;
-	while (y <= calc->draw_end)
-	{
-		// mlx_put_image_to_window(cub->mlx, cub->win, cub->buf[y], 0, 0 );
-		mlx_pixel_put(cub->mlx, cub->win, x, y, cub->buf[y][x]);
-		// mlx_pixel_put(cub->mlx, cub->win, x, y, 0x00FF00);
-		y++;
-	}
 }
+*/
+
+ void	render_color(t_calc *calc, t_cub *cub)
+ {
+ 	mlx_put_image_to_window(cub->mlx, cub->win, (void *)cub->img_texture[calc->tex_num].img_ptr, 0, 0);
+ }
 
 
 t_calc *calculate(t_cub *cub)
@@ -187,8 +196,7 @@ t_calc *calculate(t_cub *cub)
 
 	calc = init_s_calc();
 	x = 0;
-	if (cub->re_buf == 1)
-		clear_buf(cub);
+	//cub->buf = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	while (x < WIN_WIDTH)
 	{
 		get_calc_info(calc, cub, x);
@@ -200,8 +208,8 @@ t_calc *calculate(t_cub *cub)
 		get_wall_x_tex_x(calc, cub);
 		get_step_and_tex_pos(calc, cub);
 		draw_wall(calc, cub, x);
-		render_color(calc, cub, x);
 		x++;
 	}
+	//render_color(calc, cub);
 	return (calc);
 }

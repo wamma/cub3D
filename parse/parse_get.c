@@ -76,6 +76,23 @@ void	get_texture_path(t_map *info_map, int type, char **info, int *cnt)
 	cnt[type]++;
 }
 
+int	rgb_atoi(char *str)
+{
+	long	num;
+
+	num = 0;
+	while ((9 <= *str && *str <= 13) || *str == 32)
+		str++;
+	while (ft_isdigit(*str))
+	{
+		num = num * 10 + (*str - '0');
+		str++;
+	}
+	if (num > 2147483647)
+		ft_error("Check: wrong rgb range\n");
+	return ((int)num);
+}
+
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 {
 	char	**rgb;
@@ -88,14 +105,14 @@ void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 	if (type == FLOOR)
 	{
 		info_map->floor->r = rgb_atoi(rgb[0]);
-		info_map->floor->g = ft_atoi(rgb[1]);
-		info_map->floor->b = ft_atoi(rgb[2]);
+		info_map->floor->g = rgb_atoi(rgb[1]);
+		info_map->floor->b = rgb_atoi(rgb[2]);
 	}
 	else if (type == CEILING)
 	{
-		info_map->ceiling->r = ft_atoi(rgb[0]);
-		info_map->ceiling->g = ft_atoi(rgb[1]);
-		info_map->ceiling->b = ft_atoi(rgb[2]);
+		info_map->ceiling->r = rgb_atoi(rgb[0]);
+		info_map->ceiling->g = rgb_atoi(rgb[1]);
+		info_map->ceiling->b = rgb_atoi(rgb[2]);
 	}
 	cnt[type]++;
 	free_ppc(rgb);

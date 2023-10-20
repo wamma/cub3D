@@ -107,8 +107,7 @@ typedef struct s_cub
 	double		move_speed;
 	double		rot_speed;
 	char		**map;
-	int			**buf;
-	int			re_buf;
+	int			*buf;
 	t_map		*info_map;
 }	t_cub;
 
@@ -141,7 +140,7 @@ typedef struct s_calc
 }	t_calc;
 
 /*srcs*/
-void	render_color(t_calc *calc, t_cub *cub, int x);
+void	render_color(t_calc *calc, t_cub *cub);
 void	ft_error(char *str);
 void	free_ppc(char **ppc);
 void	free_s_map(t_map *map);

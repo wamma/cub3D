@@ -114,6 +114,7 @@ void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 		info_map->ceiling->g = rgb_atoi(rgb[1]);
 		info_map->ceiling->b = rgb_atoi(rgb[2]);
 	}
+	check_valid_rgb_value(info_map);
 	cnt[type]++;
 	free_ppc(rgb);
 }

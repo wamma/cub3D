@@ -103,24 +103,6 @@ int	check_valid_rgb_element(char *rgb)
 	return (1);
 }
 
-int	check_valid_rgb_number(char *rgb)
-{
-	int	i;
-	int	flag;
-	int	cnt;
-
-	i = 0;
-	cnt = 0;
-	while (rgb[i] != '\0')
-	{
-		if (rgb[i] == ',')
-			cnt++;
-		i++;
-	}
-	if (cnt != 2)
-		ft_error("Check: invalid rgb number");
-}
-
 //123,,,
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt)
 {

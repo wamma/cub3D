@@ -42,7 +42,7 @@ void	check_valid_rgb_form(char **rgb)
 		i++;
 	}
 	if (i != 3)
-		ft_error("Check : invalidate file form\n");
+		ft_error("Check : enter 3 rgb values in right form\n");
 }
 
 void	check_valid_texture_path(t_map *info_map)

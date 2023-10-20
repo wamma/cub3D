@@ -78,7 +78,6 @@ typedef struct s_image
 {
 	void	*img_ptr;
 	int		*data_ptr;
-	int		*texture;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -87,28 +86,19 @@ typedef struct s_image
 	int		color;
 }	t_image;
 
-//typedef struct s_texture
-//{
-//	int	*texture;
-//	int	width;
-//	int	height;
-//}	t_texture;
-
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
 	t_image		*img_texture;
-	t_image		*img_buf;
-	//t_texture	texture[TEXTURE_NUMBER];
+	t_image		*buf;
 	t_vec		dir;
 	t_vec		plane;
 	t_vec		pos;
 	double		move_speed;
 	double		rot_speed;
 	char		**map;
-	int			*buf;
 	t_map		*info_map;
 }	t_cub;
 

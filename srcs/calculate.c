@@ -174,7 +174,7 @@ t_calc *calculate(t_cub *cub)
 		get_wall_tex_num(calc, cub);
 		get_wall_x_tex_x(calc, cub);
 		get_step_and_tex_pos(calc, cub);
-		draw_celing_floor(calc, cub, x, &win_img);
+		//draw_celing_floor(calc, cub, x, &win_img);
 		draw_wall(calc, cub, x, &win_img);
 		x++;
 	}

@@ -95,14 +95,14 @@ char	**get_map_path_2d_array(t_map *info_map)
 	i = 0;
 	while (i < 4)
 	{
-		if (i == EA_PATH)
+		if (i == 0)
 			map_path[i] = ft_strdup(info_map->ea_path);
-		else if (i == WE_PATH)
+		else if (i == 1)
 			map_path[i] = ft_strdup(info_map->we_path);
-		else if (i == SO_PATH)
-			map_path[i] = ft_strdup(info_map->we_path);
-		else if (i == WE_PATH)
-			map_path[i] = ft_strdup(info_map->we_path);
+		else if (i == 2)
+			map_path[i] = ft_strdup(info_map->so_path);
+		else if (i == 3)
+			map_path[i] = ft_strdup(info_map->no_path);
 		i++;
 	}
 	return (map_path);
@@ -121,10 +121,11 @@ void	check_duplicated_map_path(t_map *info_map)
 		j = 0;
 		while (j < 4)
 		{
-			if (i == j)
-				j++;
-			//if (ft_strncmp(map_path[i], map_path[j], ft_strlen(map_path[i])) == 0)
-			//	ft_error("Check : use different texture path\n");
+			if (i != j)
+			{
+				if (ft_strncmp(map_path[i], map_path[j], ft_strlen(map_path[i])) == 0)
+					ft_error("Check : use different texture path\n");
+			}
 			j++;
 		}
 		i++;

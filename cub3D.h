@@ -66,6 +66,8 @@ typedef struct s_map
 	char	*ea_path;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
+	int		floor_int_rgb;
+	int		ceiling_int_rgb;
 	int		map_path_fd;
 	int		width;
 	int		height;

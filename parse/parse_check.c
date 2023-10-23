@@ -39,7 +39,6 @@ void	check_valid_rgb_element(char *rgb)
 
 	i = 0;
 	flag_comma = 0;
-	printf("%s\n", rgb);
 	while (rgb[i] != '\0')
 	{
 		if (ft_isdigit(rgb[i]) == 0 && rgb[i] != ',')

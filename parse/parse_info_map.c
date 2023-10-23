@@ -24,24 +24,35 @@ int	ft_intlen(int num)
 
 int	rgb_to_int(t_rgb *rgb)
 {
+	int	sum_of_length;
 	int	r;
 	int	g;
 	int	b;
 	int	result;
 
+	sum_of_length = ft_intlen(rgb->r) + ft_intlen(rgb->g) + ft_intlen(rgb->b);
+
 	r = rgb->r * ((int)pow(10, (ft_intlen(rgb->g) + ft_intlen(rgb->b))));
 	g = rgb->g * ((int)pow(10, ft_intlen(rgb->b)));
 	b = rgb->b;
-	result = r + g + b;
+	//result = r + g + b;
+	result = (r + g + b) << 8 | sum_of_length;
 	return (result);
 }
 
 void	get_rgb_to_int(t_map *info_map)
 {
-	info_map->floor_int_rgb = rgb_to_int(info_map->floor);
-	info_map->ceiling_int_rgb = rgb_to_int(info_map->ceiling);
+	int	color_scale= 1.0f/255;
+	//info_map->floor_int_rgb = rgb_to_int(info_map->floor);
+	//info_map->ceiling_int_rgb = rgb_to_int(info_map->ceiling);
+	info_map->floor_int_rgb = (color_scale * info_map->floor->r << 16) + (color_scale * info_map->floor->g << 8) + (color_scale * info_map->floor->g);
+	info_map->ceiling_int_rgb = (color_scale * info_map->ceiling->r << 16) + (color_scale * info_map->ceiling->g << 8) + (color_scale * info_map->ceiling->g);
+	printf("floor: %d\n", info_map->floor_int_rgb);
 }
 
+//color_scale = 1.0f/255
+////color = (color_scale * pixel[2] << 16) + (color_scale * pixel[1]; << 8)
+////        + (color_scale * pixel[0]);
 void	parse_info_map(t_map *info_map, char *map_path)
 {
 	check_valid_map_path(map_path);

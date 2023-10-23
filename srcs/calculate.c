@@ -147,50 +147,38 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img)
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
 		calc->color = cub->img_texture[calc->tex_num].data_ptr[tex_width * calc->tex_y + calc->tex_x];
-		//printf("color : %d\n", calc->color);
 		my_mlx_pixel_put(win_img, x, y, calc->color);
 		y++;
 	}
 }
 
-void	my_mlx_pixel_put_f_n_c(t_image *win_img, int x, int y, int color)
+void	draw_floor_ceiling(t_calc *calc, t_cub *cub, t_image *win_img, int x)
 {
-	char	*dst;
-	int		len;
-
-	//len = ft_intlen(color);
-	dst = (char *)(win_img->data_ptr);
-	dst += (y * win_img->line_length + x);
-	*(unsigned int *)dst = color;
-	return ;
-}
-
-void	draw_floor_ceiling(t_cub *cub, t_image *win_img)
-{
-	int	x;
+	int	color;
+	int	r;
+	int	g;
+	int	b;
 	int	y;
 
 	y = 0;
-	while (y <= WIN_HEIGHT / 2)
+	while (y < calc->draw_start)
 	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			//win_img->data_ptr[y * win_img->line_length + x] = cub->info_map->ceiling_int_rgb;
-			my_mlx_pixel_put(win_img, x, y, cub->info_map->ceiling_int_rgb);
-			x++;
-		}
+		r = cub->info_map->ceiling->r;
+		g = cub->info_map->ceiling->g;
+		b = cub->info_map->ceiling->b;
+		color = (r << 16) + (g << 8) + b;
+		my_mlx_pixel_put(win_img, x, y, color);
 		y++;
 	}
-	while (y < WIN_HEIGHT - 1)
+	y = calc->draw_end;
+	while (y < WIN_HEIGHT)
 	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			//win_img->data_ptr[y * win_img->line_length + x] = cub->info_map->floor_int_rgb;
-			my_mlx_pixel_put(win_img, x, y, cub->info_map->floor_int_rgb);
-			x++;
-		}
+		r = cub->info_map->floor->r;
+		g = cub->info_map->floor->g;
+		b = cub->info_map->floor->b;
+		color = (r << 16) + (g << 8) + b;
+
+		my_mlx_pixel_put(win_img, x, y, color);
 		y++;
 	}
 }
@@ -206,7 +194,6 @@ t_calc *calculate(t_cub *cub)
 	x = 0;
 	win_img.img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	win_img.data_ptr = (int *)mlx_get_data_addr(win_img.img_ptr, &win_img.bits_per_pixel, &win_img.line_length, &win_img.endian);
-	draw_floor_ceiling(cub, &win_img);
 	while (x < WIN_WIDTH)
 	{
 		get_calc_info(calc, cub, x);
@@ -217,6 +204,7 @@ t_calc *calculate(t_cub *cub)
 		get_wall_tex_num(calc, cub);
 		get_wall_x_tex_x(calc, cub);
 		get_step_and_tex_pos(calc, cub);
+		draw_floor_ceiling(calc, cub, &win_img, x);
 		draw_wall(calc, cub, x, &win_img);
 		x++;
 	}

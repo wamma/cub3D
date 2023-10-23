@@ -47,7 +47,6 @@ void	get_rgb_to_int(t_map *info_map)
 	//info_map->ceiling_int_rgb = rgb_to_int(info_map->ceiling);
 	info_map->floor_int_rgb = (color_scale * info_map->floor->r << 16) + (color_scale * info_map->floor->g << 8) + (color_scale * info_map->floor->g);
 	info_map->ceiling_int_rgb = (color_scale * info_map->ceiling->r << 16) + (color_scale * info_map->ceiling->g << 8) + (color_scale * info_map->ceiling->g);
-	printf("floor: %d\n", info_map->floor_int_rgb);
 }
 
 //color_scale = 1.0f/255

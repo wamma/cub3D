@@ -35,7 +35,7 @@ int	rgb_to_int(t_rgb *rgb)
 	r = rgb->r * ((int)pow(10, (ft_intlen(rgb->g) + ft_intlen(rgb->b))));
 	g = rgb->g * ((int)pow(10, ft_intlen(rgb->b)));
 	b = rgb->b;
-	result = (r + g + b) << 8 | sum_of_length;
+	result = r + g + b;
 	return (result);
 }
 
@@ -44,7 +44,7 @@ void	get_rgb_to_int(t_map *info_map)
 	info_map->floor_int_rgb = rgb_to_int(info_map->floor);
 	info_map->ceiling_int_rgb = rgb_to_int(info_map->ceiling);
 }
-//rgb << 8 | num
+
 void	parse_info_map(t_map *info_map, char *map_path)
 {
 	check_valid_map_path(map_path);

@@ -142,7 +142,7 @@ static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img)
 	tex_height = cub->img_texture[calc->tex_num].height;
 	tex_width = cub->img_texture[calc->tex_num].width;
 	y = calc->draw_start;
-	while (y < calc->draw_end)
+	while (y <= calc->draw_end)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;

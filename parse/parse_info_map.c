@@ -24,13 +24,10 @@ int	ft_intlen(int num)
 
 int	rgb_to_int(t_rgb *rgb)
 {
-	int	sum_of_length;
 	int	r;
 	int	g;
 	int	b;
 	int	result;
-
-	sum_of_length = ft_intlen(rgb->r) + ft_intlen(rgb->g) + ft_intlen(rgb->b);
 
 	r = rgb->r * ((int)pow(10, (ft_intlen(rgb->g) + ft_intlen(rgb->b))));
 	g = rgb->g * ((int)pow(10, ft_intlen(rgb->b)));

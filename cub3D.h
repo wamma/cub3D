@@ -186,5 +186,6 @@ void	check_and_get_starting_position(t_map *info_map, char **map);
 
 char	**allocate_two_dimension_array(int column, int row);
 int		check_surrounded_by_wall(char **map, t_map *info_map);
+int		ft_intlen(int num);
 
 #endif

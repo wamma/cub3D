@@ -135,9 +135,12 @@ void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color)
 
 void	my_mlx_pixel_put_f_n_c(t_image *win_img, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
+	int		len;
 
+	len = ft_intlen(color);
 	dst = (char *)(win_img->data_ptr);
+	dst += (y * win_img->line_length + x * (win_img->bits_per_pixel / len));
 	*(unsigned int *)dst = color;
 	return ;
 }
@@ -173,7 +176,7 @@ void	draw_floor_ceiling(t_cub *cub, t_image *win_img)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			my_mlx_pixel_put(win_img, x, y, cub->info_map->floor_int_rgb);
+			my_mlx_pixel_put_f_n_c(win_img, x, y, cub->info_map->ceiling_int_rgb);
 			x++;
 		}
 		y++;
@@ -183,7 +186,7 @@ void	draw_floor_ceiling(t_cub *cub, t_image *win_img)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			my_mlx_pixel_put(win_img, x, y, cub->info_map->ceiling_int_rgb);
+			my_mlx_pixel_put_f_n_c(win_img, x, y, cub->info_map->floor_int_rgb);
 			x++;
 		}
 		y++;

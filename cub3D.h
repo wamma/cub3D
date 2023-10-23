@@ -66,6 +66,8 @@ typedef struct s_map
 	char	*ea_path;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
+	int		floor_int_rgb;
+	int		ceiling_int_rgb;
 	int		map_path_fd;
 	int		width;
 	int		height;
@@ -184,5 +186,6 @@ void	check_and_get_starting_position(t_map *info_map, char **map);
 
 char	**allocate_two_dimension_array(int column, int row);
 int		check_surrounded_by_wall(char **map, t_map *info_map);
+int		ft_intlen(int num);
 
 #endif

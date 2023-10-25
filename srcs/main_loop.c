@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:27:23 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:43:08 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:50:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_calc	*calculate(t_cub *cub)
 		x++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, win_img.img_ptr, 0, 0);
+	mlx_destroy_image(cub->mlx, win_img.img_ptr);
 	return (calc);
 }
 
@@ -55,5 +56,6 @@ int	main_loop(t_cub *cub)
 	t_calc	*calc;
 
 	calc = calculate(cub);
+	free(calc);
 	return (0);
 }

@@ -179,6 +179,7 @@ void	check_valid_map_path(char *argv);
 void	check_valid_texture_form(int type, char **info);
 void	check_valid_rgb_element(char *rgb);
 void	check_numbers_of_rgb(char **rgb);
+void	check_element_cnt(int *element_cnt, t_map *info_map);
 void	check_valid_texture_path(t_map *info_map);
 void	check_valid_rgb_value(t_map *info_map);
 void	get_map_size(t_map *info_map);

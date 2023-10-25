@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:01 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:42:59 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:48:07 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_valid_map_component(char *line, t_map *info_map)
 	while (line[i] != '\0')
 	{
 		if (line[i] != '1' && line[i] != '0' \
-		&& is_player(line[i]) != 1 && is_white_space(line[i]) != 1)
+		&& is_player(line[i]) != 1 && line[i] != ' ' && line[i] != '\n')
 		{
 			free(line);
 			free_s_map(info_map);

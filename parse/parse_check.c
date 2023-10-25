@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:03 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 16:53:50 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:26:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ void	check_duplicated_map_path(t_map *info_map)
 		}
 	}
 	free_two_dimension_array(map_path);
+}
+
+void	check_element_cnt(int *element_cnt, t_map *info_map)
+{
+	if (element_cnt[SUM] != 6)
+	{
+		free(element_cnt);
+		close (info_map->map_path_fd);
+		ft_error_free_map("Check : numbers of element\n", info_map);
+	}
+	free(element_cnt);
 }
 
 void	check_valid_texture_path(t_map *info_map)

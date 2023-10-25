@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 14:27:00 by hyungjup          #+#    #+#             */
+/*   Updated: 2023/10/25 14:27:02 by hyungjup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
@@ -132,27 +144,6 @@ void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color)
 	dest += (y * win_img->line_length + x * (win_img->bits_per_pixel / 8));
 	*(unsigned int *)dest = color;
 }
-
-// int	set_color(t_calc *calc, t_cub *cub, int x, int y)
-// {
-// 	int	color;
-
-// 	if (calc->side == 0)
-// 	{
-// 		if (calc->ray_dir_x > 0)
-// 			color = cub->img_texture[EAST].data_ptr[cub->img_texture[EAST].width * calc->tex_y + calc->tex_x];
-// 		else
-// 			color = cub->img_texture[WEST].data_ptr[cub->img_texture[WEST].width * calc->tex_y + calc->tex_x];
-// 	}
-// 	if (calc->side == 1)
-// 	{
-// 		if (calc->ray_dir_y > 0)
-// 			color = cub->img_texture[NORTH].data_ptr[cub->img_texture[NORTH].width * calc->tex_y + calc->tex_x];
-// 		else
-// 			color = cub->img_texture[SOUTH].data_ptr[cub->img_texture[SOUTH].width * calc->tex_y + calc->tex_x];
-// 	}
-// 	return (color);
-// }
 
 static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img)
 {

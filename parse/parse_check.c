@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 14:25:03 by hyungjup          #+#    #+#             */
+/*   Updated: 2023/10/25 14:25:58 by hyungjup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 void	check_valid_map_path(char *argv)
@@ -138,10 +150,7 @@ void	check_valid_texture_path(t_map *info_map)
 
 	fd = open(info_map->no_path, O_RDONLY);
 	if (fd < 0)
-	{
-		/*free_info_map(info_map, "Check: invalid texture path\n");나중에 이렇게 free랑 합치기*/
 		ft_error("Check: invalid texture path\n");
-	}
 	close(fd);
 	fd = open(info_map->so_path, O_RDONLY);
 	if (fd < 0)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_get.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 14:25:07 by hyungjup          #+#    #+#             */
+/*   Updated: 2023/10/25 14:26:14 by hyungjup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 void	get_texture_info(t_map *info_map)
@@ -16,15 +28,12 @@ void	get_texture_info(t_map *info_map)
 		element_type = get_element_type(splited);
 		if (element_type >= EA_PATH && element_type <= CEILING)
 			get_path_n_color(info_map, element_type, splited, element_cnt);
-		//free_ppc(splited);
-		//free(line);
 		if (element_cnt[SUM] == 6)
 			break;
 		line = get_next_line(info_map->map_path_fd);
 	}
 	if (element_cnt[SUM] != 6)
 		ft_error("Check : numbers of element\n");//fd도 close
-	//close(info_map->map_path_fd);
 }
 
 int	get_element_type(char **info)

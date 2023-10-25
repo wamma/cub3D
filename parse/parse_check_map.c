@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:01 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:48:07 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 20:19:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	check_map_component(t_map *info_map)
 	char	*map_line;
 
 	map_line = get_next_line(info_map->map_path_fd);
-	while (is_all_white_space(map_line) == 1)
+	while (map_line != NULL && is_all_white_space(map_line) == 1)
 	{
 		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 	}
+	if (map_line == NULL)
+		ft_error("Check: there's no map\n");
 	while (map_line != NULL)
 	{
 		if (is_all_white_space(map_line) == 1)

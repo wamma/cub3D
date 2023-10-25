@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_get_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:05 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:08:39 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:46:37 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	get_map_size(t_map *info_map)
 		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);
 	}
+	if (info_map->height == 1)
+		ft_error_free_map("Check: Invalid map\n", info_map);
 	if (map_line != NULL)
 		read_remain_of_map(info_map->map_path_fd, map_line);
 }

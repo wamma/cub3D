@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:24:53 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 19:26:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 20:31:05 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_surrounded_by_wall(char **map, t_map *info_map)
 	while (--y >= 0)
 	{
 		x = -1;
-		while (++x < info_map->width - 1)
+		while (++x <= info_map->width - 1)
 		{
 			if (y == info_map->height - 1 || y == 0)
 			{

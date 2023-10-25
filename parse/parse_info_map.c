@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:10 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:43:09 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:51:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	get_texture_info(t_map *info_map)
 			get_path_n_color(info_map, element_type, splited, element_cnt);
 		if (element_cnt[SUM] == 6)
 			break ;
+		free_ppc(splited);
 		free(line);
 		line = get_next_line(info_map->map_path_fd);
 	}
 	if (element_cnt[SUM] != 6)
 	{
-		free_s_map(info_map);
 		close (info_map->map_path_fd);
-		ft_error("Check : numbers of element\n");
+		ft_error_free_map("Check : numbers of element\n", info_map);
 	}
 }
 

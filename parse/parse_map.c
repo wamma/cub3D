@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:17 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:25:23 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:16 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**parse_map(t_map *info_map)
 	map = get_map(info_map, map_line);
 	close(info_map->map_path_fd);
 	if (check_surrounded_by_wall(map, info_map) == FALSE)
-		ft_error("Check: map isn't surrounded by wall\n");
+		ft_error_free_map("Check: map isn't surrounded by wall\n", info_map);
 	check_and_get_starting_position(info_map, map);
 	return (map);
 }
@@ -46,7 +46,7 @@ void	check_and_get_starting_position(t_map *info_map, char **map)
 	while (map[y] != NULL)
 	{
 		x = 0;
-		while(map[y][x] != '\0')
+		while (map[y][x] != '\0')
 		{
 			if (is_player(map[y][x]) == 1)
 			{

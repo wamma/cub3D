@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:24:53 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:25:38 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:16 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	check_surrounded_by_wall(char **map, t_map *info_map)
 	int	y;
 	int	x;
 
-	y = info_map->height - 1;
-	while (y >= 0)
+	y = info_map->height;
+	while (--y >= 0)
 	{
-		x = 0;
-		while (x < info_map->width - 1)
+		x = -1;
+		while (++x < info_map->width - 1)
 		{
 			if (y == info_map->height - 1 || y == 0)
 			{
@@ -51,9 +51,7 @@ int	check_surrounded_by_wall(char **map, t_map *info_map)
 						return (FALSE);
 				}
 			}
-			x++;
 		}
-		y--;
 	}
 	return (TRUE);
 }

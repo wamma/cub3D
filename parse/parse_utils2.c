@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:26:56 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:26:57 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:16 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*get_starting_line_of_map(t_map *info_map)
 	char	*map_line;
 
 	cnt = 0;
-
 	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
 	map_line = get_next_line(info_map->map_path_fd);
 	while (map_line != NULL)

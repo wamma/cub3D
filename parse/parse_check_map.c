@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:01 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:25:46 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:16 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map_component(t_map *info_map)
 	while (map_line != NULL)
 	{
 		if (is_all_white_space(map_line) == 1)
-			break;
+			break ;
 		check_valid_map_component(map_line, info_map);
 		free(map_line);
 		map_line = get_next_line(info_map->map_path_fd);

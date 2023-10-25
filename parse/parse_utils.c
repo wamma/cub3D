@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:26:54 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:26:55 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:16 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	rev_strncmp(char *s1, char *s2, int n)
 
 int	is_same(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strlen(s1) != ft_strlen(s2))

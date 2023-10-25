@@ -6,11 +6,23 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:26:57 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:21:28 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 18:05:09 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	check_valid_rgb_value(t_map *info_map)
+{
+	if (info_map->floor->r < 0 || info_map->floor->r > 255 \
+	|| info_map->floor->g < 0 || info_map->floor->g > 255 \
+	|| info_map->floor->b < 0 || info_map->floor->b > 255)
+		ft_error("Check: invalid color range");
+	if (info_map->ceiling->r < 0 || info_map->ceiling->r > 255 \
+	|| info_map->ceiling->g < 0 || info_map->ceiling->g > 255 \
+	|| info_map->ceiling->b < 0 || info_map->ceiling->b > 255)
+		ft_error("Check: invalid color range");
+}
 
 void	check_valid_map_path(char *argv)
 {

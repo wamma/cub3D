@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parse_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:03 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 18:06:44 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 18:12:55 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-char	*check_empty_file(t_map *info_map)
+void	check_valid_rgb_value(t_map *info_map)
 {
-	char	*line;
-
-	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
-	line = get_next_line(info_map->map_path_fd);
-	if (line == NULL)
-		ft_error("Check: empty file");
-	return (line);
+	if (info_map->floor->r < 0 || info_map->floor->r > 255 \
+	|| info_map->floor->g < 0 || info_map->floor->g > 255 \
+	|| info_map->floor->b < 0 || info_map->floor->b > 255)
+		ft_error("Check: invalid color range");
+	if (info_map->ceiling->r < 0 || info_map->ceiling->r > 255 \
+	|| info_map->ceiling->g < 0 || info_map->ceiling->g > 255 \
+	|| info_map->ceiling->b < 0 || info_map->ceiling->b > 255)
+		ft_error("Check: invalid color range");
 }
 
 char	**get_map_path_2d_array(t_map *info_map)

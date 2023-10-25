@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:27:28 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:10:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:40:09 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	t_map		info_map;
 	t_cub		cub;
 
-	// atexit(leaks_check);
+	atexit(leaks_check);
 	if (argc != 2)
 		ft_error("Check: num of argv\n");
 	init_s_map(&info_map);

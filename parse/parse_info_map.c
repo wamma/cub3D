@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:10 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 18:06:41 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 19:33:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void	get_texture_info(t_map *info_map, char *line)
 	check_element_cnt(element_cnt, info_map);
 }
 
+void	check_valid_texture_extension(t_map *info_map)
+{
+	if (rev_strncmp(info_map->ea_path, "mpx.", 4) == -1)
+		ft_error_free_map("Check: invalid texture extension", info_map);
+	if (rev_strncmp(info_map->we_path, "mpx.", 4) == -1)
+		ft_error_free_map("Check: invalid texture extension", info_map);
+	if (rev_strncmp(info_map->so_path, "mpx.", 4) == -1)
+		ft_error_free_map("Check: invalid texture extension", info_map);
+	if (rev_strncmp(info_map->no_path, "mpx.", 4) == -1)
+		ft_error_free_map("Check: invalid texture extension", info_map);
+}
+
 void	parse_info_map(t_map *info_map, char *map_path)
 {
 	char	*first_line;
@@ -46,6 +58,7 @@ void	parse_info_map(t_map *info_map, char *map_path)
 	info_map->map_path = map_path;
 	first_line = check_empty_file(info_map);
 	get_texture_info(info_map, first_line);
+	check_valid_texture_extension(info_map);
 	check_valid_texture_path(info_map);
 	check_duplicated_map_path(info_map);
 	info_map->map = parse_map(info_map);

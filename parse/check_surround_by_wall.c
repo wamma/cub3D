@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_surround_by_wall.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:24:53 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:43:12 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:26:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_surrounded_by_wall(char **map, t_map *info_map)
 			}
 			else
 			{
-				if (map[y][x] == '0' || is_player(map[y][x] == 1))
+				if (map[y][x] == '0' || is_player(map[y][x]) == 1)
 				{
 					if (check_all_direction(map, y, x) == FALSE)
 						return (FALSE);

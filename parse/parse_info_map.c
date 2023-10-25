@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:10 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:51:01 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 17:26:08 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	get_texture_info(t_map *info_map)
 		if (element_type >= EA_PATH && element_type <= CEILING)
 			get_path_n_color(info_map, element_type, splited, element_cnt);
 		if (element_cnt[SUM] == 6)
+		{
+			free_ppc(splited);
 			break ;
+		}
 		free_ppc(splited);
 		free(line);
 		line = get_next_line(info_map->map_path_fd);
 	}
-	if (element_cnt[SUM] != 6)
-	{
-		close (info_map->map_path_fd);
-		ft_error_free_map("Check : numbers of element\n", info_map);
-	}
+	free(line);
+	check_element_cnt(element_cnt, info_map);
 }
 
 void	parse_info_map(t_map *info_map, char *map_path)

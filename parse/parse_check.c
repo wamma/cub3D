@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:03 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:42:51 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:53:50 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	check_duplicated_map_path(t_map *info_map)
 	int		j;
 
 	map_path = get_map_path_2d_array(info_map);
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
-		j = 0;
-		while (j < 4)
+		j = -1;
+		while (++j < 4)
 		{
 			if (i != j)
 			{
@@ -60,9 +60,7 @@ void	check_duplicated_map_path(t_map *info_map)
 					info_map);
 				}
 			}
-			j++;
 		}
-		i++;
 	}
 	free_two_dimension_array(map_path);
 }

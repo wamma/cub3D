@@ -4,26 +4,25 @@ void	load_texture(t_cub *cub, char *path, int i)
 {
 	int		x;
 	int		y;
-	t_image	*img;
+	t_image	img;
 
-	img = (t_image *)malloc(sizeof(t_image));
-	img->img_ptr = mlx_xpm_file_to_image(cub->mlx, path, &img->width, &img->height);
-	img->data_ptr = (int *)mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
-	cub->img_texture[i].width = img->width;
-	cub->img_texture[i].height = img->height;
-	cub->img_texture[i].data_ptr = (int *)malloc(sizeof(int) * img->width * img->height);
+	img.img_ptr = mlx_xpm_file_to_image(cub->mlx, path, &img.width, &img.height);
+	img.data_ptr = (int *)mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel, &img.line_length, &img.endian);
+	cub->img_texture[i].width = img.width;
+	cub->img_texture[i].height = img.height;
+	cub->img_texture[i].data_ptr = (int *)malloc(sizeof(int) * (img.width * img.height));
 	y = 0;
-	while (y < img->height)
+	while (y < img.height)
 	{
 		x = 0;
-		while (x < img->width)
+		while (x < img.width)
 		{
-			cub->img_texture[i].data_ptr[img->width * y + x] = img->data_ptr[img->width * y + x];
+			cub->img_texture[i].data_ptr[img.width * y + x] = img.data_ptr[img.width * y + x];
 			x++;
 		}
 		y++;
 	}
-	mlx_destroy_image(cub->mlx, img->img_ptr);
+	mlx_destroy_image(cub->mlx, img.img_ptr);
 }
 
 void	load_image(t_cub *cub)

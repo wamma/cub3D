@@ -18,7 +18,8 @@ int	main(int argc, char **argv)
 	init_mlx(&cub);
 	init_s_cub(&cub, &info_map);
 	load_image(&cub);
-	mlx_loop_hook(cub.mlx, &main_loop, &cub);
+	main_loop(&cub);
+	//mlx_loop_hook(cub.mlx, &main_loop, &cub);
 	mlx_hook(cub.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_loop(cub.mlx);
 	return (0);

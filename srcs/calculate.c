@@ -7,8 +7,8 @@ static void	get_calc_info(t_calc *calc, t_cub *cub, int x)
 	calc->ray_dir_y = cub->dir.y + (cub->plane.y * calc->camera_x);
 	calc->map_x = (int)cub->pos.x;
 	calc->map_y = (int)cub->pos.y;
-	calc->delta_dist_x = fabs(1 / calc->ray_dir_x);
-	calc->delta_dist_y = fabs(1/ calc->ray_dir_y);
+	calc->delta_dist_x = sqrt(1 + (calc->ray_dir_y * calc->ray_dir_y) / (calc->ray_dir_x * calc->ray_dir_x)); // 0으로 나누는 경우가 있음
+	calc->delta_dist_y = sqrt(1 + (calc->ray_dir_x * calc->ray_dir_x) / (calc->ray_dir_y * calc->ray_dir_y));
 	calc->hit = 0;
 }
 
@@ -59,36 +59,19 @@ static void	get_side(t_calc *calc, t_cub *cub)
 
 static void	get_wall_tex_num(t_calc *calc, t_cub *cub)
 {
-	double	error_range;
-
-	error_range = 1e-9;
 	if (calc->side == 0)
 	{
-		if (fabs(cub->dir.x) < error_range)
-		{
-			if (cub->plane.x > 0)
-				calc->tex_num = WEST;
-			else
-				calc->tex_num = EAST;
-		}
-		else if (cub->dir.x > error_range)
+		if (calc->ray_dir_x > 0)
 			calc->tex_num = EAST;
-		else if (cub->dir.x < -error_range)
+		else
 			calc->tex_num = WEST;
 	}
-	if (calc->side == 1)
+	else
 	{
-		if(fabs(cub->dir.y) < error_range)
-		{
-			if(cub->plane.y > 0)
-				calc -> tex_num = NORTH;
-			else
-				calc -> tex_num = SOUTH;
-		}
-		else if(cub -> dir.y > error_range)
-			calc -> tex_num = NORTH;
-		else if(cub -> dir.y < -error_range)
-			calc -> tex_num = SOUTH;
+		if (calc->ray_dir_y > 0)
+			calc->tex_num = NORTH;
+		else
+			calc->tex_num = SOUTH;
 	}
 }
 
@@ -103,14 +86,15 @@ static void	get_perp_wall_dist(t_calc *calc, t_cub *cub)
 
 static void	get_draw_start_and_end(t_calc *calc)
 {
-	calc->line_height = (int)(WIN_HEIGHT / (calc->perp_wall_dist));
+	if (calc->perp_wall_dist == 0)
+		calc->perp_wall_dist = 1;
+	calc->line_height = (int)(WIN_HEIGHT / calc->perp_wall_dist);
 	calc->draw_start = -(calc->line_height) / 2 + WIN_HEIGHT / 2;
 	if (calc->draw_start < 0)
 		calc->draw_start = 0;
 	calc->draw_end = calc->line_height / 2 + WIN_HEIGHT / 2;
 	if (calc->draw_end >= WIN_HEIGHT)
 		calc->draw_end = WIN_HEIGHT - 1;
-
 }
 
 static void	get_wall_x_tex_x(t_calc *calc, t_cub *cub)
@@ -124,7 +108,6 @@ static void	get_wall_x_tex_x(t_calc *calc, t_cub *cub)
 		calc->wall_x = cub->pos.x + calc->perp_wall_dist * calc->ray_dir_x;
 	calc->wall_x -= floor((calc->wall_x));
 
-	
 	calc->tex_x = (int)(calc->wall_x * (double)tex_width);
 	if (calc->side == 0 && calc->ray_dir_x > 0)
 		calc->tex_x = tex_width - calc->tex_x - 1;
@@ -150,41 +133,40 @@ void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color)
 	*(unsigned int *)dest = color;
 }
 
-int	set_color(t_calc *calc, t_cub *cub, int x, int y)
-{
-	int	color;
+// int	set_color(t_calc *calc, t_cub *cub, int x, int y)
+// {
+// 	int	color;
 
-	if (calc->side == 0)
-	{
-		if (calc->ray_dir_x > 0)
-			color = cub->img_texture[EAST].data_ptr[cub->img_texture[EAST].width * calc->tex_y + calc->tex_x];
-		else
-			color = cub->img_texture[WEST].data_ptr[cub->img_texture[WEST].width * calc->tex_y + calc->tex_x];
-	}
-	if (calc->side == 1)
-	{
-		if (calc->ray_dir_y > 0)
-			color = cub->img_texture[NORTH].data_ptr[cub->img_texture[NORTH].width * calc->tex_y + calc->tex_x];
-		else
-			color = cub->img_texture[SOUTH].data_ptr[cub->img_texture[SOUTH].width * calc->tex_y + calc->tex_x];
-	}
-	return (color);
-}
+// 	if (calc->side == 0)
+// 	{
+// 		if (calc->ray_dir_x > 0)
+// 			color = cub->img_texture[EAST].data_ptr[cub->img_texture[EAST].width * calc->tex_y + calc->tex_x];
+// 		else
+// 			color = cub->img_texture[WEST].data_ptr[cub->img_texture[WEST].width * calc->tex_y + calc->tex_x];
+// 	}
+// 	if (calc->side == 1)
+// 	{
+// 		if (calc->ray_dir_y > 0)
+// 			color = cub->img_texture[NORTH].data_ptr[cub->img_texture[NORTH].width * calc->tex_y + calc->tex_x];
+// 		else
+// 			color = cub->img_texture[SOUTH].data_ptr[cub->img_texture[SOUTH].width * calc->tex_y + calc->tex_x];
+// 	}
+// 	return (color);
+// }
 
 static void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img)
 {
 	int	tex_height;
-	int	tex_width;
 	int	y;
 
 	tex_height = cub->img_texture[calc->tex_num].height;
-	tex_width = cub->img_texture[calc->tex_num].width;
 	y = calc->draw_start;
 	while (y <= calc->draw_end)
 	{
 		calc->tex_y = (int)calc->tex_pos & (tex_height - 1);
 		calc->tex_pos += calc->step;
-		calc->color = set_color(calc, cub, x, y);
+		// calc->color = set_color(calc, cub, x, y);
+		calc->color = cub->img_texture[calc->tex_num].data_ptr[cub->img_texture[calc->tex_num].width * calc->tex_y + calc->tex_x];
 		my_mlx_pixel_put(win_img, x, y, calc->color);
 		y++;
 	}
@@ -198,15 +180,14 @@ void	draw_floor_ceiling(t_calc *calc, t_cub *cub, t_image *win_img, int x)
 	int	b;
 	int	y;
 
-	y = 0;
-	while (y < calc->draw_start)
+	y = -1;
+	while (++y < calc->draw_start)
 	{
 		r = cub->info_map->ceiling->r;
 		g = cub->info_map->ceiling->g;
 		b = cub->info_map->ceiling->b;
 		color = (r << 16) + (g << 8) + b;
 		my_mlx_pixel_put(win_img, x, y, color);
-		y++;
 	}
 	y = calc->draw_end;
 	while (y < WIN_HEIGHT)

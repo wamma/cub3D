@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:45:09 by eoh               #+#    #+#             */
-/*   Updated: 2023/10/20 22:43:29 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:37:38 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	init_mlx(t_cub *cub)
 		ft_error("Failed malloc\n");
 	cub->win_img->img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	cub->win_img->data_ptr = (int *)mlx_get_data_addr(cub->win_img->img_ptr, \
-		&cub->win_img->bits_per_pixel, &cub->win_img->line_length, &cub->win_img->endian);
+		&cub->win_img->bits_per_pixel, \
+		&cub->win_img->line_length, &cub->win_img->endian);
 	if (!cub->win_img->img_ptr || !cub->win_img->data_ptr)
 		ft_error("Mlx init error\n");
 }

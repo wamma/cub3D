@@ -146,7 +146,22 @@ int		key_press(int key_code, t_cub *cub);
 void	load_image(t_cub *cub);
 int		main_loop(t_cub *cub);
 t_calc	*calculate(t_cub *cub);
-int		key_esc(int key_code, t_cub *cub);
+void	get_calc_info(t_calc *calc, t_cub *cub, int x);
+void	get_side_dist(t_calc *calc, t_cub *cub);
+void	get_side(t_calc *calc, t_cub *cub);
+void	get_wall_tex_num(t_calc *calc);
+void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
+void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
+void	get_calc_info(t_calc *calc, t_cub *cub, int x);
+void	get_side_dist(t_calc *calc, t_cub *cub);
+void	get_side(t_calc *calc, t_cub *cub);
+void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
+void	get_draw_start_and_end(t_calc *calc);
+void	draw_floor_ceiling(t_calc *calc, t_cub *cub, t_image *win_img, int x);
+void	draw_wall(t_calc *calc, t_cub *cub, int x, t_image *win_img);
+void	get_step_and_tex_pos(t_calc *calc, t_cub *cub);
+void	get_wall_x_tex_x(t_calc *calc, t_cub *cub);
+void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);
@@ -186,6 +201,7 @@ void	check_and_get_starting_position(t_map *info_map, char **map);
 
 char	**allocate_two_dimension_array(int column, int row);
 int		check_surrounded_by_wall(char **map, t_map *info_map);
-int		ft_intlen(int num);
+void	ft_error_free_map(char *str, t_map *info_map);
+void	free_two_dimension_array(char **arr);
 
 #endif

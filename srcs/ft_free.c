@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:27:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:27:08 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:34:01 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_ppc(char **ppc)
 
 void	free_s_map(t_map *map)
 {
+	if (map->map != NULL)
+		free_ppc(map->map);
 	if (map->no_path != NULL)
 		free(map->no_path);
 	if (map->so_path != NULL)
@@ -37,6 +39,8 @@ void	free_s_map(t_map *map)
 		free(map->we_path);
 	if (map->ea_path != NULL)
 		free(map->ea_path);
-	free(map->floor);
-	free(map->ceiling);
+	if (map->floor != NULL)
+		free(map->floor);
+	if (map->ceiling != NULL)
+		free(map->ceiling);
 }

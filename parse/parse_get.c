@@ -6,35 +6,11 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:07 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:26:14 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:36:34 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void	get_texture_info(t_map *info_map)
-{
-	char	*line;
-	char	**splited;
-	int		element_type;
-	int		*element_cnt;
-
-	element_cnt = init_array_zero(7);
-	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
-	line = get_next_line(info_map->map_path_fd);
-	while (line != NULL)
-	{
-		splited = ft_split_white_space(line);
-		element_type = get_element_type(splited);
-		if (element_type >= EA_PATH && element_type <= CEILING)
-			get_path_n_color(info_map, element_type, splited, element_cnt);
-		if (element_cnt[SUM] == 6)
-			break;
-		line = get_next_line(info_map->map_path_fd);
-	}
-	if (element_cnt[SUM] != 6)
-		ft_error("Check : numbers of element\n");//fd도 close
-}
 
 int	get_element_type(char **info)
 {

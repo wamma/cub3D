@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 14:36:58 by hyungjup          #+#    #+#             */
+/*   Updated: 2023/10/25 14:37:16 by hyungjup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
-void	init_camera_dir_S_n_N(t_cub *cub, char c)
+void	init_camera_dir_s_n(t_cub *cub, char c)
 {
 	if (c == 'S')
 	{
@@ -35,7 +47,7 @@ void	init_camera_dir(t_cub *cub, char c)
 		cub->plane.y = 0.66;
 	}
 	else
-		init_camera_dir_S_n_N(cub, c);
+		init_camera_dir_s_n(cub, c);
 }
 
 void	init_s_cub(t_cub *cub, t_map *info_map)

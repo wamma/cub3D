@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:11:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/09/05 10:50:25 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 17:17:00 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ char	*read_line(int fd, char *buf, char *save)
 			return (save);
 	}
 }
+
 char	*get_next_line(int fd)
 {
 	char		*buf;

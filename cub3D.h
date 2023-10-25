@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 17:12:00 by hyungjup          #+#    #+#             */
+/*   Updated: 2023/10/25 17:28:02 by hyungjup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -32,10 +44,10 @@
 # define FLOOR				5
 # define CEILING			6
 
-#define EAST				0
-#define WEST				1
-#define SOUTH				2
-#define NORTH				3
+# define EAST				0
+# define WEST				1
+# define SOUTH				2
+# define NORTH				3
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -141,18 +153,12 @@ void	init_s_map(t_map *info_map);
 void	init_mlx(t_cub *cub);
 void	init_s_cub(t_cub *cub, t_map *info_map);
 t_calc	*init_s_calc(void);
-char	**copy_char_map(t_map *info_map);
 int		key_press(int key_code, t_cub *cub);
 void	load_image(t_cub *cub);
 int		main_loop(t_cub *cub);
 t_calc	*calculate(t_cub *cub);
 void	get_calc_info(t_calc *calc, t_cub *cub, int x);
-void	get_side_dist(t_calc *calc, t_cub *cub);
-void	get_side(t_calc *calc, t_cub *cub);
 void	get_wall_tex_num(t_calc *calc);
-void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
-void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
-void	get_calc_info(t_calc *calc, t_cub *cub, int x);
 void	get_side_dist(t_calc *calc, t_cub *cub);
 void	get_side(t_calc *calc, t_cub *cub);
 void	get_perp_wall_dist(t_calc *calc, t_cub *cub);
@@ -165,7 +171,6 @@ void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);
-
 void	check_map_component(t_map *info_map);
 void	check_valid_map_component(char *line, t_map *info_map);
 void	check_map_seperated(t_map *info_map, char *map_line);
@@ -176,20 +181,15 @@ void	check_valid_rgb_element(char *rgb);
 void	check_numbers_of_rgb(char **rgb);
 void	check_valid_texture_path(t_map *info_map);
 void	check_valid_rgb_value(t_map *info_map);
-
 void	get_map_size(t_map *info_map);
 char	**get_map(t_map *info_map, char *map_line);
-
 void	get_texture_info(t_map *info_map);
 int		get_element_type(char **info);
 void	get_path_n_color(t_map *info_map, int type, char **info, int *cnt);
 void	get_texture_path(t_map *info_map, int type, char **info, int *cnt);
 void	get_f_n_c_info(t_map *info_map, int type, char **info, int *cnt);
-
 void	parse_info_map(t_map *info_map, char *map_path);
-
 char	**parse_map(t_map *info_map);
-
 int		rev_strncmp(char *s1, char *s2, int n);
 int		is_same(char *s1, char *s2);
 int		is_all_white_space(char *str);
@@ -198,7 +198,6 @@ void	read_remain_of_map(int fd, char *line);
 char	*get_starting_line_of_map(t_map *info_map);
 int		is_player(char c);
 void	check_and_get_starting_position(t_map *info_map, char **map);
-
 char	**allocate_two_dimension_array(int column, int row);
 int		check_surrounded_by_wall(char **map, t_map *info_map);
 void	ft_error_free_map(char *str, t_map *info_map);

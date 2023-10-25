@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:17 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:42:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:24:03 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,3 @@ void	check_and_get_starting_position(t_map *info_map, char **map)
 		ft_error("Check : there's no player\n");
 }
 
-char	**copy_char_map(t_map *info_map)
-{
-	char	*map_line;
-	char	**map;
-
-	map_line = get_starting_line_of_map(info_map);
-	map = get_map(info_map, map_line);
-	return (map);
-}

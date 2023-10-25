@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:12:00 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:28:02 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:06:40 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ void	my_mlx_pixel_put(t_image *win_img, int x, int y, int color);
 
 /*parse*/
 char	**ft_split_white_space(char const *s);
+char	*check_empty_file(t_map *info_map);
+void	check_valid_rgb_value(t_map *info_map);
 void	check_map_component(t_map *info_map);
 void	check_valid_map_component(char *line, t_map *info_map);
 void	check_map_seperated(t_map *info_map, char *map_line);
@@ -184,7 +186,7 @@ void	check_valid_texture_path(t_map *info_map);
 void	check_valid_rgb_value(t_map *info_map);
 void	get_map_size(t_map *info_map);
 char	**get_map(t_map *info_map, char *map_line);
-void	get_texture_info(t_map *info_map);
+void	get_texture_info(t_map *info_map, char *line);
 int		get_element_type(char **info);
 void	get_path_n_color(t_map *info_map, int type, char **info, int *cnt);
 void	get_texture_path(t_map *info_map, int type, char **info, int *cnt);

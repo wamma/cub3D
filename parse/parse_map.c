@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:17 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 15:42:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:33:16 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**parse_map(t_map *info_map)
 	get_map_size(info_map);
 	map_line = get_starting_line_of_map(info_map);
 	map = get_map(info_map, map_line);
-	close(info_map->map_path_fd);
+	close(info_map->map_path_fd);//leak
 	if (check_surrounded_by_wall(map, info_map) == FALSE)
 		ft_error_free_map("Check: map isn't surrounded by wall\n", info_map);
 	check_and_get_starting_position(info_map, map);
@@ -61,14 +61,4 @@ void	check_and_get_starting_position(t_map *info_map, char **map)
 	}
 	if (cnt == 0)
 		ft_error("Check : there's no player\n");
-}
-
-char	**copy_char_map(t_map *info_map)
-{
-	char	*map_line;
-	char	**map;
-
-	map_line = get_starting_line_of_map(info_map);
-	map = get_map(info_map, map_line);
-	return (map);
 }

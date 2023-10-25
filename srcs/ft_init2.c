@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:36:58 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 14:37:16 by hyungjup         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:08:05 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_s_cub(t_cub *cub, t_map *info_map)
 	cub->pos.x = info_map->starting_x + 0.5;
 	cub->pos.y = info_map->starting_y + 0.5;
 	init_camera_dir(cub, info_map->starting_direction);
-	cub->move_speed = 0.047;
+	cub->move_speed = 0.067;
 	cub->rot_speed = 0.05;
 	cub->info_map = info_map;
 }

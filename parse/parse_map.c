@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:17 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:33:16 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 17:55:07 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**parse_map(t_map *info_map)
 	get_map_size(info_map);
 	map_line = get_starting_line_of_map(info_map);
 	map = get_map(info_map, map_line);
-	close(info_map->map_path_fd);//leak
+	close(info_map->map_path_fd);
 	if (check_surrounded_by_wall(map, info_map) == FALSE)
 		ft_error_free_map("Check: map isn't surrounded by wall\n", info_map);
 	check_and_get_starting_position(info_map, map);

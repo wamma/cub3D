@@ -6,11 +6,22 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:25:10 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 19:33:12 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 19:37:09 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+char	*check_empty_file(t_map *info_map)
+{
+	char	*line;
+
+	info_map->map_path_fd = open(info_map->map_path, O_RDONLY);
+	line = get_next_line(info_map->map_path_fd);
+	if (line == NULL)
+		ft_error("Check: empty file");
+	return (line);
+}
 
 void	get_texture_info(t_map *info_map, char *line)
 {

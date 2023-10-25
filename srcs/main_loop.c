@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:27:23 by hyungjup          #+#    #+#             */
-/*   Updated: 2023/10/25 17:50:11 by eoh              ###   ########.fr       */
+/*   Updated: 2023/10/25 17:52:05 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_calc	*calculate(t_cub *cub)
 	t_image	win_img;
 
 	calc = init_s_calc();
-	x = 0;
+	x = -1;
 	win_img.img_ptr = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	win_img.data_ptr = (int *)mlx_get_data_addr(win_img.img_ptr, \
 	&win_img.bits_per_pixel, &win_img.line_length, &win_img.endian);
-	while (x < WIN_WIDTH)
+	while (++x < WIN_WIDTH)
 	{
 		get_calc_info(calc, cub, x);
 		get_side_dist(calc, cub);
@@ -44,7 +44,6 @@ t_calc	*calculate(t_cub *cub)
 		get_step_and_tex_pos(calc, cub);
 		draw_floor_ceiling(calc, cub, &win_img, x);
 		draw_wall(calc, cub, x, &win_img);
-		x++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, win_img.img_ptr, 0, 0);
 	mlx_destroy_image(cub->mlx, win_img.img_ptr);
